@@ -689,17 +689,17 @@
             .replace(/\n/g, '<br>')
             .replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
-        // Style speaker name differently (brighter/bolder)
         if (speaker) {
             const color = getCharacterColor(speaker);
-            processed = processed.replace(
-                /\[([A-Z\s']+)\]:/g,
-                `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
-            );
-            // Highlight only quoted dialogue with speaker color (like red-letter Bible)
+            // Highlight quoted dialogue FIRST (before adding any HTML with quotes in attributes)
             processed = processed.replace(
                 /"([^"]+)"/g,
                 `<span class="dialogue" style="color: ${color}; text-shadow: 0 0 5px ${color}40;">"$1"</span>`
+            );
+            // Style speaker name (after dialogue, so we don't match attribute quotes)
+            processed = processed.replace(
+                /\[([A-Z\s']+)\]:/g,
+                `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
             );
         } else {
             processed = processed.replace(
