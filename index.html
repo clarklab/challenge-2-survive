@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Challenge 2 Survive</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header bar with game stats -->
+        <header id="game-header">
+            <div id="header-content">
+                <span id="day-display">DAY 1</span>
+                <span id="episode-display">EPISODE 1</span>
+                <span id="players-display">8 PLAYERS</span>
+            </div>
+            <button id="menu-btn" aria-label="Menu">MENU</button>
+        </header>
+
+        <!-- Main game screen -->
+        <main id="game-screen">
+            <div id="text-output"></div>
+            <div id="choices-container"></div>
+        </main>
+
+        <!-- Tap indicator for skipping -->
+        <div id="tap-indicator">
+            <span>TAP TO SKIP</span>
+        </div>
+
+        <!-- Continue prompt -->
+        <div id="continue-prompt" class="hidden">
+            <span class="blink">[TAP TO CONTINUE]</span>
+        </div>
+    </div>
+
+    <!-- Menu overlay -->
+    <div id="menu-overlay" class="hidden">
+        <div id="menu-panel">
+            <h2>MENU</h2>
+            <button id="resume-btn" class="menu-option">RESUME GAME</button>
+            <button id="save-btn" class="menu-option">SAVE GAME</button>
+            <button id="load-btn" class="menu-option">LOAD GAME</button>
+            <button id="status-btn" class="menu-option">VIEW STATUS</button>
+            <button id="restart-btn" class="menu-option">RESTART</button>
+        </div>
+    </div>
+
+    <!-- Status overlay -->
+    <div id="status-overlay" class="hidden">
+        <div id="status-panel">
+            <h2>STATUS</h2>
+            <div id="status-content"></div>
+            <button id="close-status-btn" class="menu-option">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- Name input overlay -->
+    <div id="name-overlay" class="hidden">
+        <div id="name-panel">
+            <h2>ENTER YOUR NAME</h2>
+            <input type="text" id="player-name-input" maxlength="20" placeholder="YOUR NAME" autocomplete="off">
+            <button id="name-submit-btn" class="menu-option">BEGIN</button>
+        </div>
+    </div>
+
+    <!-- Save/Load slots overlay -->
+    <div id="save-overlay" class="hidden">
+        <div id="save-panel">
+            <h2 id="save-title">SAVE GAME</h2>
+            <div id="save-slots"></div>
+            <button id="close-save-btn" class="menu-option">CANCEL</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
