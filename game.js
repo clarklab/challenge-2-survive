@@ -283,9 +283,18 @@
         await delay(300);
         await typeText('A text-based reality competition.\n');
         await delay(500);
+        await typeText('\nAre you ready to board the flight? Name and ID please...\n');
 
-        // Show name input
-        showNameInput();
+        // Show continue prompt and wait for user tap
+        showContinuePromptUI();
+        uiState.isWaitingForContinue = true;
+
+        // When user taps, show name input
+        typewriterState.onComplete = () => {
+            uiState.isWaitingForContinue = false;
+            hideContinuePromptUI();
+            showNameInput();
+        };
     }
 
     function showContinuePrompt(savedGame) {
