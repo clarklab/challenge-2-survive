@@ -691,20 +691,20 @@
 
         if (speaker) {
             const color = getCharacterColor(speaker);
-            // Highlight quoted dialogue FIRST (before adding any HTML with quotes in attributes)
+            // Highlight quoted dialogue (use single quotes in HTML to avoid regex conflicts)
             processed = processed.replace(
                 /"([^"]+)"/g,
-                `<span class="dialogue" style="color: ${color}; text-shadow: 0 0 5px ${color}40;">"$1"</span>`
+                `<span class='dialogue' style='color: ${color}; text-shadow: 0 0 5px ${color}40;'>"$1"</span>`
             );
-            // Style speaker name (after dialogue, so we don't match attribute quotes)
+            // Style speaker name
             processed = processed.replace(
                 /\[([A-Z\s']+)\]:/g,
-                `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
+                `<span class='speaker' style='color: ${color}; filter: brightness(1.3);'>[$1]:</span>`
             );
         } else {
             processed = processed.replace(
                 /\[([A-Z\s']+)\]:/g,
-                '<span class="speaker">[$1]:</span>'
+                `<span class='speaker'>[$1]:</span>`
             );
         }
 
