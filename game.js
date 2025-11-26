@@ -14,7 +14,23 @@
         choiceDelay: 300,           // ms before showing choices
         saveSlotCount: 3,
         localStorageKey: 'c2s_save_',
-        autoSaveKey: 'c2s_autosave'
+        autoSaveKey: 'c2s_autosave',
+        soundEnabled: true,
+        vibrationEnabled: true,
+        vibrationDuration: 8        // ms per character vibration
+    };
+
+    // Character color palette - each character gets a unique color
+    const CHARACTER_COLORS = {
+        deej: '#ff6b35',      // Orange - energetic host
+        jake: '#ff4444',      // Red - aggressive alpha
+        maya: '#da70d6',      // Orchid - strategic mastermind
+        darius: '#4a90d9',    // Blue - loyal soldier
+        brittany: '#ff69b4',  // Hot pink - chaos agent
+        marcus: '#9370db',    // Purple - smooth snake
+        elena: '#87ceeb',     // Sky blue - cold machine
+        tyler: '#32cd32',     // Lime green - underdog nerd
+        player: '#33ff33'     // Bright green - you
     };
 
     // ==================== DOM ELEMENTS ====================
@@ -53,7 +69,8 @@
         currentText: '',
         currentIndex: 0,
         timeoutId: null,
-        onComplete: null
+        onComplete: null,
+        completeNow: null  // Function to immediately complete current typewriter
     };
 
     // UI State
@@ -61,6 +78,62 @@
         isWaitingForContinue: false,
         isSaveMode: true  // true for save, false for load
     };
+
+    // Audio context for typing sounds
+    let audioContext = null;
+    let audioInitialized = false;
+
+    // ==================== AUDIO SYSTEM ====================
+    function initAudio() {
+        if (audioInitialized) return;
+
+        try {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            audioInitialized = true;
+        } catch (e) {
+            console.warn('Web Audio API not supported:', e);
+            CONFIG.soundEnabled = false;
+        }
+    }
+
+    function playTypingSound() {
+        if (!CONFIG.soundEnabled || !audioContext) return;
+
+        // Resume context if suspended (autoplay policy)
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+
+        // Create a short "doot" sound
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        // Randomize frequency slightly for variation (retro computer feel)
+        const baseFreq = 800 + Math.random() * 200;
+        oscillator.frequency.setValueAtTime(baseFreq, audioContext.currentTime);
+        oscillator.type = 'square';  // Classic 8-bit sound
+
+        // Very short envelope
+        gainNode.gain.setValueAtTime(0.03, audioContext.currentTime);
+        gainNode.gain.exponentialDecayTo = 0.001;
+        gainNode.gain.setValueAtTime(0.03, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.05);
+    }
+
+    // ==================== VIBRATION SYSTEM ====================
+    function vibrate() {
+        if (!CONFIG.vibrationEnabled) return;
+
+        if (navigator.vibrate) {
+            navigator.vibrate(CONFIG.vibrationDuration);
+        }
+    }
 
     // ==================== INITIALIZATION ====================
     async function init() {
@@ -133,9 +206,18 @@
         // Save/Load overlay
         document.getElementById('close-save-btn').addEventListener('click', hideSaveLoad);
 
-        // Tap/click to skip or continue
+        // Tap/click to skip or continue - initialize audio on first interaction
         DOM.textOutput.addEventListener('click', handleScreenTap);
         DOM.textOutput.addEventListener('touchstart', handleScreenTap, { passive: true });
+
+        // Initialize audio on first user interaction (required for autoplay policy)
+        const initAudioOnInteraction = () => {
+            initAudio();
+            document.removeEventListener('click', initAudioOnInteraction);
+            document.removeEventListener('touchstart', initAudioOnInteraction);
+        };
+        document.addEventListener('click', initAudioOnInteraction);
+        document.addEventListener('touchstart', initAudioOnInteraction, { passive: true });
 
         // Touch events for mobile tap indicator
         document.addEventListener('touchstart', () => {
@@ -264,7 +346,7 @@
 
         // Format and display text
         const formattedText = formatText(node.text, node.speaker);
-        await typeText(formattedText);
+        await typeText(formattedText, node.speaker);
 
         // Show continue prompt and wait
         showContinuePromptUI();
@@ -285,7 +367,7 @@
 
         // Format and display context text
         const formattedText = formatText(node.text, node.speaker);
-        await typeText(formattedText);
+        await typeText(formattedText, node.speaker);
 
         // Delay before showing choices
         await delay(CONFIG.choiceDelay);
@@ -471,8 +553,12 @@
         return characterId;
     }
 
+    function getCharacterColor(characterId) {
+        return CHARACTER_COLORS[characterId] || CHARACTER_COLORS.player;
+    }
+
     // ==================== TYPEWRITER EFFECT ====================
-    async function typeText(text) {
+    async function typeText(text, speaker = null) {
         return new Promise((resolve) => {
             typewriterState.isTyping = true;
             typewriterState.skipRequested = false;
@@ -481,30 +567,50 @@
 
             const textElement = document.createElement('div');
             textElement.className = 'text-block';
+
+            // Apply character color if there's a speaker
+            if (speaker) {
+                const color = getCharacterColor(speaker);
+                textElement.style.color = color;
+                textElement.style.textShadow = `0 0 5px ${color}40`;
+            }
+
             DOM.textOutput.appendChild(textElement);
 
             const cursorElement = document.createElement('span');
             cursorElement.className = 'cursor';
 
+            // Store completion function so skip can call it
+            function completeTyping() {
+                textElement.innerHTML = processTextForDisplay(text, speaker);
+                finishTyping();
+            }
+
+            // Store reference for external skip call
+            typewriterState.completeNow = completeTyping;
+
             function typeNextChar() {
                 if (typewriterState.skipRequested) {
-                    // Complete immediately
-                    textElement.innerHTML = processTextForDisplay(text);
-                    finishTyping();
+                    completeTyping();
                     return;
                 }
 
                 if (typewriterState.currentIndex < text.length) {
+                    const char = text[typewriterState.currentIndex];
                     const currentContent = text.substring(0, typewriterState.currentIndex + 1);
-                    textElement.innerHTML = processTextForDisplay(currentContent);
+                    textElement.innerHTML = processTextForDisplay(currentContent, speaker);
                     textElement.appendChild(cursorElement);
+
+                    // Play sound and vibrate for visible characters
+                    if (char !== ' ' && char !== '\n') {
+                        playTypingSound();
+                        vibrate();
+                    }
 
                     typewriterState.currentIndex++;
                     scrollToBottom();
 
-                    const speed = typewriterState.skipRequested ?
-                        CONFIG.typewriterSpeedFast : CONFIG.typewriterSpeed;
-
+                    const speed = CONFIG.typewriterSpeed;
                     typewriterState.timeoutId = setTimeout(typeNextChar, speed);
                 } else {
                     finishTyping();
@@ -513,6 +619,7 @@
 
             function finishTyping() {
                 typewriterState.isTyping = false;
+                typewriterState.completeNow = null;
                 if (cursorElement.parentNode) {
                     cursorElement.remove();
                 }
@@ -537,19 +644,33 @@
             const lines = logoText.split('\n');
             let lineIndex = 0;
 
+            function completeLogo() {
+                logoElement.textContent = logoText;
+                typewriterState.isTyping = false;
+                typewriterState.completeNow = null;
+                scrollToBottom();
+                resolve();
+            }
+
+            typewriterState.completeNow = completeLogo;
+
             function typeNextLine() {
-                if (typewriterState.skipRequested || lineIndex >= lines.length) {
-                    // Complete immediately
-                    logoElement.textContent = logoText;
-                    typewriterState.isTyping = false;
-                    scrollToBottom();
-                    resolve();
+                if (typewriterState.skipRequested) {
+                    completeLogo();
+                    return;
+                }
+
+                if (lineIndex >= lines.length) {
+                    completeLogo();
                     return;
                 }
 
                 logoElement.textContent = lines.slice(0, lineIndex + 1).join('\n');
                 lineIndex++;
                 scrollToBottom();
+
+                // Play a little sound for each line
+                playTypingSound();
 
                 typewriterState.timeoutId = setTimeout(typeNextLine, 50);
             }
@@ -558,20 +679,41 @@
         });
     }
 
-    function processTextForDisplay(text) {
-        // Convert special formatting
-        return text
+    function processTextForDisplay(text, speaker = null) {
+        let processed = text
             .replace(/\n/g, '<br>')
-            .replace(/\[([A-Z\s']+)\]:/g, '<span class="speaker">[$1]:</span>')
             .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+        // Style speaker name differently (brighter/bolder)
+        if (speaker) {
+            const color = getCharacterColor(speaker);
+            processed = processed.replace(
+                /\[([A-Z\s']+)\]:/g,
+                `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
+            );
+        } else {
+            processed = processed.replace(
+                /\[([A-Z\s']+)\]:/g,
+                '<span class="speaker">[$1]:</span>'
+            );
+        }
+
+        return processed;
     }
 
     function skipTypewriter() {
         if (typewriterState.isTyping) {
             typewriterState.skipRequested = true;
+
+            // Clear any pending timeout
             if (typewriterState.timeoutId) {
                 clearTimeout(typewriterState.timeoutId);
                 typewriterState.timeoutId = null;
+            }
+
+            // Immediately complete the current typewriter
+            if (typewriterState.completeNow) {
+                typewriterState.completeNow();
             }
         }
     }
@@ -791,13 +933,13 @@
                 continue;
             }
 
-            const status = getRelationshipStatus(value);
+            const color = getCharacterColor(character);
             const fillWidth = Math.abs(value) / 2;
             const fillLeft = value >= 0 ? 50 : 50 - fillWidth;
-            const fillColor = value >= 0 ? '#33ff33' : '#ff3333';
+            const fillColor = value >= 0 ? color : '#ff3333';
 
             html += `<div class="relationship-bar">
-                <span class="relationship-name">${capitalize(character)}</span>
+                <span class="relationship-name" style="color: ${color}">${capitalize(character)}</span>
                 <div class="relationship-meter">
                     <div class="relationship-fill" style="left: ${fillLeft}%; width: ${fillWidth}%; background: ${fillColor}"></div>
                 </div>
