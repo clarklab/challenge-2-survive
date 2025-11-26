@@ -71,7 +71,7 @@
             // Load game content and logo in parallel
             const [content, logo] = await Promise.all([
                 loadJSON('challenge2survive_content.json'),
-                loadText('logo.text')
+                loadText('logo.txt')
             ]);
 
             gameContent = content;
