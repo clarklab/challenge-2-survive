@@ -1,0 +1,1272 @@
+{
+  "game_metadata": {
+    "title": "Challenge 2 Survive",
+    "version": "1.0",
+    "description": "A text-based reality competition game inspired by MTV's The Challenge",
+    "total_players": 8,
+    "elimination_rounds": 5,
+    "setting": "Villa del Caos, Croatian coastline"
+  },
+
+  "characters": {
+    "host": {
+      "id": "deej",
+      "name": "DJ 'Deej' Slavin",
+      "role": "Host / Challenge Architect",
+      "age": 38,
+      "description": "Former pro dirt skater who shattered both knees in a legendary crash at the X Games. Now channels all that adrenaline into designing the most brutal, creative challenges in reality TV. Covered in tattoos, speaks in surfer-bro cadence but has a genius-level mind for psychological warfare. He doesn't just host the show—he IS the show. Personally designs every challenge and elimination, and takes visible pleasure in watching competitors face his creations.",
+      "backstory": "Won three consecutive X Games gold medals in dirt skating before 'The Crash' in 2015. Doctors said he'd never walk again. He walked out of the hospital six months later and pitched Challenge 2 Survive to three networks before one said yes. Every challenge is a piece of his twisted imagination.",
+      "personality_traits": ["extreme", "creative", "intense", "unpredictable", "genius", "sadistic_but_fair"],
+      "catchphrases": [
+        "You came here to survive? Then SURVIVE.",
+        "I designed this challenge at 3 AM after four energy drinks. You're welcome.",
+        "Pain is temporary. Regret is forever. Now GET AFTER IT.",
+        "I broke both my knees chasing glory. What's YOUR excuse?",
+        "This ain't summer camp, people. This is WAR.",
+        "The Finals don't care about your feelings. Neither do I."
+      ],
+      "speech_style": "High-energy, extreme sports vocabulary mixed with surprisingly insightful observations. Drops 'bro' and 'dude' but also casually references Sun Tzu. Gets genuinely excited watching his challenges unfold. Occasionally reveals the twisted logic behind his challenge designs."
+    },
+    "player": {
+      "id": "player",
+      "name": "[PLAYER_NAME]",
+      "role": "Contestant"
+    },
+    "npcs": [
+      {
+        "id": "jake",
+        "name": "Jake Morrison",
+        "nickname": "The Meathead",
+        "age": 26,
+        "hometown": "Miami, FL",
+        "occupation": "Personal Trainer / Fitness Influencer",
+        "description": "6'2\" of pure ego wrapped in spray tan. Jake peaked in high school and has been coasting on his jawline ever since.",
+        "personality": ["arrogant", "insecure", "competitive", "loud"],
+        "speech_style": "Bro-speak. Says 'bro' constantly. Refers to himself as 'your boy Jake.'",
+        "strategy": "Form an 'alpha alliance' with physical players. Dismisses anyone weak.",
+        "secret": "Deeply insecure about his intelligence. Failed out of community college twice.",
+        "starting_disposition": 0,
+        "quote": "Your boy Jake didn't come here to make friends. I came here to run that Final!"
+      },
+      {
+        "id": "maya",
+        "name": "Maya Chen",
+        "nickname": "The Mastermind",
+        "age": 24,
+        "hometown": "Los Angeles, CA",
+        "occupation": "Social Media Influencer",
+        "description": "Gorgeous, giggly, and genuinely dangerous. Maya plays the ditzy influencer perfectly while running calculations in her head.",
+        "personality": ["strategic", "deceptive", "charming", "patient"],
+        "speech_style": "Valley girl affect she can drop instantly. Her confessionals reveal a different person.",
+        "strategy": "Appear non-threatening while building an information network.",
+        "secret": "Has a degree in behavioral psychology from Stanford. Studied game theory before the show.",
+        "starting_disposition": 5,
+        "quote": "Oh my god, I'm SO bad at this game stuff! *confessional* These idiots have no idea what's coming."
+      },
+      {
+        "id": "darius",
+        "name": "Darius Williams",
+        "nickname": "The Loyalist",
+        "age": 29,
+        "hometown": "Atlanta, GA",
+        "occupation": "Former College Football Player / Youth Coach",
+        "description": "Built like a tank with a moral code to match. Darius played linebacker at Georgia Tech before injury.",
+        "personality": ["loyal", "honorable", "physical", "stubborn"],
+        "speech_style": "Straight-shooter. Speaks with quiet intensity. Will call out snake behavior.",
+        "strategy": "Find ride-or-dies and stick with them. Refuses to break his word.",
+        "secret": "His youth center is struggling financially. Needs the prize money.",
+        "starting_disposition": 0,
+        "quote": "I don't play both sides. You're either with me or you're not."
+      },
+      {
+        "id": "brittany",
+        "name": "Brittany Taylor",
+        "nickname": "Hurricane Britt",
+        "age": 23,
+        "hometown": "Scottsdale, AZ",
+        "occupation": "Bottle Service / Professional Party Girl",
+        "description": "Chaos incarnate with a spray tan. Not here to win—here to watch the world burn and maybe hook up.",
+        "personality": ["chaotic", "dramatic", "unpredictable", "fun"],
+        "speech_style": "Loud, unfiltered, probably drunk. Screams when excited. Zero filter.",
+        "strategy": "What strategy? Votes based on vibes, grudges, and whoever annoyed her.",
+        "secret": "Actually smart but masks it. Dad is a successful attorney; running from expectations.",
+        "starting_disposition": 5,
+        "quote": "OKAY BUT LIKE, I'm not here for drama! *causes drama immediately*"
+      },
+      {
+        "id": "marcus",
+        "name": "Marcus Rivera",
+        "nickname": "The Snake Charmer",
+        "age": 27,
+        "hometown": "New York City, NY",
+        "occupation": "Bartender / Aspiring Actor",
+        "description": "Devastatingly handsome and completely untrustworthy. Always working an angle.",
+        "personality": ["charming", "manipulative", "smooth", "two-faced"],
+        "speech_style": "Adaptable. Mirrors whoever he's talking to. Confessionals reveal calculating nature.",
+        "strategy": "Play all sides. Make everyone think they're his number one.",
+        "secret": "Has played on two previous reality shows under different names.",
+        "starting_disposition": 10,
+        "quote": "Bro, you're literally my day one. *to camera* I have seven day ones."
+      },
+      {
+        "id": "elena",
+        "name": "Elena Kozlov",
+        "nickname": "The Machine",
+        "age": 25,
+        "hometown": "Chicago, IL (originally Moscow)",
+        "occupation": "Fitness Competitor / Physical Therapist",
+        "description": "Posture of a soldier, physique of an Olympian. Doesn't understand 'playing the game.'",
+        "personality": ["intense", "competitive", "blunt", "isolated"],
+        "speech_style": "Direct, slightly formal English. Says exactly what she thinks.",
+        "strategy": "Win everything. Doesn't trust alliances because they require lying.",
+        "secret": "Incredibly lonely. Wants connections but doesn't know how.",
+        "starting_disposition": -5,
+        "quote": "In Russia, we have saying: trust is for people who cannot rely on themselves."
+      },
+      {
+        "id": "tyler",
+        "name": "Tyler Brooks",
+        "nickname": "The Underdog",
+        "age": 28,
+        "hometown": "San Francisco, CA",
+        "occupation": "Tech Startup Founder",
+        "description": "Lean, not imposing, looks more hackathon than competition. Being underestimated is his weapon.",
+        "personality": ["nerdy", "strategic", "underestimated", "observant"],
+        "speech_style": "Self-deprecating humor, pop culture references, surprising strategic insight.",
+        "strategy": "Stay under the radar. Let alphas target each other. Build quiet alliances.",
+        "secret": "His startup is worth $40 million. Doesn't need money—wants to prove himself.",
+        "starting_disposition": 5,
+        "quote": "Every Goliath thinks they've got it figured out until some nerd with a plan shows up."
+      }
+    ]
+  },
+
+  "game_state_template": {
+    "current_node": "intro_001",
+    "player_name": "",
+    "day": 1,
+    "episode": 1,
+    "eliminated_players": [],
+    "active_players": ["player", "jake", "maya", "darius", "brittany", "marcus", "elena", "tyler"],
+    "relationships": {
+      "jake": 0,
+      "maya": 0,
+      "darius": 0,
+      "brittany": 0,
+      "marcus": 0,
+      "elena": 0,
+      "tyler": 0
+    },
+    "alliances": [],
+    "flags": {},
+    "challenge_wins": 0,
+    "elimination_wins": 0,
+    "times_in_elimination": 0,
+    "vote_history": []
+  },
+
+  "nodes": {
+    "intro_001": {
+      "type": "narrative",
+      "episode": 1,
+      "day": 1,
+      "text": "The helicopter descends over the Croatian coastline, and your stomach drops—partly from the altitude, partly from the view. Below you, perched on a cliff overlooking the Adriatic Sea, sits Villa del Caos. It's obscenely beautiful: white stone walls, infinity pools that seem to pour into the ocean, and enough bedrooms to house your anxiety and seven strangers who want to destroy you.\n\nYou're really doing this. After years of watching reality competitions from your couch, screaming at contestants for their terrible decisions, you're about to become one of them.\n\nThe helicopter touches down on a helipad you didn't know mansions could have. As the blades slow, you see them—seven other people emerging from various vehicles, squinting in the Mediterranean sun, sizing each other up.\n\nThis is Challenge 2 Survive. Eight players. One winner. And a whole lot of bad decisions in between.",
+      "next": "intro_002"
+    },
+
+    "intro_002": {
+      "type": "narrative",
+      "text": "A man rolls out of the villa's main entrance on a custom wheelchair—wait, no, he just stands up from it, kicks it aside, and strides toward you on legs that definitely shouldn't work that well. DJ 'Deej' Slavin. You recognize him from the X Games footage, from the viral crash video, from the Netflix documentary about his comeback. He's covered in tattoos, wearing board shorts and a tank top that says 'PAIN IS DATA,' and grinning like a man who's about to ruin your week.\n\n\"WHAT'S UP, SURVIVORS!\" His voice booms across the courtyard without a microphone. \"Welcome to Villa del Caos! I'm Deej, and I'm not just your host—I'm the psychopath who designed every single challenge you're about to hate.\"\n\nHe taps his knee.\n\n\"See, I broke both of these chasing something most people said was impossible. Doctors said I'd never walk. I said 'watch me.' And now I build challenges that test whether YOU have that same fire. Because here's the thing—The Finals? They don't care about your excuses. They don't care about your alliances. They only care about one thing: can you SURVIVE?\"\n\nHe spreads his arms wide, practically vibrating with energy.\n\n\"Three of you will run The Finals. ONE of you will be champion. The rest of you? You're just content, baby. Beautiful, dramatic, cry-in-the-confessional content.\"",
+      "next": "intro_003"
+    },
+
+    "intro_003": {
+      "type": "narrative",
+      "text": "Deej claps his hands together so hard it echoes off the villa walls.\n\n\"Alright, let's do intros! I want names, where you're from, and what makes you think you can survive MY challenges. And keep it real—I've been doing this long enough to smell BS from a mile away.\"\n\nHe pulls out a Red Bull from seemingly nowhere and cracks it open.\n\n\"Oh, and fair warning? I designed the first challenge at 3 AM after rewatching Ninja Warrior and thinking 'I can make that WAY worse.' So maybe don't brag too hard about being athletic. We'll find out real quick what you're made of.\"",
+      "next": "intro_jake"
+    },
+
+    "intro_jake": {
+      "type": "narrative",
+      "speaker": "jake",
+      "text": "A wall of muscle in a tank top that's working overtime stands up first. His smile is aggressively white.\n\n\"Yo yo yo! What's good, everybody! Your boy Jake Morrison, coming at you live from Miami! Personal trainer, fitness influencer, and honestly? Probably the most athletic person in this room, no offense.\"\n\nHe flexes casually, as if by accident.\n\n\"I'm here to compete, I'm here to win, and I'm here to show everybody what a real competitor looks like. That Finals? Already got my name on it, bro. Bank on that.\"\n\nDeej grins like a shark who just spotted a surfer.\n\n\"Oh, I LOVE the confidence, bro. I really do. Wrote down 'confident' in my notes right here.\" He mimes writing. \"Also wrote down 'first one to cry.' We'll see which one hits first.\"",
+      "next": "intro_maya"
+    },
+
+    "intro_maya": {
+      "type": "narrative",
+      "speaker": "maya",
+      "text": "A stunning woman with perfectly beachy waves and a smile that's somehow both warm and calculating stands up next. She gives a little wave that's almost comically cute.\n\n\"Hi everyone! Oh my god, this house is like, SO gorgeous? I literally can't even right now. Um, I'm Maya Chen, I'm from LA, I do social media stuff? I have like, a decent following, nothing crazy.\"\n\nShe giggles and twirls her hair.\n\n\"Honestly I'm just like, SO excited to be here! I've never done anything like this before and I'm probably going to be terrible at the physical stuff but I just want to have fun and make friends, you know?\"\n\nFrom the corner, you notice Tyler studying her with a slight frown, like he's not quite buying it.",
+      "next": "intro_darius"
+    },
+
+    "intro_darius": {
+      "type": "narrative",
+      "speaker": "darius",
+      "text": "A man built like a defensive end stands slowly. He doesn't smile, but there's warmth in his eyes. He carries himself like someone who's been through things.\n\n\"Darius Williams. Atlanta. I played football at Georgia Tech before my knee had other plans. Now I coach kids who need someone in their corner.\"\n\nHe pauses, looking around the room with an evaluating gaze.\n\n\"I'm not here to play games with people's heads. I'm here to compete straight up. If you give me your word, I expect you to keep it. If you can't do that, we've got nothing to talk about. Simple as that.\"\n\nDeej nods slowly, respect flickering across his face.\n\n\"Knee blew out, huh? Yeah, I know that story.\" He taps his own leg. \"The universe tests people, dude. The question is what you do after. I like you already. Which means I'm gonna make your challenges EXTRA spicy.\"",
+      "next": "intro_brittany"
+    },
+
+    "intro_brittany": {
+      "type": "narrative",
+      "speaker": "brittany",
+      "text": "Before anyone can react, a blonde tornado bounces off the couch like she's spring-loaded.\n\n\"OH MY GOD HI!!! Okay okay okay, I'm Brittany but everyone calls me Britt, I'm from Scottsdale which is basically the Vegas of Arizona, and I work in nightlife which means I basically get paid to party, and HONESTLY?\"\n\nShe pauses to take a breath. It's the first one she's taken.\n\n\"I have NO idea why I'm here! Like, I applied as a joke when I was drunk and then they actually called me and I was like 'oh no' but also 'oh YES' you know? I'm just here for a good time! If I win, amazing! If I don't, I probably hooked up with someone hot so, win-win!\"\n\nJake is already looking at her like she's a snack. Deej looks absolutely DELIGHTED—he's found his chaos agent.",
+      "next": "intro_marcus"
+    },
+
+    "intro_marcus": {
+      "type": "narrative",
+      "speaker": "marcus",
+      "text": "Smooth as silk, a guy with cheekbones that could cut glass and an easy smile rises from his seat. He has the energy of someone who's never met a stranger—or a truth he couldn't bend.\n\n\"What's up everyone, I'm Marcus. Marcus Rivera. Born and raised in New York City, and I bartend while pursuing acting. Yeah, yeah, I know—'every hot person in New York is an aspiring actor.'\" He does air quotes and laughs.\n\n\"But real talk? I'm here because I'm tired of auditioning for my dreams. This is my shot to prove I can perform when it matters. And hey...\" He winks at no one in particular and everyone at once. \"I'm pretty good at making friends.\"\n\nYou notice Maya watching him with interest. So is Brittany. So is basically everyone with eyes.",
+      "next": "intro_elena"
+    },
+
+    "intro_elena": {
+      "type": "narrative",
+      "speaker": "elena",
+      "text": "A woman with the posture of a soldier and the physique of an Olympic athlete stands. Her expression is unreadable, her accent slight but noticeable.\n\n\"Elena Kozlov. Chicago, originally Moscow. I am physical therapist and fitness competitor. I have won three national championships in my sport.\"\n\nShe pauses, looking around with what might be disdain or might just be her face.\n\n\"I do not understand American reality television. All the talking, the 'alliances,' the crying in rooms. In competition, you win or you lose. Simple. I am here to win. If you are in my way, I will go through you. This is not personal. This is sport.\"\n\nThe room is notably silent. Jake looks threatened. Darius looks intrigued. Brittany mouths 'she's scary' at no one.",
+      "next": "intro_tyler"
+    },
+
+    "intro_tyler": {
+      "type": "narrative",
+      "speaker": "tyler",
+      "text": "The last guy stands up, adjusting his glasses with a self-conscious laugh. He's lean, not particularly imposing, and looks more comfortable at a hackathon than a physical competition.\n\n\"Hey everyone, I'm Tyler. Tyler Brooks, from San Francisco. I, uh, work in tech—started a couple apps, nothing you've probably heard of unless you're into productivity tools.\"\n\nHe shrugs with practiced humility.\n\n\"Honestly, looking around this room, I'm probably the least physically intimidating person here. Which, you know, historically means I'm going to be underestimated and then make a deep run because the athletic people forget that challenges aren't just about muscles.\"\n\nHe grins. \"Just statistically speaking. Not that I've watched every season of every competition show.\"\n\nJake snorts dismissively. Maya's eyes narrow almost imperceptibly.",
+      "next": "intro_player"
+    },
+
+    "intro_player": {
+      "type": "choice",
+      "text": "All eyes turn to you. The last one to introduce themselves. Deej's gaze is expectant, that manic energy barely contained.\n\n\"And finally, our last competitor. Let's hear it—who are you, and why should any of these people be scared of you?\"",
+      "choices": [
+        {
+          "id": "intro_confident",
+          "text": "Go big and confident. Make a statement.",
+          "response_text": "You stand up, shoulders back, meeting everyone's eyes one by one.\n\n\"[PLAYER_NAME]. And honestly? I've been watching shows like this my whole life, screaming at the screen about what I'd do differently. Now I get to prove it. I'm athletic enough to compete, smart enough to strategize, and social enough to know exactly who in this room is already lying.\"\n\nYou let that hang in the air. Jake looks annoyed. Maya's smile flickers. Marcus laughs appreciatively.\n\n\"So yeah. Nice to meet you all. Let's have fun.\"",
+          "effects": {
+            "relationships": {"jake": -5, "maya": -5, "marcus": 5, "tyler": 5, "darius": 5, "brittany": 5, "elena": 0},
+            "flags": {"intro_style": "confident"}
+          },
+          "next": "intro_end"
+        },
+        {
+          "id": "intro_humble",
+          "text": "Play it humble and likeable. Stay under the radar.",
+          "response_text": "You stand with a warm smile, going for approachable rather than intimidating.\n\n\"Hey everyone! I'm [PLAYER_NAME]. I'm, uh, honestly just really excited to be here. I've watched a lot of these shows and always wondered if I could actually do it, you know? I'm not the strongest or the smartest, but I work hard and I'm loyal to the people I care about.\"\n\nYou shrug. \"Mostly I just want to compete, have a great experience, and try not to embarrass myself on national television.\"\n\nDarius nods approvingly. Tyler gives you a knowing look—like he sees what you're doing.",
+          "effects": {
+            "relationships": {"jake": 5, "maya": 0, "marcus": 5, "tyler": 0, "darius": 10, "brittany": 5, "elena": 0},
+            "flags": {"intro_style": "humble"}
+          },
+          "next": "intro_end"
+        },
+        {
+          "id": "intro_funny",
+          "text": "Be funny and self-deprecating. Make them laugh.",
+          "response_text": "You stand up and immediately stumble slightly on the edge of the couch, playing it up for comedic effect.\n\n\"And THIS is why I'm gonna win, obviously. Peak athleticism right there.\" You gesture at yourself. \"I'm [PLAYER_NAME], and I'll be honest—I have no idea what I'm doing here. Pretty sure they cast me as the person who falls into the pool first.\"\n\nBrittany cackles. Even Elena's mouth twitches.\n\n\"But hey, at least when I inevitably get eliminated in some embarrassing way, it'll make great TV. You're welcome, Deej.\"\n\nThe host actually laughs—a genuine, delighted cackle. \"Oh, I LOVE this one! Self-aware! Those are the dangerous ones, people. Watch out.\"",
+          "effects": {
+            "relationships": {"jake": 5, "maya": 5, "marcus": 5, "tyler": 10, "darius": 0, "brittany": 15, "elena": 5},
+            "flags": {"intro_style": "funny"}
+          },
+          "next": "intro_end"
+        }
+      ]
+    },
+
+    "intro_end": {
+      "type": "narrative",
+      "text": "Deej crushes his empty Red Bull can and tosses it over his shoulder without looking.\n\n\"ALRIGHT! That's our squad! I see some dawgs in here, I see some snakes, and I see at least three people who are gonna have a VERY public meltdown. This is gonna be GREAT.\"\n\nHe starts pacing like a coach before a big game.\n\n\"Here's how MY game works: Every few days, you compete in a Challenge—something I personally designed to test your body, your brain, or your will to live. Winner gets SAFETY and the POWER to throw one person directly into Elimination.\"\n\nHe holds up a finger.\n\n\"Everyone else? You vote. Two people get the most votes, they face off in Elimination—which, by the way, I ALSO designed. And let me tell you, I've been saving some NASTY ideas. Last one standing stays. Loser goes home crying.\"\n\nHe grins maniacally.\n\n\"At the end of this beautiful chaos, THREE of you will qualify to run The Finals. My MASTERPIECE. A course so brutal I'm genuinely not sure it's legal in most countries.\"\n\nHe spreads his arms wide.\n\n\"Welcome to Challenge 2 Survive. Now go unpack, start scheming, and remember: I'm ALWAYS watching. First Challenge drops tomorrow. GET HYPE!\"\n\nThe game has begun.",
+      "next": "night1_001"
+    },
+
+    "night1_001": {
+      "type": "narrative",
+      "episode": 1,
+      "day": 1,
+      "time": "night",
+      "text": "NIGHT 1 - VILLA DEL CAOS\n\nThe sun has set over the Adriatic, painting the sky in oranges and purples. The villa has four bedrooms, each with two beds. The room assignments matter—who you sleep near is who you'll talk to at 2 AM when the game gets real.\n\nYou walk the upstairs hallway, peeking into rooms. Jake has already claimed the biggest room's best bed. Brittany is bouncing on mattresses like she's testing trampolines. Tyler is methodically unpacking.\n\nMaya appears at your shoulder, her voice low and conspiratorial.\n\n\"So... first night strategy. Who are you trying to room with? Because who you align yourself with on night one? That's information everyone's going to remember.\"",
+      "next": "night1_room_choice"
+    },
+
+    "night1_room_choice": {
+      "type": "choice",
+      "text": "You look at the available options:\n\n- Room A: Jake is in here, one bed left. Loud and arrogant, but obviously a physical threat who might want an alliance.\n\n- Room B: Darius and Elena seem to have wordlessly chosen this room. Strong, quiet, principled people.\n\n- Room C: Tyler's setting up in here, alone so far. Under the radar, strategic.\n\n- Room D: Brittany has claimed this room and is making it a party zone. Marcus is lingering nearby.\n\nMaya's watching you decide, and you realize she's also gathering information about YOU.",
+      "choices": [
+        {
+          "id": "room_jake",
+          "text": "Room A with Jake - align with the alpha",
+          "response_text": "You toss your bag on the empty bed in Jake's room. He looks up and grins.\n\n\"Ayyy! Good choice! We're gonna run this house, bro. Physical beasts stick together, am I right?\"\n\nHe's already assuming you're in an alliance. Which... maybe you are?\n\nFrom the doorway, Tyler watches with a slight frown before walking away. You've made your first statement: you're with the perceived frontrunner.",
+          "effects": {
+            "relationships": {"jake": 15, "tyler": -10, "elena": -5},
+            "alliances": ["alpha_pack"],
+            "flags": {"room_choice": "jake"}
+          },
+          "next": "night1_party"
+        },
+        {
+          "id": "room_darius",
+          "text": "Room B with Darius and Elena - the competitors",
+          "response_text": "You walk into the room where Darius is quietly unpacking. Elena is doing some kind of military-grade stretching routine.\n\n\"Mind if I join you two?\"\n\nDarius looks up and nods. \"Room's open. Fair warning though—I don't do a lot of late-night scheming. I'm here to compete, not whisper.\"\n\nElena says nothing but gives you an evaluating look that seems almost approving.\n\nYou're with the serious competitors now.",
+          "effects": {
+            "relationships": {"darius": 15, "elena": 10, "jake": -5, "brittany": -5},
+            "flags": {"room_choice": "competitors"}
+          },
+          "next": "night1_party"
+        },
+        {
+          "id": "room_tyler",
+          "text": "Room C with Tyler - the strategic underdog",
+          "response_text": "You slip into Tyler's room and start unpacking. He looks up with a surprised but pleased expression.\n\n\"Oh hey! Didn't expect company. Most people seem gravitating toward... louder options.\"\n\nHe lowers his voice. \"Which honestly? Might work in our favor. While everyone's distracted by Jake's ego show, we can actually talk strategy.\"\n\nHe pauses. \"Not that I'm assuming anything. Just... first night alliances are a thing, and you chose the nerd room. That tells me something about you.\"",
+          "effects": {
+            "relationships": {"tyler": 20, "jake": -5, "maya": 5},
+            "alliances": ["underdogs"],
+            "flags": {"room_choice": "tyler"}
+          },
+          "next": "night1_party"
+        },
+        {
+          "id": "room_party",
+          "text": "Room D with Brittany and Marcus - the party people",
+          "response_text": "You throw your stuff on the remaining bed in the party room. Brittany immediately screams.\n\n\"YESSS! We're gonna have SO much fun! This room is officially the fun room. No boring strategy talk, only vibes!\"\n\nMarcus grins at you, something calculating behind his charm. \"Smart choice. While everyone else is forming their 'serious alliances,' we're building actual relationships. People vote to keep people they like.\"\n\nHe's not wrong. But you also notice he's already working you.",
+          "effects": {
+            "relationships": {"brittany": 20, "marcus": 15, "darius": -5, "elena": -10},
+            "flags": {"room_choice": "party"}
+          },
+          "next": "night1_party"
+        }
+      ]
+    },
+
+    "night1_party": {
+      "type": "narrative",
+      "text": "Night one means drinks. The common area fills up as the sun fully disappears. Someone raided the bar (Brittany), and the tension of competition is briefly replaced by chaos.\n\nJake is doing pull-ups on a beam for attention. Maya is giggling with Marcus on a couch, though her eyes keep scanning the room. Darius nurses a single beer and observes. Elena is doing laps in the pool.\n\nTyler sidles up next to you with a drink.\n\n\"People watching?\"\n\nYou shrug. \"Couldn't help it.\"\n\n\"Smart. First night is intelligence gathering. Everyone's guard is down.\" He nods toward Maya and Marcus. \"Those two are already playing. Notice how she's making him feel like the most interesting person in the room while learning everything about him?\"\n\nYou watch more closely. He's right.",
+      "next": "night1_maya_approach"
+    },
+
+    "night1_maya_approach": {
+      "type": "narrative",
+      "text": "As if summoned by observation, Maya bounces over. Her drink is full but you notice she's barely touched it.\n\n\"Okay you two look like you're having the most SERIOUS conversation! What are we talking about? Strategy? Boys? The fact that Jake has done like forty pull-ups and nobody asked?\"\n\nShe laughs, but her eyes are sharp.\n\n\"Actually, I wanted to grab you specifically,\" she says to you. \"Come get a drink with me? Girl talk? Or, you know, person talk. Whatever.\"\n\nTyler raises an eyebrow at you. This is clearly an invite to a private conversation with someone who is almost definitely more strategic than she appears.",
+      "next": "night1_maya_choice"
+    },
+
+    "night1_maya_choice": {
+      "type": "choice",
+      "text": "Maya's waiting for an answer, her smile perfectly pleasant and absolutely hiding something.",
+      "choices": [
+        {
+          "id": "maya_yes",
+          "text": "Go with Maya - hear what she has to say",
+          "response_text": "You follow Maya to a quiet corner of the kitchen. She drops the ditzy act almost immediately, her voice lower and more direct.\n\n\"Okay, I'm going to be real with you because I think you're smart enough to handle it. The bubbly thing? It's a strategy. Don't tell anyone.\"\n\nShe pours you both drinks without breaking eye contact.\n\n\"Here's what I see: Jake's going to try to run an 'alpha' alliance. It'll work for a few rounds until people realize he's a target. Marcus is playing everybody—he's already got three 'final twos' lined up. And the people who don't play the social game? They go home early.\"\n\nShe leans in. \"I need people I can actually trust. Strategic people. What do you think?\"",
+          "effects": {
+            "relationships": {"maya": 15, "tyler": -5},
+            "flags": {"maya_revealed": true}
+          },
+          "next": "night1_maya_alliance"
+        },
+        {
+          "id": "maya_no",
+          "text": "Stay with Tyler - don't isolate yourself",
+          "response_text": "\"Actually, I'm good here for now. We can talk later though?\"\n\nMaya's smile doesn't waver but something shifts behind her eyes. She's recalculating.\n\n\"Totally! No worries at all. Just wanted to chat. You two have fun!\"\n\nShe bounces back to Marcus, immediately animated again. Tyler watches her go.\n\n\"Interesting,\" he says quietly. \"She dropped the act for a second there when you said no. Did you see her face?\"\n\nYou did. Maya wanted something from that conversation, and she didn't get it. That's information.",
+          "effects": {
+            "relationships": {"maya": -10, "tyler": 10},
+            "flags": {"rejected_maya_early": true}
+          },
+          "next": "night1_jake_interrupt"
+        }
+      ]
+    },
+
+    "night1_maya_alliance": {
+      "type": "choice",
+      "text": "Maya's offering an early alliance. Her strategic brain is obvious now—she's been playing a character. The question is: is this genuine, or are you just another piece she's moving on the board?",
+      "choices": [
+        {
+          "id": "maya_alliance_yes",
+          "text": "Accept the alliance - strategic partners",
+          "response_text": "\"I'm in. But this goes both ways. No surprises.\"\n\nMaya's smile widens—genuine this time, or at least a better fake.\n\n\"Deal. And honestly? I'm relieved. I was worried everyone here was going to be an idiot.\" She clinks her glass against yours. \"To surviving.\"\n\nYou return to the party with a secret alliance in your pocket. Maya immediately resumes her ditzy persona, giggling at something Marcus says.\n\nFrom across the room, Tyler gives you a questioning look. You'll have to decide how much to tell him.",
+          "effects": {
+            "relationships": {"maya": 20},
+            "alliances": ["strategic_duo_maya"],
+            "flags": {"maya_alliance": true}
+          },
+          "next": "night1_jake_interrupt"
+        },
+        {
+          "id": "maya_alliance_no",
+          "text": "Decline - too early to commit",
+          "response_text": "\"I appreciate the honesty, but it's night one. I don't want to lock into anything before I see how things play out.\"\n\nMaya nods, and to her credit, she doesn't seem offended.\n\n\"Smart. Can't blame you for being careful. The offer stands if you change your mind.\"\n\nShe gives you a long look. \"But don't wait too long. Alliances form fast, and once people are locked in, you're on the outside looking in.\"\n\nShe heads back to the party, bubbly persona sliding back into place.\n\nYou've kept your options open. But in this game, being free can also mean being alone.",
+          "effects": {
+            "relationships": {"maya": -5},
+            "flags": {"maya_alliance_declined": true}
+          },
+          "next": "night1_jake_interrupt"
+        }
+      ]
+    },
+
+    "night1_jake_interrupt": {
+      "type": "narrative",
+      "text": "The night evolves into controlled chaos. Brittany attempts to start a drinking game. Marcus and Maya are dancing too close for 'just friends.' Elena has emerged from the pool and is silently eating a protein bar in the corner.\n\nAnd then Jake decides he wants attention.\n\n\"YO! Everyone! Your boy Jake has an announcement!\"\n\nHe's standing on a couch—of course he is—with a drink in hand, swaying slightly.\n\n\"First night, right? So we're all getting to know each other. But I think we all know who the real competitors are in this house. And I think the REAL competitors should stick together.\"\n\nHe points at Darius. \"D! You're a beast, bro. We should be boys.\"\n\nDarius doesn't respond, just takes a sip of his beer.\n\nJake points at Elena. \"Ice Queen! You're scary as hell. I respect that. You're in.\"\n\nElena stares at him like he's an insect.\n\nThen Jake looks at you.",
+      "next": "night1_jake_choice"
+    },
+
+    "night1_jake_choice": {
+      "type": "choice",
+      "text": "\"And you.\" Jake points directly at you. \"You've got something. I don't know what yet. But I want you on the winning team. What do you say? Alpha alliance. We run this whole house.\"\n\nThe room has gone quiet. Everyone's watching. This is a very public invitation. Your response will be noted.",
+      "choices": [
+        {
+          "id": "jake_accept",
+          "text": "Accept publicly - commit to the alphas",
+          "response_text": "You raise your drink. \"Let's do it. I came here to compete with the best.\"\n\nJake lets out a whoop. \"THAT'S what I'm talking about! Alpha alliance, baby!\"\n\nDarius shakes his head and walks away. Tyler looks disappointed. But Maya catches your eye and gives you a tiny nod.\n\nYou're publicly aligned with Jake now. Everyone knows. For better or worse.",
+          "effects": {
+            "relationships": {"jake": 20, "darius": -10, "tyler": -15, "elena": -5},
+            "alliances": ["alpha_pack"],
+            "flags": {"alpha_public": true}
+          },
+          "next": "night1_end"
+        },
+        {
+          "id": "jake_deflect",
+          "text": "Deflect with humor - don't commit",
+          "response_text": "\"Jake, buddy, it's night one and you've had like six drinks. Ask me again when you remember this conversation tomorrow.\"\n\nThe room laughs. Jake looks briefly annoyed but recovers, pointing finger-guns at you.\n\n\"Alright, alright, playing hard to get. I respect it.\"\n\nHe moves on to other things. Tyler gives you an approving nod. Darius's expression suggests he respects you standing your ground.\n\nYou've avoided locking in without making an enemy. But Jake will remember you didn't say yes.",
+          "effects": {
+            "relationships": {"jake": -5, "darius": 10, "tyler": 10, "brittany": 5},
+            "flags": {"jake_deflected": true}
+          },
+          "next": "night1_end"
+        },
+        {
+          "id": "jake_reject",
+          "text": "Decline directly - assert independence",
+          "response_text": "\"I'm gonna have to pass, Jake. I'm not really an 'alliance on night one' kind of person. I like to make my own decisions.\"\n\nThe room goes VERY quiet. Jake's face cycles through confusion, disbelief, and finally wounded ego masked as indifference.\n\n\"Wow. Okay. Your loss, bro.\" His tone is noticeably colder. \"Don't come crying to me when you need numbers.\"\n\nElena gives you an appraising look—almost impressed. Tyler grins. But you've made your first enemy.",
+          "effects": {
+            "relationships": {"jake": -25, "darius": 15, "tyler": 15, "elena": 10, "marcus": 5},
+            "flags": {"jake_rejected": true, "jake_enemy": true}
+          },
+          "next": "night1_end"
+        }
+      ]
+    },
+
+    "night1_end": {
+      "type": "narrative",
+      "text": "The party winds down around 3 AM. Brittany has passed out on a couch. Marcus and Maya disappeared somewhere—together, if the whispers are accurate. Jake is drunkenly telling Elena about his workout routine while she stares at him blankly.\n\nYou head to your room, brain buzzing with information. Day one is done. Alliances are forming. Lines are being drawn.\n\nAs you lie in bed, you run through what you've learned:\n\n- Jake wants to run a physical alliance and has a fragile ego\n- Maya is MUCH smarter than she appears\n- Marcus is charming and absolutely not trustworthy\n- Darius values loyalty above everything\n- Elena doesn't play social games but respects strength\n- Tyler is strategic and observant—a potential ally\n- Brittany is chaos incarnate\n\nTomorrow, the first Challenge. Everything you've built tonight could matter—or could mean nothing.\n\n[END OF DAY 1]",
+      "next": "day2_challenge1"
+    },
+
+    "day2_challenge1": {
+      "type": "narrative",
+      "episode": 1,
+      "day": 2,
+      "text": "DAY 2 - FIRST CHALLENGE\n\nYou wake up to Deej's voice BLASTING through the villa's speaker system at what feels like illegal volume.\n\n\"RISE AND GRIND, SURVIVORS! First Challenge drops in ONE HOUR! I've been up since 4 AM tweaking this thing and honestly? I'm proud of myself. You're gonna HATE it. Get dressed, get caffeinated, get your head right. COURTYARD. ONE HOUR. DON'T BE LATE OR I'M ADDING OBSTACLES!\"\n\nOne hour later, you're standing in the villa's massive courtyard, where a complex obstacle course has been constructed overnight. Deej stands before it in a sleeveless hoodie, practically bouncing with excitement.\n\n\"Welcome to your first Challenge! I call this one 'Foundation of Fury'—designed it after watching old American Gladiator footage and thinking 'too easy.'\" He gestures at the course like a proud father.\n\n\"This tests strength, speed, and decision-making. You're racing through climbing walls, balance beams, cargo nets, and a puzzle station. First across wins.\"\n\nHe holds up two fingers.\n\n\"BUT HERE'S THE TWIST—because there's ALWAYS a twist. At two points, you'll face a choice: the SAFE path, slower but guaranteed, or the RISKY path, faster but could cost you everything. I want to see who's got GUTS.\"\n\n\"Winner gets SAFETY from elimination AND the power to call one person directly into the vote. Everyone else? You're on the chopping block.\"\n\n\"On my mark...\"",
+      "next": "challenge1_start"
+    },
+
+    "challenge1_start": {
+      "type": "narrative",
+      "text": "\"GO!\"\n\nEight bodies launch forward. First obstacle is a climbing wall—pure physicality. You scramble up, Jake and Elena pulling ahead, Darius right behind.\n\nYou crest the wall mid-pack. Not first, not last.\n\nNext: the balance beam over water. It's narrow and long. Three people splash into the pool. You make it across, heart pounding.\n\nNow comes the first decision point. Two paths diverge:\n\n- PATH A (SAFE): A longer cargo net climb. Slower but reliable.\n- PATH B (RISKY): A shorter sprint across floating platforms. Faster, but if you miss a jump, you're in the water.\n\nJake takes the risky path without hesitation. Elena goes safe. You have a split second to decide.",
+      "next": "challenge1_choice1"
+    },
+
+    "challenge1_choice1": {
+      "type": "choice",
+      "text": "The safe path is longer but guaranteed. The risky path could put you in the lead—or drop you in the water. Make your choice.",
+      "choices": [
+        {
+          "id": "ch1_safe1",
+          "text": "Take the SAFE path - cargo net climb",
+          "response_text": "You hit the cargo net, climbing steadily. It's slow but reliable. Above you, you hear a splash and a curse—Jake missed a platform.\n\nBy the time you're over the net, you've passed him. Elena is ahead, mechanical and efficient.\n\n+1 to your position. The safe choice paid off.",
+          "effects": {
+            "flags": {"ch1_safe1": true},
+            "challenge_position": 1
+          },
+          "next": "challenge1_puzzle"
+        },
+        {
+          "id": "ch1_risky1",
+          "text": "Take the RISKY path - floating platforms",
+          "response_text": "You sprint onto the first platform—it wobbles but holds. Second platform, third—you're flying. The fourth tilts unexpectedly.\n\nYou manage to leap to the next one, barely catching the edge. Heart pounding, you scramble across and hit solid ground.\n\nYou're now in second place, right behind Elena. The gamble worked.\n\n+2 to your position. Risk rewarded—this time.",
+          "effects": {
+            "flags": {"ch1_risky1": true},
+            "challenge_position": 2
+          },
+          "next": "challenge1_puzzle"
+        }
+      ]
+    },
+
+    "challenge1_puzzle": {
+      "type": "narrative",
+      "text": "The puzzle station looms—a giant grid where you match symbols under time pressure. Elena is already there, face intense with concentration.\n\nYou race to your station. Find the pairs, hit them in order, advance.\n\nYour hands fly over the board. Behind you, Jake swears at his puzzle. Tyler has caught up and is... flying through his?\n\nYou complete the puzzle as Tyler finishes his. Elena is done, sprinting toward the final obstacle.\n\nFinal decision point: two paths to the finish line.\n\n- PATH A (SAFE): Standard sprint through a tire run.\n- PATH B (RISKY): A shorter distance, but you cross a narrow beam while sandbags swing at you.\n\nElena takes safe. Tyler goes safe too. The risky path is open.",
+      "next": "challenge1_choice2"
+    },
+
+    "challenge1_choice2": {
+      "type": "choice",
+      "text": "Elena has a lead but took the slower path. You could catch her with a perfect risky run—or lose everything. What's the play?",
+      "choices": [
+        {
+          "id": "ch1_safe2",
+          "text": "Take the SAFE path - tire run",
+          "response_text": "You pound through the tires, legs burning. Elena's ahead but not by much. You give everything in the final sprint.\n\nYou cross the finish line. The final results flash:\n\n1st: ELENA - 4:23\n2nd: [PLAYER] - 4:31\n3rd: TYLER - 4:34\n4th: MAYA - 4:52\n5th: DARIUS - 4:58\n6th: JAKE - 5:12\n7th: MARCUS - 5:34\n8th: BRITTANY - 6:01\n\nElena barely acknowledges the win, just nods once.\n\nDeej pumps his fist: \"ELENA! Congratulations! You're safe from elimination AND you have the power. Use it wisely... or don't. Drama is GOOD for me.\"",
+          "effects": {
+            "flags": {"ch1_winner": "elena", "player_place": 2}
+          },
+          "next": "post_challenge1"
+        },
+        {
+          "id": "ch1_risky2",
+          "text": "Take the RISKY path - sandbag beam",
+          "response_text": "You charge onto the beam. First sandbag—you duck. Second—you dodge. Third—it clips your shoulder. You stumble, arms windmilling—",
+          "next": "challenge1_risky_result"
+        }
+      ]
+    },
+
+    "challenge1_risky_result": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "ch1_risky1",
+        "if_true": "challenge1_win",
+        "if_false": "challenge1_fall"
+      }
+    },
+
+    "challenge1_win": {
+      "type": "narrative",
+      "text": "—but you catch yourself. Momentum carries you forward, and you explode off the beam, sprinting.\n\nYou pass Elena in the final stretch. You cross first.\n\nFIRST. PLACE.\n\nDeej loses his MIND. \"YOOOO!! DID YOU SEE THAT?! That's what I'm TALKING about! Risk versus reward, baby!\"\n\nHe rushes over, practically vibrating. \"Well, well, well. Congratulations—you've won the FIRST Challenge! Designed that one myself at 3 AM. You CRUSHED it.\"\n\nResults:\n1st: [PLAYER] - 4:18\n2nd: ELENA - 4:23\n3rd: TYLER - 4:34\n4th: MAYA - 4:52\n5th: DARIUS - 4:58\n6th: JAKE - 5:12\n7th: MARCUS - 5:34\n8th: BRITTANY - 6:01\n\nYou've won safety—and POWER. You get to call someone into elimination.",
+      "effects": {
+        "challenge_wins": 1,
+        "flags": {"ch1_winner": "player", "player_place": 1}
+      },
+      "next": "post_challenge1_winner"
+    },
+
+    "challenge1_fall": {
+      "type": "narrative",
+      "text": "—and you go down. By the time you recover, Elena, Tyler, AND Maya have passed you.\n\nYou limp across in 5th place.\n\nResults:\n1st: ELENA - 4:23\n2nd: TYLER - 4:34\n3rd: MAYA - 4:52\n4th: DARIUS - 4:58\n5th: [PLAYER] - 5:08\n6th: JAKE - 5:12\n7th: MARCUS - 5:34\n8th: BRITTANY - 6:01\n\nElena won. She's safe and has power. You're mid-pack—not a target, but not protected either.",
+      "effects": {
+        "flags": {"ch1_winner": "elena", "player_place": 5}
+      },
+      "next": "post_challenge1"
+    },
+
+    "post_challenge1_winner": {
+      "type": "narrative",
+      "text": "POST-CHALLENGE - VILLA DEL CAOS\n\nBack at the house, everything has changed. You won. You're safe. And everyone knows you have POWER.\n\nPeople approach you differently now. Jake is avoiding you. Marcus is suddenly your best friend.\n\n\"Yo, that was INCREDIBLE!\" Marcus claps your shoulder. \"You and me? We could run this whole game.\"\n\nDeej's earlier words echo: You can call one person directly into the elimination vote.\n\nThat means you pick someone, and they're automatically in the elimination round. Everyone else votes, and whoever gets the most votes faces your pick.\n\nIt's a lot of power. Everyone knows it.",
+      "next": "power_choice"
+    },
+
+    "post_challenge1": {
+      "type": "narrative",
+      "text": "POST-CHALLENGE - VILLA DEL CAOS\n\nElena won. She barely seems to care about the celebration—she's already back to her routine.\n\nBut she has POWER now. She can call one person directly into elimination. Suddenly, everyone is Elena's best friend.\n\n\"Elena! Great job!\" Marcus appears at her side. \"You know, you and me, we should talk strategy—\"\n\n\"I do not need strategy,\" Elena cuts him off. \"I need to compete. Leave me alone.\"\n\nJake tries next. Elena stares at him with barely concealed disdain.\n\nMaya sidles up to you. \"She doesn't play the social game. Which means she's going to make this decision based on pure competition. Who does she see as the biggest threat?\"\n\nShe looks at you meaningfully. \"Or the biggest annoyance?\"",
+      "next": "elena_decision"
+    },
+
+    "power_choice": {
+      "type": "choice",
+      "text": "You have to call someone into elimination. The house is waiting.\n\nWho do you target?",
+      "choices": [
+        {
+          "id": "target_jake",
+          "text": "Call out JAKE - make a power move",
+          "response_text": "You gather everyone. \"I'm calling out Jake.\"\n\nThe room erupts. Jake's face goes through shock, anger, and forced laughter.\n\n\"Oh, WOW. You want to come for the king? Better not miss, bro.\"\n\nMaya looks thrilled. Tyler gives a subtle thumbs up. You've made a big move. Now it has to work.",
+          "effects": {
+            "relationships": {"jake": -40, "maya": 15, "tyler": 10, "darius": -5},
+            "flags": {"target": "jake"}
+          },
+          "next": "elimination1_voting"
+        },
+        {
+          "id": "target_brittany",
+          "text": "Call out BRITTANY - safe political move",
+          "response_text": "\"I'm calling out Brittany.\"\n\nBrittany's jaw drops. \"WHAT?! ME?! I literally did nothing to you!\"\n\n\"It's not personal. It's just—\"\n\n\"IT'S TOTALLY PERSONAL!\" She storms off crying.\n\nJake looks relieved. Darius nods approvingly. You played it safe. Nobody's mad except Brittany.",
+          "effects": {
+            "relationships": {"brittany": -35, "jake": 5, "darius": 10, "maya": -5},
+            "flags": {"target": "brittany"}
+          },
+          "next": "elimination1_voting"
+        },
+        {
+          "id": "target_marcus",
+          "text": "Call out MARCUS - target the snake",
+          "response_text": "\"Marcus.\"\n\nThe charmer's smile freezes. \"Wow. Okay. I thought we were cool, but I guess I read that wrong.\"\n\nMaya's eyebrows shoot up. Tyler looks impressed. Even Elena seems intrigued.\n\nMarcus is already working the room, playing victim. The question is whether people vote with him or against him.",
+          "effects": {
+            "relationships": {"marcus": -40, "maya": 10, "tyler": 10, "brittany": -5},
+            "flags": {"target": "marcus"}
+          },
+          "next": "elimination1_voting"
+        }
+      ]
+    },
+
+    "elena_decision": {
+      "type": "narrative",
+      "text": "That evening, Elena calls everyone together. She stands, arms crossed.\n\n\"I am calling out Jake.\"\n\nJake explodes. \"Are you KIDDING me?! I was trying to WORK with you!\"\n\n\"You talk too much,\" Elena says simply. \"And you placed below me while bragging about being the best. This is inconsistent.\"\n\nShe walks away without another word.\n\nDeej's voice booms through the speakers: \"You've heard Elena's choice! Jake is going into elimination! Tomorrow, the rest of you vote for who faces him. Sleep tight, everyone!\"\n\nThe scramble begins.",
+      "effects": {
+        "flags": {"target": "jake", "elena_targeted_jake": true}
+      },
+      "next": "elimination1_voting"
+    },
+
+    "elimination1_voting": {
+      "type": "narrative",
+      "text": "VOTING DAY - ELIMINATION 1\n\nThe house is electric with tension. Jake is already in elimination. Now everyone votes for who faces him.\n\nConversations happen in corners, in whispers.\n\nThe obvious targets:\n- BRITTANY: Chaos agent, no real alliances, easy vote\n- MARCUS: Talks to everyone, trusts no one\n- TYLER: Physical underdog, Jake would crush him\n\nMaya finds you. \"Most people are voting Brittany—safe choice. But Tyler's name is coming up too. Jake would destroy him in anything physical.\"\n\nShe pauses. \"What are you thinking?\"",
+      "next": "elimination1_vote"
+    },
+
+    "elimination1_vote": {
+      "type": "choice",
+      "text": "Time to cast your vote. This will be public—everyone will know who you voted for.",
+      "choices": [
+        {
+          "id": "vote_brittany",
+          "text": "Vote for BRITTANY - go with the house",
+          "response_text": "You vote Brittany. Safe. Expected.\n\nFinal vote tally:\nBRITTANY - 5 votes (you, Maya, Marcus, Elena, Darius)\nTYLER - 1 vote (Jake)\nMARCUS - 1 vote (Tyler)\n\nBrittany and Jake will face off in elimination.",
+          "effects": {
+            "relationships": {"brittany": -20, "tyler": 5},
+            "vote_history": [{"episode": 1, "player_vote": "brittany"}],
+            "flags": {"elim1_matchup": ["jake", "brittany"]}
+          },
+          "next": "elimination1_event"
+        },
+        {
+          "id": "vote_tyler",
+          "text": "Vote for TYLER - give Jake a beatable opponent",
+          "response_text": "You vote Tyler. It's cold, but strategic.\n\nTyler sees the vote and his expression hardens. That friendship might be over.\n\nFinal tally:\nBRITTANY - 4 votes\nTYLER - 2 votes (you, Jake)\nMARCUS - 1 vote\n\nBrittany still goes in. Your vote for Tyler didn't matter—but Tyler will remember it.",
+          "effects": {
+            "relationships": {"tyler": -30, "jake": 10},
+            "vote_history": [{"episode": 1, "player_vote": "tyler"}],
+            "flags": {"elim1_matchup": ["jake", "brittany"], "tyler_betrayed": true}
+          },
+          "next": "elimination1_event"
+        },
+        {
+          "id": "vote_marcus",
+          "text": "Vote for MARCUS - throw a curveball",
+          "response_text": "You vote Marcus. He laughs when he sees it, but his eyes are cold. \"Interesting choice. I'll remember that.\"\n\nFinal tally:\nBRITTANY - 4 votes\nMARCUS - 2 votes (you, Tyler)\nTYLER - 1 vote\n\nBrittany and Jake face off. Your vote didn't change the outcome, but you've signaled to Marcus you're not buying his act.",
+          "effects": {
+            "relationships": {"marcus": -25, "tyler": 15},
+            "vote_history": [{"episode": 1, "player_vote": "marcus"}],
+            "flags": {"elim1_matchup": ["jake", "brittany"]}
+          },
+          "next": "elimination1_event"
+        }
+      ]
+    },
+
+    "elimination1_event": {
+      "type": "narrative",
+      "text": "ELIMINATION 1 - \"HALL BRAWL\"\n\nThe arena is lit dramatically. Jake and Brittany face off.\n\nDeej is standing on an elevated platform, megaphone in hand despite already having a mic.\n\n\"Tonight's elimination is 'Hall Brawl!' I designed this one after watching too many football highlights and thinking 'that needs MORE.' Two competitors. One narrow hallway. First to ring the bell on the other side THREE times wins. Pure collision. No mercy.\"\n\nIt's physical. Pure power. Brittany looks terrified. Jake looks hungry.\n\n\"This isn't fair!\" Brittany protests. \"He's twice my size!\"\n\nDeej shrugs. \"Then win challenges next time. ROUND ONE!\"\n\nRound 1: Jake barrels through Brittany. 1-0 Jake.\nRound 2: Brittany tries to dodge—Jake adjusts and catches her. 2-0 Jake.\nRound 3: Brittany is crying but determined. Jake doesn't slow down. 3-0.\n\n\"BRITTANY! Your time on Challenge 2 Survive is OVER! Jake, you survive to fight another day!\"\n\nBrittany sobs her way out. Jake celebrates like he won the whole game. Seven remain.",
+      "effects": {
+        "eliminated": ["brittany"],
+        "active_players": ["player", "jake", "maya", "darius", "marcus", "elena", "tyler"]
+      },
+      "next": "elimination1_aftermath"
+    },
+
+    "elimination1_aftermath": {
+      "type": "narrative",
+      "text": "POST-ELIMINATION\n\nThe house feels different without Brittany's chaos. Quieter. More tense.\n\nJake struts around. \"That's what happens when you go against your boy Jake! Who's next?!\"\n\nDarius sits on the balcony alone, looking at the sea. You join him.\n\n\"First blood,\" he says. \"It's always weird, the first one going home. Makes it real.\"\n\nHe takes a drink. \"Six more of us are walking out that door before this is over. Question is: who's standing at the end?\"\n\nHe finally looks at you. \"Where's your head at? What's your play?\"",
+      "next": "darius_talk"
+    },
+
+    "darius_talk": {
+      "type": "choice",
+      "text": "Darius is offering a moment of genuine conversation. How do you respond?",
+      "choices": [
+        {
+          "id": "darius_honest",
+          "text": "Be honest - share your actual strategy",
+          "response_text": "\"Honestly? I'm trying to stay flexible. Build real relationships, win when I can, and not make enemies I don't have to.\"\n\nDarius nods slowly. \"Flexible. That can mean a lot of things. Can also mean you flip on people when it suits you.\"\n\n\"It's not like that. I just don't think locking in on day one is smart.\"\n\n\"Fair,\" he agrees. \"Just remember—how you treat people stays the same. I've got a long memory.\"\n\nHe extends his hand. \"But I respect honesty. We're good. For now.\"\n\nYou shake. It feels like you've passed a test.",
+          "effects": {
+            "relationships": {"darius": 20},
+            "flags": {"darius_respect": true}
+          },
+          "next": "episode2_start"
+        },
+        {
+          "id": "darius_deflect",
+          "text": "Deflect - keep your cards close",
+          "response_text": "\"Honestly, man, I'm just taking it day by day.\"\n\nDarius studies you. \"Uh huh. Okay.\"\n\nHe stands up. \"Word of advice? I can tell when people are being real and when they're not. The people who play it too close? They usually end up alone when they need numbers.\"\n\nHe walks back inside.\n\nMaybe that was smart. Maybe it was a mistake. Time will tell.",
+          "effects": {
+            "relationships": {"darius": -10},
+            "flags": {"darius_deflected": true}
+          },
+          "next": "episode2_start"
+        }
+      ]
+    },
+
+    "episode2_start": {
+      "type": "narrative",
+      "episode": 2,
+      "day": 5,
+      "text": "[EPISODE 2 - \"SHIFTING SANDS\"]\n\nDAY 5 - VILLA DEL CAOS\n\nThree days since Brittany's elimination. The house has settled into routines—and schemes.\n\nJake's cockiness has reached astronomical levels. He's openly talking about \"running this game\" and \"carrying the weak players.\"\n\nMaya has been working overtime, having private conversations with everyone. She's building something.\n\nMarcus has recovered and is back to his charm offensive. But Tyler caught him telling different stories to different people.\n\nDeej's morning announcement BLASTS through the speakers at maximum volume:\n\n\"WHAT'S UP SURVIVORS! Today's Challenge is gonna be a BANGER! Meet at the beach in one hour. And wear something you don't mind getting destroyed.\"\n\nOminous.",
+      "next": "challenge2_setup"
+    },
+
+    "challenge2_setup": {
+      "type": "narrative",
+      "text": "CHALLENGE 2 - \"SAND CASTLE\"\n\nThe beach has been transformed. Seven massive sandpits, each with a platform and puzzle pieces buried in the sand.\n\nDeej is AMPED, pacing barefoot in the sand like he's about to drop into a half-pipe.\n\n\"Welcome to 'Sand Castle'! Designed this one after getting stuck in a sandstorm in Baja. True story. ANYWAY—dig through your sandpit to find puzzle pieces. Assemble them into a tower. First to complete wins.\"\n\nHe grins that manic grin.\n\n\"But here's where it gets SPICY: every three minutes, my beautiful wave machine floods your pit. Your tower better be stable or it's gonna be SAD. Dig fast and risk instability, or dig careful and risk running out of time. Classic Deej dilemma, baby.\"\n\nJake cracks his knuckles. \"Easy. I'll out-muscle everyone.\"\n\nDeej laughs. \"Oh, Jake. Sweet, beautiful, overconfident Jake. It's not about muscle, dude. It's about PHYSICS.\" He winks at Tyler, who perks up.\n\nElena is already analyzing the pits with laser focus.\n\n\"On your marks...\"",
+      "next": "challenge2_strategy"
+    },
+
+    "challenge2_strategy": {
+      "type": "choice",
+      "text": "You have a split second to decide your approach. How do you play this?",
+      "choices": [
+        {
+          "id": "ch2_speed",
+          "text": "Go fast - dig aggressively, race the waves",
+          "response_text": "You attack the sand. Pieces start emerging—you're finding them faster than almost anyone. By the first wave, you've got six of eight pieces.\n\nBut your hasty digging left your pit unstable. The wave destroys your foundation.\n\nJake has the same problem. Elena, with fewer pieces, has a stable pit.\n\nSecond wave incoming. You've got all pieces but can you build fast enough?",
+          "effects": {"flags": {"ch2_speed": true}},
+          "next": "challenge2_finish"
+        },
+        {
+          "id": "ch2_careful",
+          "text": "Go methodical - careful digging, solid foundations",
+          "response_text": "You dig deliberately, creating drainage channels. It's slower, but when the first wave hits, your foundation holds while others' collapse.\n\nJake swears as his tower crumbles. Maya giggles nervously as hers tilts. Yours stands.\n\nYou're behind on pieces—only five of eight—but ahead on stability.\n\nTyler, using the same strategy, gives you a respectful nod.",
+          "effects": {"flags": {"ch2_careful": true}, "relationships": {"tyler": 5}},
+          "next": "challenge2_finish"
+        },
+        {
+          "id": "ch2_balance",
+          "text": "Balance speed and stability - adapt as you go",
+          "response_text": "You start fast, get four pieces, then pivot to stabilization. You're reading the waves, timing your building.\n\nIt's working. You're not leading but not struggling either. Middle of the pack with solid foundation.\n\nThe second wave reveals who chose wisely: Jake is furious, rebuilding again. Elena is methodically placing pieces. Tyler is neck and neck with you.",
+          "effects": {"flags": {"ch2_balance": true}},
+          "next": "challenge2_finish"
+        }
+      ]
+    },
+
+    "challenge2_finish": {
+      "type": "narrative",
+      "text": "Wave after wave. The challenge drags on, brutal and exhausting.\n\nElena is precise but slow—tower half-built but perfect.\nTyler figured out wave patterns and times his builds.\nJake keeps collapsing and getting angrier.\nMaya is struggling.\nMarcus is trying to charm the sand (not working).\nDarius is methodical but not fast enough.\n\nThe final wave hits. Elena completes her tower just as you place your second-to-last piece.\n\n\"Elena wins!\"\n\nFourth straight challenge. She's dominating.\n\nFinal standings:\n1st: ELENA\n2nd: TYLER\n3rd: [PLAYER]\n4th: MAYA\n5th: DARIUS\n6th: MARCUS\n7th: JAKE (DNF - tower collapsed)\n\nJake kicks his ruined tower, sand flying. Elena has power again.",
+      "effects": {
+        "flags": {"ch2_winner": "elena", "player_place": 3}
+      },
+      "next": "post_challenge2"
+    },
+
+    "post_challenge2": {
+      "type": "narrative",
+      "text": "Elena has power again. And Jake's meltdown has made him an obvious target.\n\n\"She's going to throw him in again,\" Tyler predicts. \"He disrespected the game. Elena doesn't forget.\"\n\nMarcus is working overtime. \"Guys, think about it. Elena's won everything. If we keep sending Jake in, she's just gonna keep winning and running the game. Maybe we take a shot at someone else.\"\n\nHe's not wrong. But is Marcus just trying to save himself?\n\nElena gathers everyone. Her face is unreadable.\n\n\"I call out Marcus.\"\n\nThe room goes silent. NOT what people expected.\n\n\"Wait, WHAT?\" Marcus's composure cracks. \"I've never done anything to you—\"\n\n\"You talk to everyone. You promise different things. I have heard.\" Elena's voice is ice. \"You are snake. Better to remove early.\"\n\nMarcus looks for support. The silence is deafening.",
+      "effects": {
+        "flags": {"target": "marcus", "elena_targeted_marcus": true}
+      },
+      "next": "elimination2_voting"
+    },
+
+    "elimination2_voting": {
+      "type": "narrative",
+      "text": "VOTING DAY - ELIMINATION 2\n\nMarcus is scrambling. He's talking to everyone, making promises, calling in favors.\n\nMarcus to Jake: \"Bro! We've been tight since day one—\"\nJake: \"Were we though? You celebrated when Elena threw me in.\"\n\nMarcus to Maya: \"We have something real here. Don't let them send me home.\"\nMaya: \"I'll do what I can. But I can't control how everyone votes.\"\n\nMarcus finds you. He's sweating, charm stripped away.\n\n\"Look, I need your vote. Not to throw me in. I'll owe you. I'll vote however you want for the rest of the game. Just please—don't send me against Jake or Darius. I'll lose.\"",
+      "next": "marcus_plea"
+    },
+
+    "marcus_plea": {
+      "type": "choice",
+      "text": "Marcus is desperate. His mask has slipped. Do you help him or use this opportunity?",
+      "choices": [
+        {
+          "id": "help_marcus",
+          "text": "Agree to vote with him - bank the favor",
+          "response_text": "\"Okay, Marcus. I won't vote for you. But I'm going to remember you said you'd owe me.\"\n\nHis relief is palpable. \"Yes! Thank you. You won't regret this.\"\n\nTyler appears beside you. \"Interesting choice. You know he's going to flip on you eventually, right?\"\n\n\"Maybe. But now he owes me, and everyone knows it.\"",
+          "effects": {
+            "relationships": {"marcus": 25, "tyler": 5},
+            "flags": {"marcus_favor": true}
+          },
+          "next": "elimination2_vote"
+        },
+        {
+          "id": "neutral_marcus",
+          "text": "Stay neutral - make no promises",
+          "response_text": "\"I hear you, Marcus. But I'm not making promises. I've got to do what's best for my game.\"\n\nHis face falls. \"Come on, I thought we were cool.\"\n\n\"We ARE cool. But this is a game. You'd do the same thing.\"\n\nHe knows you're right. He moves on to try someone else.",
+          "effects": {
+            "relationships": {"marcus": -5},
+            "flags": {"marcus_neutral": true}
+          },
+          "next": "elimination2_vote"
+        },
+        {
+          "id": "reject_marcus",
+          "text": "Tell him the truth - he's a threat",
+          "response_text": "\"Marcus, I'm going to be straight. I don't trust you. You've been playing everyone, and eventually that catches up. This is it catching up.\"\n\nHis mask hardens. \"Wow. At least you're honest about being a snake.\"\n\n\"Coming from you, that's almost funny.\"\n\nHe walks away. You've made an enemy—but he probably already was one.",
+          "effects": {
+            "relationships": {"marcus": -30, "darius": 10},
+            "flags": {"marcus_enemy": true}
+          },
+          "next": "elimination2_vote"
+        }
+      ]
+    },
+
+    "elimination2_vote": {
+      "type": "choice",
+      "text": "Marcus is already in. Who do you vote for?",
+      "choices": [
+        {
+          "id": "vote2_jake",
+          "text": "Vote JAKE - keep the pressure on",
+          "response_text": "You vote Jake.\n\nFinal votes:\nJAKE - 3 votes (you, Elena, Tyler)\nTYLER - 2 votes (Jake, Marcus)\nMAYA - 1 vote (Darius)\n\nJake and Marcus will face off. Physical beast versus social snake.",
+          "effects": {
+            "relationships": {"jake": -20, "tyler": 10},
+            "vote_history": [{"episode": 2, "player_vote": "jake"}],
+            "flags": {"elim2_matchup": ["marcus", "jake"]}
+          },
+          "next": "elimination2_event"
+        },
+        {
+          "id": "vote2_tyler",
+          "text": "Vote TYLER - remove the strategic threat",
+          "response_text": "You vote Tyler. He sees it and something dims in his eyes. That friendship is over.\n\nFinal votes:\nTYLER - 3 votes (you, Jake, Marcus)\nJAKE - 2 votes (Elena, Tyler)\nMAYA - 1 vote (Darius)\n\nTyler and Marcus will face off. Two strategic minds.",
+          "effects": {
+            "relationships": {"tyler": -35},
+            "vote_history": [{"episode": 2, "player_vote": "tyler"}],
+            "flags": {"elim2_matchup": ["marcus", "tyler"], "tyler_betrayed": true}
+          },
+          "next": "elimination2_event_tyler"
+        },
+        {
+          "id": "vote2_darius",
+          "text": "Vote DARIUS - take a shot at the loyal soldier",
+          "response_text": "You vote Darius. He sees it and his jaw tightens. \"I see.\"\n\n\"Nothing personal. You're just hard to beat at the end.\"\n\n\"Everything is personal. You just showed me who you are.\"\n\nBut the house doesn't follow. Final votes:\nJAKE - 3 votes (Elena, Tyler, Darius)\nDARIUS - 2 votes (you, Jake)\nTYLER - 1 vote (Marcus)\n\nJake and Marcus face off. Your vote didn't matter, but Darius won't forget.",
+          "effects": {
+            "relationships": {"darius": -30},
+            "vote_history": [{"episode": 2, "player_vote": "darius"}],
+            "flags": {"elim2_matchup": ["marcus", "jake"]}
+          },
+          "next": "elimination2_event"
+        }
+      ]
+    },
+
+    "elimination2_event": {
+      "type": "narrative",
+      "text": "ELIMINATION 2 - \"POLE WRESTLE\"\n\nSimple and brutal: two competitors, one pole. Rip it from your opponent's grip and plant it in your zone. Best of three.\n\nMarcus looks at Jake's arms and knows he's in trouble.\n\nRound 1: Jake dominates. Marcus tries technique, but Jake's raw power is overwhelming. 1-0 Jake.\n\nRound 2: Marcus gets creative, using leverage. It works briefly—until Jake overwhelms him. 2-0 Jake.\n\nIt's over in minutes.\n\n\"MARCUS. Your time on Challenge 2 Survive is OVER.\"\n\nMarcus takes it better than expected. \"Good luck, everyone. And watch your backs—there's still snakes in that house.\"\n\nHis eyes linger on Maya as he leaves. Interesting.\n\nSix players remain.",
+      "effects": {
+        "eliminated": ["brittany", "marcus"],
+        "active_players": ["player", "jake", "maya", "darius", "elena", "tyler"]
+      },
+      "next": "episode3_start"
+    },
+
+    "elimination2_event_tyler": {
+      "type": "narrative",
+      "text": "ELIMINATION 2 - \"PUZZLE PYRAMID\"\n\nDeej unveils a massive 3D puzzle structure.\n\n\"Tonight's elimination: PUZZLE PYRAMID! I designed this one to give the brainy types a fighting chance. First to complete wins. Pure mental warfare.\"\n\n\"Finally, something fair,\" Tyler mutters.\n\nThey're evenly matched mentally, but Tyler is focused, methodical. Marcus keeps looking at the crowd, playing to cameras.\n\nTyler wins in under fifteen minutes.\n\n\"MARCUS! Your time on Challenge 2 Survive is OVER! Tyler, you EARNED that! Respect!\"\n\nMarcus's exit is less graceful. \"Don't trust anyone in there. ANYONE.\"\n\nHis eyes land on you and Maya specifically.\n\nTyler returns victorious but cold. He still isn't looking at you.\n\nSix remain.",
+      "effects": {
+        "eliminated": ["brittany", "marcus"],
+        "active_players": ["player", "jake", "maya", "darius", "elena", "tyler"]
+      },
+      "next": "episode3_start"
+    },
+
+    "episode3_start": {
+      "type": "narrative",
+      "episode": 3,
+      "day": 9,
+      "text": "[EPISODE 3 - \"ALLIANCE SHIFT\"]\n\nSix remain: You, Jake, Maya, Darius, Elena, and Tyler.\n\nThe math is getting real. Three more eliminations before The Finals.\n\nDeej gathers everyone in the courtyard, practically bouncing with excitement:\n\n\"Alright survivors, TWIST TIME! From this point forward, the Challenge winner doesn't just get safety—they ALSO get to grant IMMUNITY to ONE other player of their choosing!\"\n\nThe house erupts in murmurs.\n\n\"That's right! Win a challenge, protect your people. The game just got a LOT more political. I LOVE IT.\"\n\nJake immediately lobbies Elena. \"Yo, if I win, I got you. You win, you got me. Alliance of beasts, baby.\"\n\nElena: \"I work alone.\"\n\nMaya slides up to you. \"This changes everything. We need to talk.\"",
+      "next": "alliance_meeting"
+    },
+
+    "alliance_meeting": {
+      "type": "narrative",
+      "text": "Late that night, Maya pulls you into the wine cellar.\n\n\"Okay, cards on the table. Six of us left. Elena's winning everything but doesn't play politically. Jake's a loose cannon. Darius is loyal to a fault—useless for strategy. Tyler...\" She pauses. \"Depends on your relationship.\"\n\nShe leans in. \"Here's what I'm proposing: you and me, final two. Real alliance. We protect each other, vote together, and cut everyone else when we need to.\"\n\nShe extends her hand. \"No games. No backstabbing. Just two smart people getting to the end. What do you say?\"",
+      "next": "maya_final_two"
+    },
+
+    "maya_final_two": {
+      "type": "choice",
+      "text": "Maya's offering a final two deal. It could be genuine—or she's playing you like everyone else. What's your move?",
+      "choices": [
+        {
+          "id": "accept_f2",
+          "text": "Accept - shake on final two",
+          "response_text": "You shake her hand. \"Final two. But if you burn me—\"\n\n\"I won't. I'm done playing games.\" Her eyes are serious. \"Everyone else is either a physical threat I can't beat or a liability I can't control. You're the only one I can work with.\"\n\nShe smiles—genuinely, for once. \"Let's go win this thing.\"\n\nYou have a final two. Whether it holds is another question.",
+          "effects": {
+            "relationships": {"maya": 30},
+            "alliances": ["final_two_maya"],
+            "flags": {"maya_f2": true}
+          },
+          "next": "challenge3_intro"
+        },
+        {
+          "id": "counter_f2",
+          "text": "Counter-offer - final three with Tyler",
+          "response_text": "\"I want Tyler in too. Final three.\"\n\nMaya's eyes narrow. \"Tyler doesn't trust me. And after what happened...\"\n\n\"I'll fix it. But we need numbers. Two isn't enough to control votes.\"\n\nShe considers. \"Fine. But if Tyler flips, that's on you.\"\n\nNow you need to convince Tyler—which means apologizing for anything that happened between you.",
+          "effects": {
+            "relationships": {"maya": 10},
+            "flags": {"trying_f3": true}
+          },
+          "next": "tyler_reconciliation"
+        },
+        {
+          "id": "reject_f2",
+          "text": "Reject - stay independent",
+          "response_text": "\"I don't do final twos. Too many people have gotten burned by those.\"\n\nMaya's smile fades. \"That's... unfortunate. I thought you were smarter than that.\"\n\n\"I'm smart enough to know final two deals this early usually end with one person getting cut.\"\n\nShe stands up, warmth evaporated. \"Okay. Good luck out there. You're going to need it.\"\n\nYou've kept your independence—but you might have made an enemy.",
+          "effects": {
+            "relationships": {"maya": -25},
+            "flags": {"maya_f2_rejected": true}
+          },
+          "next": "challenge3_intro"
+        }
+      ]
+    },
+
+    "tyler_reconciliation": {
+      "type": "narrative",
+      "text": "You find Tyler on the roof deck.\n\n\"Tyler. Can we talk?\"\n\nHe doesn't look at you. \"About how you voted for me? Sure. Let's talk about that.\"\n\n\"I made a mistake. I was playing scared, and I targeted the smartest person instead of the most dangerous. That's on me.\"\n\nHe finally turns. \"Why should I believe you now?\"\n\n\"Because I'm offering something better. Final three. Me, you, Maya. We control the votes. We get to The Finals together.\"",
+      "next": "tyler_choice"
+    },
+
+    "tyler_choice": {
+      "type": "choice",
+      "text": "Tyler is skeptical. You need to convince him.",
+      "choices": [
+        {
+          "id": "tyler_honest",
+          "text": "Full honesty - genuine apology",
+          "response_text": "\"Look, I screwed up. I saw you as a threat because you're smart. But cutting smart people also means cutting potential allies. I'm sorry. I want to make it right.\"\n\nTyler studies you.\n\n\"That's... actually the most genuine thing anyone's said to me in this house.\" He sighs. \"Fine. Final three. But if you come for me again, I will END your game. Understood?\"\n\n\"Understood.\"\n\nHe shakes your hand. The alliance is formed.",
+          "effects": {
+            "relationships": {"tyler": 25},
+            "alliances": ["final_three"],
+            "flags": {"f3_formed": true}
+          },
+          "next": "challenge3_intro"
+        },
+        {
+          "id": "tyler_strategic",
+          "text": "Strategic pitch - appeal to his logic",
+          "response_text": "\"Tyler, think strategically. Jake and Elena are physical monsters. Darius isn't with us. If you and I don't work together, we're both going home before The Finals.\"\n\nHe frowns. \"So this is just math to you?\"\n\n\"Everything in this game is math. The question is whether it works in our favor.\"\n\nHe's not happy, but not stupid. \"Fine. Alliance of convenience. But don't mistake this for forgiveness.\"\n\nThe alliance is formed—but fragile.",
+          "effects": {
+            "relationships": {"tyler": 10},
+            "alliances": ["final_three_fragile"],
+            "flags": {"f3_fragile": true}
+          },
+          "next": "challenge3_intro"
+        }
+      ]
+    },
+
+    "challenge3_intro": {
+      "type": "narrative",
+      "text": "CHALLENGE 3 - \"ENDURANCE ISLAND\"\n\nSix platforms suspended over water. Handholds that get progressively harder to grip.\n\nDeej is practically cackling with glee.\n\n\"This is my personal FAVORITE challenge design! 'Endurance Island'! Pure suffering. I love it. You're gonna hang on these platforms as long as your body allows. Every ten minutes, I add pain—wind machines, water sprays, platform shaking. Last person hanging wins.\"\n\nHe taps his knee thoughtfully.\n\n\"You know, after my crash, I spent six months doing physical therapy. Hanging onto bars, fighting through pain, refusing to let go. This challenge is basically a tribute to the worst year of my life.\" He grins. \"You're WELCOME.\"\n\n\"Remember, winner can grant immunity to ONE other player. Choose wisely.\"\n\nJake cracks his neck. \"Finally. A real challenge.\"\n\nElena says nothing. She's already visualizing.\n\nTyler: \"This is going to be hell.\"\n\nDeej cups his hands and yells: \"BEGIN!!\"\n\nYour hands clamp onto the grips. The game is on.",
+      "next": "challenge3_progress"
+    },
+
+    "challenge3_progress": {
+      "type": "narrative",
+      "text": "Ten minutes in. Everyone's still holding, but you can see the strain.\n\nFirst difficulty: wind machines. Strong gusts try to rip you from the platform. Maya is struggling—she's light.\n\nTwenty minutes. Maya drops.\n\nThirty minutes. Water sprays begin. Cold, shocking, making grips slick.\n\nTyler's hands slip. He recovers, barely.\n\nForty minutes. Darius's injured knee is clearly bothering him.\n\nFifty minutes. Platforms start shaking.\n\nDarius drops. Then Tyler.\n\nIt's down to you, Jake, and Elena. Three people fighting for one win.",
+      "next": "challenge3_endgame"
+    },
+
+    "challenge3_endgame": {
+      "type": "choice",
+      "text": "One hour in. Your body is screaming. Jake is cursing. Elena is silent, machine-like.\n\nYou're at your limit. Do you fight for the win or conserve for later?",
+      "choices": [
+        {
+          "id": "ch3_fight",
+          "text": "Push through the pain - fight for the win",
+          "response_text": "You dig deep. Deeper than you thought possible. Your hands are numb, shoulders burning, but you will NOT let go.\n\nOne hour fifteen. Jake's grip fails. He drops with a roar.\n\nIt's you and Elena. The Machine versus your willpower.\n\nOne hour twenty. One hour thirty.\n\nElena's grip slips. For the first time, frustration crosses her face. She drops.\n\nYOU WIN.\n\n\"We have a winner! Incredible endurance! You've won safety AND immunity power!\"",
+          "effects": {
+            "challenge_wins": 1,
+            "flags": {"ch3_winner": "player"}
+          },
+          "next": "immunity_choice"
+        },
+        {
+          "id": "ch3_conserve",
+          "text": "Let go strategically - conserve for later",
+          "response_text": "You've made your point. Fighting longer could hurt you in future challenges. You let go.\n\nJake follows three minutes later. Elena alone on her platform—again.\n\nElena wins. Again.\n\n\"Elena takes her THIRD consecutive challenge! She is DOMINATING!\"",
+          "effects": {
+            "flags": {"ch3_winner": "elena", "elena_dominant": true}
+          },
+          "next": "elena_immunity"
+        }
+      ]
+    },
+
+    "immunity_choice": {
+      "type": "choice",
+      "text": "You have power. You're safe. And you can grant immunity to ONE other player. The house watches.",
+      "choices": [
+        {
+          "id": "protect_maya",
+          "text": "Grant immunity to MAYA",
+          "response_text": "\"I'm giving immunity to Maya.\"\n\nMaya's relief is visible. \"Thank you. I won't forget this.\"\n\nThe message is clear: you two are aligned. Tyler nods—if you have a final three, this makes sense. Jake looks furious. Elena is unreadable.\n\nDarius: \"Interesting choice. Now we know where you stand.\"",
+          "effects": {
+            "relationships": {"maya": 20, "jake": -10, "darius": -5},
+            "flags": {"immunity": "maya"}
+          },
+          "next": "elimination3_setup"
+        },
+        {
+          "id": "protect_tyler",
+          "text": "Grant immunity to TYLER",
+          "response_text": "\"Tyler. You're safe.\"\n\nTyler's eyebrows shoot up. After what happened between you, this is significant.\n\n\"I... thank you. I didn't expect that.\"\n\nMaya looks hurt—she thought she was your number one. But Tyler's trust in you just jumped significantly.\n\nJake: \"Great. The nerd table is running things now.\"",
+          "effects": {
+            "relationships": {"tyler": 30, "maya": -15},
+            "flags": {"immunity": "tyler"}
+          },
+          "next": "elimination3_setup"
+        },
+        {
+          "id": "protect_darius",
+          "text": "Grant immunity to DARIUS",
+          "response_text": "\"Darius.\"\n\nThe whole room goes quiet. Darius stares at you.\n\n\"Why me?\"\n\n\"Because you play the game straight. And I respect that.\"\n\nDarius nods slowly. \"Alright. I won't forget this.\"\n\nMaya is confused—this doesn't fit her plans. Tyler looks intrigued. Jake is calculating. You've made an unexpected ally.",
+          "effects": {
+            "relationships": {"darius": 35, "maya": -10, "jake": -5},
+            "flags": {"immunity": "darius"}
+          },
+          "next": "elimination3_setup"
+        }
+      ]
+    },
+
+    "elena_immunity": {
+      "type": "narrative",
+      "text": "Elena has to grant immunity. Everyone watches nervously.\n\n\"I give immunity to...\" She pauses. \"No one.\"\n\nDeej laughs out loud. \"Elena! I respect the chaos, but rules are rules. You HAVE to pick someone.\"\n\n\"Why? They are all competition.\"\n\n\"Because I said so. And I designed this game. Pick someone.\"\n\nElena sighs. \"Fine. The one who lasted longest against me.\" She points at you. \"You fought well. You are safe.\"\n\nIt's the closest Elena has come to a compliment.\n\nJake: \"Are you KIDDING me?! I've been trying to work with you!\"\n\n\"You talk. They compete.\" Elena walks away.\n\nDeej grins at the camera. \"I LOVE this woman.\"",
+      "effects": {
+        "relationships": {"elena": 15, "jake": -10},
+        "flags": {"immunity": "player"}
+      },
+      "next": "elimination3_setup"
+    },
+
+    "elimination3_setup": {
+      "type": "narrative",
+      "text": "ELIMINATION 3 SETUP\n\nWith immunity established, the targets narrow. Two players will face elimination.\n\nJake is campaigning to throw in Tyler (if not immune) or Maya (if Tyler is immune). \"The smart ones are dangerous! We need competitors!\"\n\nMaya counters: \"Jake's won two eliminations. He's getting confident. If we don't take a shot now, he might run the table.\"\n\nDarius is staying neutral, watching everyone scramble.\n\nElena: \"Whoever is weakest should face the test.\"\n\nThe vote is coming.",
+      "next": "elimination3_vote"
+    },
+
+    "elimination3_vote": {
+      "type": "choice",
+      "text": "Time to vote. Based on who has immunity, some players are off-limits. Who do you target?",
+      "choices": [
+        {
+          "id": "vote3_jake",
+          "text": "Vote JAKE - the physical threat",
+          "response_text": "You vote Jake. Third time's the charm, maybe?\n\n\"YOU'RE VOTING FOR ME AGAIN?!\" Jake explodes. \"What did I ever do to you?!\"\n\n\"You keep winning eliminations. That makes you a threat.\"\n\n\"BECAUSE I'M A COMPETITOR!\"\n\nThe votes are tallied. Jake and [VULNERABLE_PLAYER] are going into elimination.",
+          "effects": {
+            "relationships": {"jake": -20},
+            "vote_history": [{"episode": 3, "player_vote": "jake"}]
+          },
+          "next": "elimination3_event"
+        },
+        {
+          "id": "vote3_other",
+          "text": "Vote for another vulnerable player",
+          "response_text": "You cast your vote strategically, trying to control who faces Jake in elimination.\n\nThe votes are tallied. The matchup is set.\n\nTwo competitors will face off. One will go home.",
+          "effects": {
+            "vote_history": [{"episode": 3, "player_vote": "strategic"}]
+          },
+          "next": "elimination3_event"
+        }
+      ]
+    },
+
+    "elimination3_event": {
+      "type": "narrative",
+      "text": "ELIMINATION 3\n\nThe elimination plays out. Physical. Brutal. Decisive.\n\nWhen it's over, another player goes home. The game is down to five.\n\nDeej addresses the survivors:\n\n\"Five remain. THREE of you will run The Finals. My MASTERPIECE. Two more eliminations stand between you and that moment.\n\nRest up tonight. Tomorrow, we find out who's REALLY got what it takes.\n\nThe final stretch is HERE, people!\"\n\nFive players. Three spots. The endgame has begun.",
+      "effects": {
+        "active_players": ["player", "jake_or_winner", "maya", "darius_or_winner", "elena", "tyler_or_winner"]
+      },
+      "next": "finals_qualification"
+    },
+
+    "finals_qualification": {
+      "type": "narrative",
+      "episode": 4,
+      "day": 14,
+      "text": "[EPISODE 4 - \"THE RECKONING\"]\n\nFive players remain. The house feels different now—emptier, more intense.\n\nDeej gathers everyone, more serious than you've ever seen him:\n\n\"Final Five. You've made it further than most. But only THREE of you will run The Finals. My ultimate creation. The course I spent MONTHS designing.\n\nToday's challenge determines EVERYTHING. Winner is SAFE in The Finals. Second and third place are SAFE. Fourth place goes into elimination. Loser of that elimination goes HOME.\n\nOne of you will not run The Finals. Make SURE it isn't you.\"\n\nThis is it. Everything comes down to this.",
+      "next": "final_challenge_setup"
+    },
+
+    "final_challenge_setup": {
+      "type": "narrative",
+      "text": "FINAL CHALLENGE - \"THE GAUNTLET\"\n\nThe challenge is a combination of everything: physical obstacles, mental puzzles, and endurance.\n\nDeej stands before the course, arms spread wide:\n\n\"This is 'The Gauntlet.' Three stages designed to break you down and see what's left. Stage one: obstacle course—pure physical. Stage two: puzzle solving—pure mental. Stage three: endurance—pure WILL.\n\nCumulative scoring across all three. Highest total makes The Finals automatically. Lowest total goes into elimination.\n\nI spent THREE MONTHS designing this. Tested it myself twice. Puked both times.\"\n\nHe grins.\n\n\"Everything you've done has led to THIS moment. Now GO!\"\n\nThe challenge begins.",
+      "next": "gauntlet_phase1"
+    },
+
+    "gauntlet_phase1": {
+      "type": "choice",
+      "text": "Stage One: The Obstacle Course.\n\nBrutal walls, ropes, and crawls. How do you approach it?",
+      "choices": [
+        {
+          "id": "gauntlet_conserve",
+          "text": "Conserve energy - pace yourself",
+          "response_text": "You run smart, not fast. Save energy for later stages.\n\nYou finish 3rd in the physical stage. Not great, but not exhausted.\n\nThe leaders look winded. Your strategy might pay off.",
+          "effects": {"flags": {"gauntlet_conserved": true}},
+          "next": "gauntlet_phase2"
+        },
+        {
+          "id": "gauntlet_attack",
+          "text": "Attack hard - bank points early",
+          "response_text": "You explode out of the gate, attacking every obstacle with maximum intensity.\n\nYou finish 1st in the physical stage! But you're breathing hard.\n\nStill—you have a lead. That matters.",
+          "effects": {"flags": {"gauntlet_attacked": true}},
+          "next": "gauntlet_phase2"
+        }
+      ]
+    },
+
+    "gauntlet_phase2": {
+      "type": "narrative",
+      "text": "Stage Two: The Puzzle.\n\nA massive multi-layered puzzle requiring logic, memory, and pattern recognition.\n\nYou focus. Block out everything else. The pieces start coming together.\n\nYou complete it in 2nd place for this stage.\n\nCombined scores are close. It's going to come down to endurance.",
+      "next": "gauntlet_phase3"
+    },
+
+    "gauntlet_phase3": {
+      "type": "choice",
+      "text": "Stage Three: Endurance.\n\nHanging on for as long as you can. Your body is screaming. But dropping means elimination.\n\nEveryone is suffering. It's about who can suffer longest.\n\nWhat's your mindset?",
+      "choices": [
+        {
+          "id": "gauntlet_mental",
+          "text": "Mental fortress - block out everything",
+          "response_text": "You go inside yourself. The pain becomes abstract. You ARE the grip. Nothing else exists.\n\nOne competitor drops. Then another. Then another.\n\nYou're still hanging.\n\n\"We have our Final Three!\"\n\nYou've done it. You've qualified for The Finals.\n\nYou drop into the water, exhausted, triumphant. Whatever happens next, you've earned your place.",
+          "effects": {"flags": {"made_finals": true}},
+          "next": "finals_intro"
+        },
+        {
+          "id": "gauntlet_compete",
+          "text": "Competitive fire - outlast everyone",
+          "response_text": "You watch your competitors. Wait for weakness. When someone shifts, you stay still. When someone grunts, you stay silent.\n\nOne by one, they fall.\n\nWhen the third person drops, you're still hanging.\n\n\"We have our Final Three! And our WINNER!\"\n\nYou've won the final challenge AND qualified for The Finals. The ultimate statement.",
+          "effects": {"challenge_wins": 1, "flags": {"won_final_challenge": true, "made_finals": true}},
+          "next": "finals_intro"
+        }
+      ]
+    },
+
+    "finals_intro": {
+      "type": "narrative",
+      "episode": 5,
+      "day": 20,
+      "text": "[EPISODE 5 - THE FINALS]\n\nDAY 20 - THE FINAL DAY\n\nYou wake before dawn. Today is the day.\n\nThree weeks of competition. Five eliminations. Countless alliances made and broken. And now, only three remain.\n\nDeej's voice comes through the speakers—quieter than usual, more intense:\n\n\"Finalists. Starting line. One hour. This is it.\n\nI've been waiting for this moment since I pitched this show. The Finals is my masterpiece. The course that separates legends from everyone else.\n\nOne of you will leave here a champion. The other two will know they came THIS close.\n\nThis is what you survived for.\n\nSee you at the starting line.\"\n\nYou take a deep breath. It's time.",
+      "next": "finals_start"
+    },
+
+    "finals_start": {
+      "type": "narrative",
+      "text": "THE FINALS - \"SUMMIT\"\n\nThe Finals course has been built on a Croatian mountainside. Massive—a multi-hour endurance test.\n\nDeej stands at the starting line in full hiking gear, more serious than you've ever seen him. This is his masterpiece.\n\n\"Welcome to The Finals. I call it 'Summit.' Fifteen kilometers straight up and over this mountain. I spent THREE MONTHS designing this course. Tested it myself—blew out my knee brace twice, had to be airlifted once. And I STILL finished it.\"\n\nHe looks at each of you.\n\n\"This isn't just a race. This is a test of who you ARE. Obstacles. Checkpoints. Mental challenges that'll make you question your life choices. And physical hell that'll make you question why you ever signed up for this.\"\n\nHe steps aside from the starting line.\n\n\"No second chances. No do-overs. First person to cross that finish line at the summit wins Challenge 2 Survive. Becomes a LEGEND.\"\n\nHis voice drops.\n\n\"I broke both my knees chasing a dream. What are YOU willing to break?\"\n\nHe raises his hand.\n\n\"On your marks...\n\nGET SET...\n\nSURVIVE!\"\n\nThree finalists explode off the starting line. The final race has begun.",
+      "next": "finals_stage1"
+    },
+
+    "finals_stage1": {
+      "type": "narrative",
+      "text": "STAGE 1 - THE CLIMB (Kilometers 1-5)\n\nBrutal uphill climb. Rocky terrain, steep inclines, lungs burning in the mountain air.\n\nYou settle into a rhythm. One foot in front of the other. Don't look at others. Run your own race.\n\nAt checkpoint 1 (3km), you're in second place. Not leading, but not far behind.\n\nThe leader is pushing hard—maybe too hard. Burning energy early.\n\nThe third-place finisher is drafting, conserving, waiting.\n\nYou're in the middle. What's your strategy?",
+      "next": "finals_stage1_choice"
+    },
+
+    "finals_stage1_choice": {
+      "type": "choice",
+      "text": "Checkpoint 1. Five kilometers in. Second place. What's your move?",
+      "choices": [
+        {
+          "id": "finals_push",
+          "text": "Push now - take the lead",
+          "response_text": "You dig deep and accelerate. The leader looks back, surprised to see you gaining.\n\nYou pull ahead at kilometer 4. First place.\n\nBut there's still ten kilometers to go. And your energy reserves are dropping faster than planned.\n\nThe gamble is made. Now hold on.",
+          "effects": {"flags": {"finals_early_lead": true}},
+          "next": "finals_stage2"
+        },
+        {
+          "id": "finals_steady",
+          "text": "Stay steady - maintain position",
+          "response_text": "You maintain your pace. Second place is fine for now. The race is long.\n\nThe leader continues to push. They'll pay for it later. The third-place runner is still lurking.\n\nYou stay in your zone. Patient. Waiting.\n\nThe mountain doesn't care about strategy. It just keeps going up.",
+          "effects": {"flags": {"finals_steady": true}},
+          "next": "finals_stage2"
+        }
+      ]
+    },
+
+    "finals_stage2": {
+      "type": "narrative",
+      "text": "STAGE 2 - THE OBSTACLES (Kilometers 5-10)\n\nRope climbs. Wall scrambles. A cargo net across a ravine.\n\nAt kilometer 7, disaster strikes for the leader. They slip, tumbling hard. They get up limping.\n\nThe race just changed.\n\nCheckpoint 2 (8km). You're now tied for first with one competitor.\n\nA brutal choice presents itself: two paths.\n\n- HIGH ROAD: Longer but safer. Guaranteed completion.\n- LOW ROAD: Shorter but dangerous. River crossing with strong current. Faster if you make it. Devastating if you don't.",
+      "next": "finals_stage2_choice"
+    },
+
+    "finals_stage2_choice": {
+      "type": "choice",
+      "text": "Two paths. Your competitor hasn't chosen yet. They're watching you.",
+      "choices": [
+        {
+          "id": "finals_high",
+          "text": "Take the HIGH ROAD - safe and steady",
+          "response_text": "You take the high road. Your competitor takes the low road—going for the gamble.\n\nYou climb, safe but slow. Below, they enter the river. The current is brutal. They're struggling...\n\nThey make it across—barely—but they've gained time. They're ahead now.\n\nBut they're also exhausted. The river took everything.\n\nFinal five kilometers. You're in second place. But you're fresh.",
+          "effects": {"flags": {"finals_safe_path": true}},
+          "next": "finals_stage3"
+        },
+        {
+          "id": "finals_low",
+          "text": "Take the LOW ROAD - risk it all",
+          "response_text": "You take the low road. Your competitor curses and follows.\n\nThe river is COLD. The current is STRONG. You push through, fighting for every inch.\n\nYou emerge gasping, but ahead. Your competitor is right behind, but you gained seconds.\n\nFirst place. Five kilometers to go. But your legs are shaking and you're soaking wet.",
+          "effects": {"flags": {"finals_risk_path": true}},
+          "next": "finals_stage3"
+        }
+      ]
+    },
+
+    "finals_stage3": {
+      "type": "narrative",
+      "text": "STAGE 3 - THE SUMMIT (Kilometers 10-15)\n\nThe final push. The steepest climb. The summit where the finish line waits.\n\nEvery step is agony. Your body screams to stop. Your mind screams to keep going.\n\nThe competitor beside you is suffering too. Who breaks first?\n\nKilometer 12. You can see the summit.\nKilometer 13. Your legs are failing.\nKilometer 14. The finish line is visible. Deej is there, waiting at the summit, having hiked the whole thing himself. The end is RIGHT THERE.\n\nOne final choice. One last push.",
+      "next": "finals_final"
+    },
+
+    "finals_final": {
+      "type": "choice",
+      "text": "The finish line is 500 meters away. You're neck and neck with your competitor. One will win. One won't.\n\nWhat do you have left?",
+      "choices": [
+        {
+          "id": "finals_everything",
+          "text": "EVERYTHING. Leave it all on the mountain.",
+          "response_text": "You find something you didn't know you had. A reserve deeper than muscle memory. This is why you came here.\n\nYou SPRINT.\n\nYour competitor tries to respond but has nothing left. You pull ahead. 400 meters. 300. 200.\n\nYou can hear cheering. You can see Deej losing his mind at the finish line. You can feel history happening.\n\n100 meters.\n\n50 meters.\n\nYOU CROSS THE FINISH LINE.\n\nFIRST PLACE.",
+          "effects": {"flags": {"finals_won": true}},
+          "next": "ending_champion"
+        },
+        {
+          "id": "finals_steady_finish",
+          "text": "Stay steady. Don't collapse before the line.",
+          "response_text": "You maintain your pace. Don't gamble. Don't collapse. Just finish.\n\nYour competitor finds one final burst. They pull ahead.\n\nYou push to respond but your body won't listen. You've given everything. It's just not enough for first.\n\nYou cross the finish line in SECOND PLACE.\n\nSo close. So incredibly close.",
+          "effects": {"flags": {"finals_second": true}},
+          "next": "ending_runner_up"
+        }
+      ]
+    },
+
+    "ending_champion": {
+      "type": "ending",
+      "ending_type": "champion",
+      "text": "[ENDING - CHAMPION]\n\nYou collapse past the finish line. Body broken. Spirit soaring.\n\nDeej limps over—he hiked the whole course to be at the summit—and for once, his manic energy has been replaced by something genuine. Respect.\n\n\"You did it,\" he says quietly. Then louder: \"YOU DID IT!\"\n\nHe pulls you to your feet and raises your arm like a boxing referee.\n\n\"LADIES AND GENTLEMEN, YOUR CHALLENGE 2 SURVIVE CHAMPION!\"\n\nThe cheers echo off the mountain. Your fellow finalists cross behind you—second, third—and despite everything, they embrace you. This game breaks people, but in the end, you all survived together.\n\nDeej hands you the trophy—a twisted metal sculpture that looks like something between a crown and wreckage.\n\n\"I designed this myself,\" he says. \"It's made from parts of my old skateboard. The one I crashed on. Because here's the thing—\" He taps your chest. \"Champions aren't made from winning. They're made from surviving the crash and getting back up.\"\n\nHe turns to the camera.\n\n\"Pain is temporary. Regret is forever. This person? They got NO regrets.\"\n\nThe sun sets over the Croatian mountains. Your journey is complete.\n\n[THE END - CHAMPION ENDING]\n\n---\nFINAL STATS:\n- Challenges Won: [CHALLENGE_WINS]\n- Eliminations Survived: [ELIMINATION_WINS]\n- Final Placement: 1ST PLACE - CHAMPION"
+    },
+
+    "ending_runner_up": {
+      "type": "ending",
+      "ending_type": "runner_up",
+      "text": "[ENDING - RUNNER-UP]\n\nSecond place.\n\nYou cross the finish line moments after the winner. So close you could taste victory. But not quite.\n\nThe winner is being swarmed by cameras. The spotlight is on them. You stand just outside it, catching your breath, processing what just happened.\n\nDeej finds you, still catching his own breath from hiking the course.\n\n\"Second place in The Finals,\" he says. \"You know what that means? It means you ran MY course and almost won. Do you know how many people can say that? Like, twelve. Total. Ever.\"\n\nHe puts a hand on your shoulder.\n\n\"I crashed at the X Games in 2015. Lost everything. Came in LAST. And you know what happened? I came back. 'Almost' isn't the end, dude. 'Almost' is the BEGINNING.\"\n\nYou watch the champion celebrate. It stings. But Deej is right.\n\nThe sun sets over the Croatian mountains as you make peace with second place.\n\nThere's always next season.\n\n[THE END - RUNNER-UP ENDING]\n\n---\nFINAL STATS:\n- Challenges Won: [CHALLENGE_WINS]\n- Eliminations Survived: [ELIMINATION_WINS]\n- Final Placement: 2ND PLACE - RUNNER-UP"
+    },
+
+    "ending_eliminated": {
+      "type": "ending",
+      "ending_type": "eliminated",
+      "text": "[ENDING - ELIMINATED]\n\nYour torch is snuffed. Your game is over.\n\nYou stand in the elimination arena, processing what just happened. You lost. You're going home.\n\nThe walk to the exit van is the longest of your life. Behind you, the remaining players watch—some sympathetic, some relieved, some already calculating.\n\nDeej catches you before you get in the van. No cameras. Just him.\n\n\"Hey. Look at me.\"\n\nYou look.\n\n\"I designed that elimination myself. You know why it was so hard? Because I only design things that TEST people. And you were TESTED. You just didn't win THIS time.\"\n\nHe taps his own knee.\n\n\"I got told I'd never walk again. I'm standing here talking to you. Losing isn't the end. Giving up is the end. You gave everything in there. That means something.\"\n\nIn the van, reality sets in. But so does something else: determination.\n\nYou learned things in that house. About the game. About others. About yourself.\n\nNext time—if there's a next time—you'll be ready.\n\n[THE END - ELIMINATION ENDING]\n\n---\nFINAL STATS:\n- Challenges Won: [CHALLENGE_WINS]\n- Eliminations Survived: [ELIMINATION_WINS]\n- Final Placement: ELIMINATED"
+    }
+  },
+
+  "game_engine_instructions": {
+    "state_management": {
+      "track_variables": ["current_node", "player_name", "day", "episode", "relationships", "alliances", "flags", "eliminated", "challenge_wins", "elimination_wins", "vote_history"],
+      "relationship_range": "-100 to 100",
+      "thresholds": {"ally": 50, "friend": 25, "neutral": 0, "rival": -25, "enemy": -50}
+    },
+    "node_types": {
+      "narrative": "Display text, proceed to next",
+      "choice": "Display choices, branch based on selection",
+      "branch": "Evaluate condition, route accordingly",
+      "ending": "Display final text, end game"
+    },
+    "display_rules": {
+      "narrative": "Show full text, wait for continue",
+      "choice": "Show numbered options, wait for selection",
+      "speaker_dialogue": "Prefix with character name",
+      "episode_transitions": "Show episode title card"
+    }
+  }
+}
