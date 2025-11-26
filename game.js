@@ -577,12 +577,8 @@
             const textElement = document.createElement('div');
             textElement.className = 'text-block';
 
-            // Apply character color if there's a speaker
-            if (speaker) {
-                const color = getCharacterColor(speaker);
-                textElement.style.color = color;
-                textElement.style.textShadow = `0 0 5px ${color}40`;
-            }
+            // Text block uses default color; only quoted dialogue gets speaker color
+            // (applied in processTextForDisplay)
 
             DOM.textOutput.appendChild(textElement);
 
@@ -699,6 +695,11 @@
             processed = processed.replace(
                 /\[([A-Z\s']+)\]:/g,
                 `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
+            );
+            // Highlight only quoted dialogue with speaker color (like red-letter Bible)
+            processed = processed.replace(
+                /"([^"]+)"/g,
+                `<span class="dialogue" style="color: ${color}; text-shadow: 0 0 5px ${color}40;">"$1"</span>`
             );
         } else {
             processed = processed.replace(
