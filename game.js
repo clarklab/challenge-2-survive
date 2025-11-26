@@ -38,7 +38,6 @@
         gameContainer: null,
         textOutput: null,
         choicesContainer: null,
-        tapIndicator: null,
         continuePrompt: null,
         header: {
             day: null,
@@ -167,7 +166,6 @@
         DOM.gameContainer = document.getElementById('game-container');
         DOM.textOutput = document.getElementById('text-output');
         DOM.choicesContainer = document.getElementById('choices-container');
-        DOM.tapIndicator = document.getElementById('tap-indicator');
         DOM.continuePrompt = document.getElementById('continue-prompt');
 
         DOM.header.day = document.getElementById('day-display');
@@ -206,9 +204,8 @@
         // Save/Load overlay
         document.getElementById('close-save-btn').addEventListener('click', hideSaveLoad);
 
-        // Tap/click to skip or continue - initialize audio on first interaction
+        // Tap/click to continue - initialize audio on first interaction
         DOM.textOutput.addEventListener('click', handleScreenTap);
-        DOM.textOutput.addEventListener('touchstart', handleScreenTap, { passive: true });
 
         // Initialize audio on first user interaction (required for autoplay policy)
         const initAudioOnInteraction = () => {
@@ -218,17 +215,6 @@
         };
         document.addEventListener('click', initAudioOnInteraction);
         document.addEventListener('touchstart', initAudioOnInteraction, { passive: true });
-
-        // Touch events for mobile tap indicator
-        document.addEventListener('touchstart', () => {
-            if (typewriterState.isTyping) {
-                DOM.tapIndicator.classList.add('visible');
-            }
-        }, { passive: true });
-
-        document.addEventListener('touchend', () => {
-            DOM.tapIndicator.classList.remove('visible');
-        }, { passive: true });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', handleKeyPress);
@@ -577,12 +563,8 @@
             const textElement = document.createElement('div');
             textElement.className = 'text-block';
 
-            // Apply character color if there's a speaker
-            if (speaker) {
-                const color = getCharacterColor(speaker);
-                textElement.style.color = color;
-                textElement.style.textShadow = `0 0 5px ${color}40`;
-            }
+            // Text block uses default color; only quoted dialogue gets speaker color
+            // (applied in processTextForDisplay)
 
             DOM.textOutput.appendChild(textElement);
 
@@ -632,7 +614,6 @@
                 if (cursorElement.parentNode) {
                     cursorElement.remove();
                 }
-                DOM.tapIndicator.classList.remove('visible');
                 scrollToBottom();
                 resolve();
             }
@@ -693,17 +674,22 @@
             .replace(/\n/g, '<br>')
             .replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
-        // Style speaker name differently (brighter/bolder)
         if (speaker) {
             const color = getCharacterColor(speaker);
+            // Highlight quoted dialogue (use single quotes in HTML to avoid regex conflicts)
+            processed = processed.replace(
+                /"([^"]+)"/g,
+                `<span class='dialogue' style='color: ${color}; text-shadow: 0 0 5px ${color}40;'>"$1"</span>`
+            );
+            // Style speaker name
             processed = processed.replace(
                 /\[([A-Z\s']+)\]:/g,
-                `<span class="speaker" style="color: ${color}; filter: brightness(1.3);">[$1]:</span>`
+                `<span class='speaker' style='color: ${color}; filter: brightness(1.3);'>[$1]:</span>`
             );
         } else {
             processed = processed.replace(
                 /\[([A-Z\s']+)\]:/g,
-                '<span class="speaker">[$1]:</span>'
+                `<span class='speaker'>[$1]:</span>`
             );
         }
 
@@ -816,9 +802,8 @@
         // Don't interfere with button clicks
         if (e.target.tagName === 'BUTTON') return;
 
-        if (typewriterState.isTyping) {
-            skipTypewriter();
-        } else if (uiState.isWaitingForContinue && typewriterState.onComplete) {
+        // Only handle "tap to continue" - skip functionality removed to prevent scroll interference on touch devices
+        if (uiState.isWaitingForContinue && typewriterState.onComplete) {
             typewriterState.onComplete();
             typewriterState.onComplete = null;
         }
@@ -834,7 +819,7 @@
             }
         }
 
-        // Space or Enter to continue/skip
+        // Space or Enter to continue
         if (e.key === ' ' || e.key === 'Enter') {
             if (!isAnyOverlayVisible()) {
                 e.preventDefault();
