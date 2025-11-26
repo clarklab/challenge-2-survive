@@ -191,6 +191,8 @@
         document.getElementById('load-btn').addEventListener('click', () => showSaveLoad(false));
         document.getElementById('status-btn').addEventListener('click', showStatus);
         document.getElementById('restart-btn').addEventListener('click', confirmRestart);
+        document.getElementById('mute-btn').addEventListener('click', toggleMute);
+        document.getElementById('speed-btn').addEventListener('click', toggleSpeed);
 
         // Status overlay
         document.getElementById('close-status-btn').addEventListener('click', hideStatus);
@@ -844,6 +846,23 @@
 
     function hideMenu() {
         DOM.overlays.menu.classList.add('hidden');
+    }
+
+    function toggleMute() {
+        CONFIG.soundEnabled = !CONFIG.soundEnabled;
+        document.getElementById('mute-btn').textContent =
+            CONFIG.soundEnabled ? 'SOUND: ON' : 'SOUND: OFF';
+    }
+
+    function toggleSpeed() {
+        const is2x = CONFIG.typewriterSpeed === CONFIG.typewriterSpeedFast;
+        if (is2x) {
+            CONFIG.typewriterSpeed = 25;
+            document.getElementById('speed-btn').textContent = 'SPEED: 1X';
+        } else {
+            CONFIG.typewriterSpeed = CONFIG.typewriterSpeedFast;
+            document.getElementById('speed-btn').textContent = 'SPEED: 2X';
+        }
     }
 
     function showStatus() {
