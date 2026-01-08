@@ -100,7 +100,7 @@
   "nodes": {
     "bd_intro_001": {
       "type": "narrative",
-      "text": "The Mediterranean sun beats down on the marina as your taxi pulls up to the dock. There she is - the M/Y Sovereign Seas, 150 feet of gleaming white luxury. Your stomach does a flip.\n\nThis is it. Your first season as a yacht stew. You just got your ENG1 medical certificate three weeks ago, and somehow landed this gig through a friend of a friend.\n\n*Don't screw this up,* you tell yourself.",
+      "text": "The Mediterranean sun beats down on the marina as your taxi pulls up to the dock. There she is - HMS Longboy, 150 feet of gleaming white luxury. Your stomach does a flip.\n\nThis is it. Your first season as a yacht stew. You just got your ENG1 medical certificate three weeks ago, and somehow landed this gig through a friend of a friend.\n\n*Don't screw this up,* you tell yourself.",
       "charter_number": 1,
       "next": "bd_intro_002"
     },
@@ -241,7 +241,7 @@
     "bd_c1_arrival_2": {
       "type": "narrative",
       "speaker": "sterling",
-      "text": "Captain Sterling greets them at the gangway with practiced charm. \"Welcome aboard the Sovereign Seas, Mr. Worthington. We're honored to have you.\"\n\n\"Chad. Call me Chad.\" He doesn't shake the Captain's hand, just walks past him. \"Where's the champagne? We've been in a car for like, twenty minutes. I'm parched.\"",
+      "text": "Captain Sterling greets them at the gangway with practiced charm. \"Welcome aboard the Longboy, Mr. Worthington. We're honored to have you.\"\n\n\"Chad. Call me Chad.\" He doesn't shake the Captain's hand, just walks past him. \"Where's the champagne? We've been in a car for like, twenty minutes. I'm parched.\"",
       "next": "bd_c1_champagne"
     },
     "bd_c1_champagne": {
