@@ -366,7 +366,7 @@
             await delay(300);
             await typeText('A yacht crew drama adventure.\n');
             await delay(500);
-            await typeText('\nYou\'re the new third stew on the M/Y Sovereign Seas.\n');
+            await typeText('\nYou\'re the new third stew on HMS Longboy.\n');
             await delay(300);
             await typeText('Ready to start your first season? Name please...\n');
         } else {
