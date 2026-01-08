@@ -532,11 +532,57 @@
         // Clear autosave on ending
         clearFromStorage(CONFIG.autoSaveKey);
 
-        // Show play again option
+        // Show play again option (and share for Below Deck)
         await delay(1000);
-        showChoices([
+
+        const choices = [
             { text: 'Play Again', action: startNewGame }
-        ]);
+        ];
+
+        // Add SMS share option for Below Deck endings
+        if (currentStoryMode === 'belowdeck') {
+            choices.unshift({
+                text: 'Text Results to Group',
+                action: () => shareResultsSMS(node.ending_type)
+            });
+        }
+
+        showChoices(choices);
+    }
+
+    function shareResultsSMS(endingType) {
+        // Group chat phone numbers
+        const numbers = '+15123636938,+15126800655,+15127979076,+15125524631';
+
+        // Build the results message
+        const endingNames = {
+            'yacht_star': 'YACHT STAR',
+            'solid_season': 'SOLID SEASON',
+            'barely_survived': 'BARELY SURVIVED',
+            'rough_exit': 'ROUGH EXIT'
+        };
+
+        const totalTips = gameState.tips ? gameState.tips.total : 0;
+        const endingName = endingNames[endingType] || 'SEASON COMPLETE';
+
+        const message = `Below Deck: Season at Sea
+
+${gameState.player_name} finished with: ${endingName}
+
+Season Tips: $${totalTips.toLocaleString()}
+Charters: 4/4
+
+Victoria: ${gameState.relationships.victoria > 0 ? '+' : ''}${gameState.relationships.victoria}
+Captain: ${gameState.relationships.sterling > 0 ? '+' : ''}${gameState.relationships.sterling}
+Derek: ${gameState.relationships.derek > 0 ? '+' : ''}${gameState.relationships.derek}
+Jade: ${gameState.relationships.jade > 0 ? '+' : ''}${gameState.relationships.jade}`;
+
+        // Create SMS link
+        const encodedMessage = encodeURIComponent(message);
+        const smsLink = `sms:${numbers}?&body=${encodedMessage}`;
+
+        // Open SMS
+        window.location.href = smsLink;
     }
 
     async function selectChoice(node, choice) {
