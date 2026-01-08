@@ -1,0 +1,1380 @@
+{
+  "game_metadata": {
+    "title": "Below Deck: Season at Sea",
+    "version": "1.0.0",
+    "charter_count": 4,
+    "base_tip_per_charter": 15000
+  },
+  "characters": {
+    "host": {
+      "id": "sterling",
+      "name": "Captain Sterling",
+      "role": "Captain"
+    },
+    "player": {
+      "id": "player",
+      "name": "[PLAYER_NAME]",
+      "role": "Third Stew"
+    },
+    "npcs": [
+      {
+        "id": "sterling",
+        "name": "Captain Sterling",
+        "role": "Captain",
+        "personality": "Old-school, stern but fair. The boat comes first, always.",
+        "starting_disposition": 0
+      },
+      {
+        "id": "victoria",
+        "name": "Victoria",
+        "role": "Chief Stew",
+        "personality": "Demanding perfectionist. Tests everyone's loyalty. Former yacht model.",
+        "starting_disposition": -5
+      },
+      {
+        "id": "jade",
+        "name": "Jade",
+        "role": "Second Stew",
+        "personality": "Competitive, been angling for promotion. Has history with Derek.",
+        "starting_disposition": -10
+      },
+      {
+        "id": "marco",
+        "name": "Marco",
+        "role": "Chef",
+        "personality": "Hot-headed Italian. Temperamental genius. Screams in the galley.",
+        "starting_disposition": 5
+      },
+      {
+        "id": "derek",
+        "name": "Derek",
+        "role": "Bosun",
+        "personality": "Laid-back surfer bro. Flirty with everyone. Easy on the eyes.",
+        "starting_disposition": 15
+      },
+      {
+        "id": "connor",
+        "name": "Connor",
+        "role": "Lead Deckhand",
+        "personality": "Hard worker, secretly insecure. Quietly observant. Has a crush on you.",
+        "starting_disposition": 10
+      },
+      {
+        "id": "bree",
+        "name": "Bree",
+        "role": "Deckhand",
+        "personality": "Party girl. Could be your ally or rival. Knows everyone's secrets.",
+        "starting_disposition": 5
+      }
+    ]
+  },
+  "game_state_template": {
+    "current_node": "bd_intro_001",
+    "player_name": "",
+    "charter_number": 1,
+    "shift": "day",
+    "tips": {
+      "charter1": 0,
+      "charter2": 0,
+      "charter3": 0,
+      "charter4": 0,
+      "total": 0
+    },
+    "base_tip": 15000,
+    "relationships": {
+      "sterling": 0,
+      "victoria": -5,
+      "jade": -10,
+      "marco": 5,
+      "derek": 15,
+      "connor": 10,
+      "bree": 5
+    },
+    "guest_satisfaction": 100,
+    "flags": {},
+    "times_drunk": 0,
+    "hookups": 0,
+    "guest_complaints": 0,
+    "times_almost_fired": 0
+  },
+  "nodes": {
+    "bd_intro_001": {
+      "type": "narrative",
+      "text": "The Mediterranean sun beats down on the marina as your taxi pulls up to the dock. There she is - the M/Y Sovereign Seas, 150 feet of gleaming white luxury. Your stomach does a flip.\n\nThis is it. Your first season as a yacht stew. You just got your ENG1 medical certificate three weeks ago, and somehow landed this gig through a friend of a friend.\n\n*Don't screw this up,* you tell yourself.",
+      "charter_number": 1,
+      "next": "bd_intro_002"
+    },
+    "bd_intro_002": {
+      "type": "narrative",
+      "text": "You grab your duffel bag and make your way down the dock. The yacht is enormous - three decks, a hot tub on the sun deck, and what looks like a full bar on the aft.\n\nA woman in a crisp white polo appears at the gangway. Her blonde hair is pulled back impossibly tight, her makeup flawless despite the heat. She looks you up and down with the expression of someone examining a disappointing appetizer.",
+      "next": "bd_intro_victoria"
+    },
+    "bd_intro_victoria": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"You must be the new third stew. I'm Victoria, Chief Stew. You're late.\"\n\nYou check your phone. You're actually ten minutes early.\n\n\"On this boat, early is on time, and on time is late. Remember that.\"\n\nShe turns and walks up the gangway without waiting for you.",
+      "next": "bd_intro_003"
+    },
+    "bd_intro_003": {
+      "type": "narrative",
+      "text": "You follow Victoria into the main salon, trying not to gawk at the crystal chandeliers and marble floors. She rattles off information at machine-gun speed - laundry schedule, turndown service protocols, breakfast mise en place.\n\nYou're furiously trying to commit everything to memory when a tanned guy in board shorts wanders through, coffee in hand.",
+      "next": "bd_intro_derek"
+    },
+    "bd_intro_derek": {
+      "type": "narrative",
+      "speaker": "derek",
+      "text": "\"Fresh meat!\" He grins and gives you an obvious once-over. \"I'm Derek, Bosun. If you ever need anything... and I mean *anything*... deck crew's got you.\"\n\nVictoria rolls her eyes so hard you're surprised they don't get stuck.\n\n\"Derek. Don't you have anchor chain to polish?\"\n\n\"Always so tense, Vic.\" He winks at you and saunters off toward the bow.",
+      "next": "bd_intro_jade"
+    },
+    "bd_intro_jade": {
+      "type": "narrative",
+      "text": "A brunette in a matching white polo appears from below deck. She's pretty, but her smile doesn't quite reach her eyes when she sees you.\n\n\"So you're my new shadow. I'm Jade, Second Stew. Victoria put me in charge of training you.\" She emphasizes 'training' like it's a punishment.\n\n\"Just so we're clear - I've been working toward Chief Stew for two years. This is *my* boat. We good?\"",
+      "next": "bd_intro_response"
+    },
+    "bd_intro_response": {
+      "type": "choice",
+      "text": "Jade stares at you, waiting for a response. You can already tell she's going to be a problem. How do you handle this?",
+      "choices": [
+        {
+          "id": "intro_submissive",
+          "text": "Play it safe - be super agreeable",
+          "response_text": "\"Totally understood. I'm just here to learn from the best.\"\n\nJade's expression softens slightly. She wasn't expecting that.\n\n\"Good. At least you know your place.\"",
+          "effects": {
+            "relationships": { "jade": 10, "victoria": 5 },
+            "flags": { "intro_style": "submissive" }
+          },
+          "next": "bd_intro_captain"
+        },
+        {
+          "id": "intro_confident",
+          "text": "Stand your ground - you're not a pushover",
+          "response_text": "\"I'm here to work hard and prove myself. But I'm not here to be anyone's doormat.\"\n\nJade's eyes narrow. \"We'll see about that.\"\n\nVictoria, overhearing, looks mildly impressed despite herself.",
+          "effects": {
+            "relationships": { "jade": -15, "victoria": 5, "derek": 10 },
+            "flags": { "intro_style": "confident" }
+          },
+          "next": "bd_intro_captain"
+        },
+        {
+          "id": "intro_friendly",
+          "text": "Kill her with kindness",
+          "response_text": "\"Hey, I get it - new people are stressful. But I think we could actually be a great team. Want to grab a drink after the tour?\"\n\nJade blinks, thrown off. \"I... maybe. We'll see.\"\n\nIt's not a yes, but it's not a no either.",
+          "effects": {
+            "relationships": { "jade": 5, "bree": 5 },
+            "flags": { "intro_style": "friendly" }
+          },
+          "next": "bd_intro_captain"
+        }
+      ]
+    },
+    "bd_intro_captain": {
+      "type": "narrative",
+      "text": "Before you can dwell on Jade's territorial behavior, heavy footsteps sound from the bridge. A silver-haired man in an immaculate captain's uniform descends the stairs. Everything about him radiates authority - from his weathered tan to his perfectly pressed epaulettes.\n\nThe whole crew seems to stand a little straighter.",
+      "next": "bd_intro_sterling"
+    },
+    "bd_intro_sterling": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"So you're the new stew.\" Captain Sterling's voice is gravel and sea salt. \"Let me make one thing clear: this boat is my home, these guests are my responsibility, and every person on this crew reflects on me personally.\"\n\nHe steps closer, eyes drilling into yours.\n\n\"I don't care about drama. I don't care about hookups. I care about excellence. Can you give me that?\"",
+      "next": "bd_intro_captain_response"
+    },
+    "bd_intro_captain_response": {
+      "type": "choice",
+      "text": "Captain Sterling waits for your answer. This feels like a test.",
+      "choices": [
+        {
+          "id": "captain_formal",
+          "text": "\"Yes, Captain. You have my word.\"",
+          "response_text": "\"Good.\" He nods once, sharply. \"Don't make me regret taking a chance on a green stew.\"\n\nHe turns and heads back to the bridge. You exhale slowly.",
+          "effects": {
+            "relationships": { "sterling": 10 },
+            "flags": { "captain_impression": "formal" }
+          },
+          "next": "bd_intro_crew_meeting"
+        },
+        {
+          "id": "captain_eager",
+          "text": "\"I'll work harder than anyone, I promise!\"",
+          "response_text": "Captain Sterling's expression doesn't change. \"Promises are easy. Results are what matter.\"\n\nHe heads back to the bridge, leaving you feeling like you said too much.",
+          "effects": {
+            "relationships": { "sterling": 0 },
+            "flags": { "captain_impression": "eager" }
+          },
+          "next": "bd_intro_crew_meeting"
+        },
+        {
+          "id": "captain_honest",
+          "text": "\"I'll do my best. I'm still learning, but I'm a fast learner.\"",
+          "response_text": "Something that might be respect flickers in the Captain's eyes. \"Honesty. I appreciate that. Most greenies come in here thinking they know everything.\"\n\nHe almost smiles. Almost. \"Don't let me down.\"",
+          "effects": {
+            "relationships": { "sterling": 15 },
+            "flags": { "captain_impression": "honest" }
+          },
+          "next": "bd_intro_crew_meeting"
+        }
+      ]
+    },
+    "bd_intro_crew_meeting": {
+      "type": "narrative",
+      "text": "That evening, the full crew gathers in the crew mess for the charter briefing. You finally meet everyone:\n\n*Marco*, the Italian chef, immediately starts complaining about the tiny galley. *Connor*, the lead deckhand, gives you a shy smile and quickly looks away. *Bree*, the other deckhand, studies you with obvious curiosity.\n\nVictoria pulls up the guest preference sheet on her tablet.",
+      "next": "bd_charter1_briefing"
+    },
+    "bd_charter1_briefing": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"Alright, first charter of the season. Our primary is Chad Worthington III. Crypto millionaire, 28 years old. He's bringing five friends.\"\n\nShe scrolls through the sheet with growing dismay.\n\n\"Special requests include... a DJ booth on the sun deck, only Dom Perignon - and I quote - 'none of that poor people champagne,' and... oh for God's sake... a 3am pool party on the first night.\"",
+      "next": "bd_charter1_briefing_2"
+    },
+    "bd_charter1_briefing_2": {
+      "type": "narrative",
+      "speaker": "marco",
+      "text": "Marco slams his hand on the table. \"Madonna! I have to make a tasting menu and they want POOL PARTY at 3am?! When do I sleep?!\"\n\n\"You don't,\" Victoria says flatly. \"None of us do. Welcome to charter season.\"",
+      "next": "bd_c1_arrival"
+    },
+
+    "bd_c1_arrival": {
+      "type": "narrative",
+      "text": "The next morning, the guests arrive in a fleet of black SUVs. Chad Worthington III steps onto the dock wearing designer sunglasses, a silk shirt unbuttoned to his navel, and an expression that suggests the world is his personal inconvenience.\n\nHis entourage - four guys and one woman who appears to be dating all of them simultaneously - spill out behind him.",
+      "charter_number": 1,
+      "next": "bd_c1_arrival_2"
+    },
+    "bd_c1_arrival_2": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "Captain Sterling greets them at the gangway with practiced charm. \"Welcome aboard the Sovereign Seas, Mr. Worthington. We're honored to have you.\"\n\n\"Chad. Call me Chad.\" He doesn't shake the Captain's hand, just walks past him. \"Where's the champagne? We've been in a car for like, twenty minutes. I'm parched.\"",
+      "next": "bd_c1_champagne"
+    },
+    "bd_c1_champagne": {
+      "type": "choice",
+      "text": "Victoria shoots you a look. Champagne service is your job. The Dom is chilled and ready - but you also spot Chad's friend eyeing the cheaper Veuve Clicquot. Do you:",
+      "choices": [
+        {
+          "id": "c1_dom_only",
+          "text": "Stick to the preference sheet - Dom only",
+          "response_text": "You pour six perfect glasses of Dom Perignon. Chad takes one without looking at you.\n\n\"Finally. Someone who can read.\" He sips and nods. \"This'll do.\"\n\nYou catch Victoria's approving nod. One small victory.",
+          "effects": {
+            "relationships": { "victoria": 5 },
+            "tip_adjustment": 200,
+            "guest_satisfaction": 5
+          },
+          "next": "bd_c1_tour"
+        },
+        {
+          "id": "c1_ask_preference",
+          "text": "Ask the guests what they'd prefer",
+          "response_text": "\"We have Dom Perignon as requested, but we also have some excellent—\"\n\nChad cuts you off. \"Did I stutter on the preference sheet? Dom. Only. Don't offer me peasant bubbles.\"\n\nHis friends laugh. Your face burns as you pour the Dom in silence.",
+          "effects": {
+            "relationships": { "victoria": -5 },
+            "tip_adjustment": -100,
+            "guest_satisfaction": -5,
+            "guest_complaints": 1
+          },
+          "next": "bd_c1_tour"
+        }
+      ]
+    },
+    "bd_c1_tour": {
+      "type": "narrative",
+      "text": "The boat tour is a disaster. Chad's friends leave champagne glasses everywhere. One of them, a guy named Bryce, spills red wine on the white leather sofa within five minutes. You're on your knees scrubbing the stain when Chad leans over you.\n\n\"Hey, new girl. What time's dinner?\"\n\n\"8pm, Mr. Worth— Chad.\"\n\n\"Make it 10. We're going swimming.\"",
+      "next": "bd_c1_marco_rage"
+    },
+    "bd_c1_marco_rage": {
+      "type": "narrative",
+      "speaker": "marco",
+      "text": "When you relay the time change to Marco, he nearly throws a pan across the galley.\n\n\"TEN?! I have SOUFFLÉ planned! Soufflé does not WAIT! These people... these ANIMALS...\"\n\nHe launches into a stream of Italian that you're pretty sure includes several curse words and possibly a threat on Chad's life.",
+      "next": "bd_c1_dinner_prep"
+    },
+    "bd_c1_dinner_prep": {
+      "type": "narrative",
+      "text": "The afternoon passes in a blur of drink requests, sunscreen applications, and watching Derek demonstrate water toys while the female guest films him for her Instagram.\n\nBy 9pm, the guests are well on their way to drunk. One of them has passed out on a sun lounger. Chad is playing DJ on his phone, blasting music that makes the crystal rattles.\n\nDinner service is about to begin.",
+      "shift": "night",
+      "next": "bd_c1_dinner_service"
+    },
+    "bd_c1_dinner_service": {
+      "type": "narrative",
+      "text": "Marco's seven-course tasting menu is a work of art. The first three courses go smoothly enough - the guests are impressed, even Chad gives a grudging \"not bad.\"\n\nThen, during the lobster course, Bryce turns to you.\n\n\"Hey, you. More wine.\"\n\nHe's already slurring. His glass is full. This is his fourth bottle.",
+      "next": "bd_c1_wine_choice"
+    },
+    "bd_c1_wine_choice": {
+      "type": "choice",
+      "text": "Bryce is clearly hammered and demanding more wine. His glass is literally full. How do you handle this?",
+      "choices": [
+        {
+          "id": "c1_more_wine",
+          "text": "Keep pouring - guest is always right",
+          "response_text": "You top off his already-full glass, sending wine spilling onto the table cloth. Bryce doesn't notice or care.\n\n\"That's more like it.\"\n\nThirty minutes later, he vomits on the aft deck. You spend an hour cleaning it up.",
+          "effects": {
+            "relationships": { "victoria": -10 },
+            "tip_adjustment": -300,
+            "guest_satisfaction": -10,
+            "flags": { "bryce_sick": true }
+          },
+          "next": "bd_c1_after_dinner"
+        },
+        {
+          "id": "c1_redirect",
+          "text": "Suggest water and a palate cleanser",
+          "response_text": "\"Of course! And may I suggest some sparkling water and a sorbet to cleanse the palate before the next course? It really brings out the wine's full flavor.\"\n\nBryce blinks slowly. \"Oh. Yeah. That sounds... fancy. Do that.\"\n\nCrisis averted. Victoria gives you the smallest nod of approval.",
+          "effects": {
+            "relationships": { "victoria": 10 },
+            "tip_adjustment": 200,
+            "flags": { "bryce_handled": true }
+          },
+          "next": "bd_c1_after_dinner"
+        },
+        {
+          "id": "c1_tell_victoria",
+          "text": "Signal Victoria for backup",
+          "response_text": "You catch Victoria's eye and subtly gesture. She swoops in with practiced elegance.\n\n\"Mr. Bryce, allow me to show you our wine cellar selection. We have a rare vintage I think you'd appreciate.\"\n\nShe leads him away, buying time. Smart play - but Jade notices you called for help.",
+          "effects": {
+            "relationships": { "victoria": 5, "jade": -5 },
+            "tip_adjustment": 100,
+            "flags": { "asked_for_help": true }
+          },
+          "next": "bd_c1_after_dinner"
+        }
+      ]
+    },
+    "bd_c1_after_dinner": {
+      "type": "narrative",
+      "text": "Dinner wraps up around midnight. The guests retreat to the hot tub with yet more champagne. You've lost count of how many bottles they've gone through.\n\nYou're clearing plates when Chad calls out: \"Hey! New girl! The party's just getting started!\"\n\nHe's gesturing for you to join them in the hot tub. His friends are laughing, egging him on.",
+      "next": "bd_c1_hottub_choice"
+    },
+    "bd_c1_hottub_choice": {
+      "type": "choice",
+      "text": "Chad is insisting you join them in the hot tub. This is way outside your job description. What do you do?",
+      "choices": [
+        {
+          "id": "c1_polite_decline",
+          "text": "Politely decline and keep working",
+          "response_text": "\"I'm flattered, but I'm still on duty! Can I get you anything else to drink?\"\n\nChad shrugs. \"Boring.\" He loses interest immediately and goes back to his friends.\n\nVictoria catches your eye and mouths 'good job.' That felt like a test you just passed.",
+          "effects": {
+            "relationships": { "victoria": 10, "sterling": 5 },
+            "tip_adjustment": 100
+          },
+          "next": "bd_c1_crew_night"
+        },
+        {
+          "id": "c1_humor_decline",
+          "text": "Make a joke and redirect",
+          "response_text": "\"If I got in there, who would keep the champagne flowing? You'd have to pour your own drinks!\"\n\nChad laughs despite himself. \"Fair point. Alright, keep 'em coming.\"\n\nYou've managed to diffuse the situation AND keep him happy. Not bad.",
+          "effects": {
+            "relationships": { "victoria": 5, "derek": 5 },
+            "tip_adjustment": 200,
+            "guest_satisfaction": 5
+          },
+          "next": "bd_c1_crew_night"
+        },
+        {
+          "id": "c1_get_derek",
+          "text": "Say you'll check if off-duty crew can join",
+          "response_text": "\"Let me see if any off-duty crew members can join! Derek was saying he's almost done...\"\n\nYou find Derek, who is MORE than happy to strip down and entertain the guests. Chad's female friend immediately forgets about you.\n\nCreative solution. Victoria looks... impressed? Suspicious? Hard to tell.",
+          "effects": {
+            "relationships": { "derek": 15, "jade": -10 },
+            "tip_adjustment": 150,
+            "flags": { "derek_hottub": true }
+          },
+          "next": "bd_c1_crew_night"
+        }
+      ]
+    },
+    "bd_c1_crew_night": {
+      "type": "narrative",
+      "text": "By 3am, the promised pool party is in full swing. The guests are wasted, the music is deafening, and you're running on fumes.\n\nFinally, around 4am, they pass out. You finish cleaning and stumble to the crew mess. Connor is there with a bottle of wine and two glasses.",
+      "next": "bd_c1_connor_talk"
+    },
+    "bd_c1_connor_talk": {
+      "type": "narrative",
+      "speaker": "connor",
+      "text": "\"Rough first night, huh?\" He pours you a glass without asking. \"I remember my first charter. Cried in the anchor locker.\"\n\nHe's got kind eyes, this one. And he's looking at you like you're actually a person, not just furniture.\n\n\"For what it's worth, you handled Chad pretty well. He's a nightmare.\"",
+      "next": "bd_c1_connor_choice"
+    },
+    "bd_c1_connor_choice": {
+      "type": "choice",
+      "text": "It's late, you're exhausted, and Connor is being surprisingly sweet. Do you:",
+      "choices": [
+        {
+          "id": "c1_connor_chat",
+          "text": "Stay and talk - you need this",
+          "response_text": "You sink into the booth across from him and take a long sip of wine.\n\nThe two of you talk until dawn - about how you both ended up in yachting, about terrible guests, about dreams of eventually buying your own boat. It's... nice.\n\nWhen you finally crawl into your bunk, you're smiling.",
+          "effects": {
+            "relationships": { "connor": 20 },
+            "flags": { "connor_bonded": true }
+          },
+          "next": "bd_c1_day2"
+        },
+        {
+          "id": "c1_connor_sleep",
+          "text": "Thank him but get some sleep",
+          "response_text": "\"That's really sweet, but I'm about to pass out standing up. Rain check?\"\n\nConnor's face falls slightly, but he nods. \"Yeah, of course. Get some rest.\"\n\nYou catch maybe three hours of sleep before your alarm goes off.",
+          "effects": {
+            "relationships": { "connor": 5 }
+          },
+          "next": "bd_c1_day2"
+        },
+        {
+          "id": "c1_jade_appears",
+          "text": "Notice Jade watching from the doorway",
+          "response_text": "Movement catches your eye - Jade is standing in the doorway, watching. How long has she been there?\n\n\"Don't let me interrupt,\" she says with a sharp smile. \"I just came for water.\"\n\nThe moment is broken. Connor mumbles goodnight and leaves. Jade lingers, smirking.",
+          "effects": {
+            "relationships": { "connor": 5, "jade": -10 },
+            "flags": { "jade_jealous": true }
+          },
+          "next": "bd_c1_day2"
+        }
+      ]
+    },
+    "bd_c1_day2": {
+      "type": "narrative",
+      "text": "Day two of the charter. The guests are moving slowly - brutal hangovers all around. Chad demands hair of the dog at 9am and complains about the eggs being \"too egg-y.\"\n\nThe afternoon excursion goes relatively smoothly. Derek takes them tubing, someone falls off and bruises their ego, everyone laughs.\n\nThen comes the final dinner.",
+      "shift": "day",
+      "next": "bd_c1_final_dinner"
+    },
+    "bd_c1_final_dinner": {
+      "type": "narrative",
+      "text": "Marco has prepared his signature beef Wellington. The table is set perfectly - candles, crystal, the works.\n\nAnd then Chad arrives at the table wearing a bathrobe and announces: \"Change of plans. We want pizza.\"\n\nFrom the galley, you hear something break.",
+      "shift": "night",
+      "next": "bd_c1_pizza_crisis"
+    },
+    "bd_c1_pizza_crisis": {
+      "type": "choice",
+      "text": "Marco is seconds away from a meltdown. Chad wants pizza. The Wellington is already done. This is a disaster. What do you do?",
+      "choices": [
+        {
+          "id": "c1_get_victoria",
+          "text": "Get Victoria to handle it",
+          "response_text": "You find Victoria and explain the situation. Her eye twitches, but she marches to the table.\n\n\"Mr. Worthington, Chef Marco has prepared something truly special tonight. Perhaps pizza as a late-night snack instead?\"\n\nChad considers. \"Fine. But it better be good.\"\n\nThe Wellington is served. Chad pronounces it 'acceptable.' Marco doesn't kill anyone.",
+          "effects": {
+            "relationships": { "victoria": 5, "marco": -5 },
+            "tip_adjustment": 200
+          },
+          "next": "bd_c1_departure"
+        },
+        {
+          "id": "c1_help_marco",
+          "text": "Help Marco improvise gourmet pizza",
+          "response_text": "You burst into the galley where Marco is clutching a knife with murder in his eyes.\n\n\"Marco! What if we do BOTH? Wellington appetizer, then your signature pizza for the main?\"\n\nHe stares at you. Then slowly, a mad smile spreads across his face.\n\n\"You. I like you.\"\n\nThe hybrid meal is a hit. Chad calls it 'actually creative.'",
+          "effects": {
+            "relationships": { "marco": 25, "victoria": 5 },
+            "tip_adjustment": 400,
+            "guest_satisfaction": 10
+          },
+          "next": "bd_c1_departure"
+        },
+        {
+          "id": "c1_serve_wellington",
+          "text": "Serve the Wellington anyway, call it 'pizza'",
+          "response_text": "In a moment of desperation, you plate the Wellington and announce: \"Your deconstructed Italian pizza, sir. Chef Marco's interpretation.\"\n\nChad squints at it. \"This doesn't look like pizza.\"\n\n\"It's... molecular gastronomy pizza.\"\n\nHe shrugs and eats it. \"Weird, but okay.\"\n\nMarco will either love you or never forgive you. Time will tell.",
+          "effects": {
+            "relationships": { "marco": -10 },
+            "tip_adjustment": 100,
+            "flags": { "pizza_lie": true }
+          },
+          "next": "bd_c1_departure"
+        }
+      ]
+    },
+    "bd_c1_departure": {
+      "type": "narrative",
+      "text": "The next morning, the guests finally disembark. Chad pauses at the gangway.\n\n\"Not bad for a first charter. Tell the captain he's got a decent crew.\"\n\nComing from Chad, that's practically a standing ovation.\n\nThe black SUVs pull away, and the entire crew exhales simultaneously.",
+      "next": "bd_c1_tip_meeting"
+    },
+    "bd_c1_tip_meeting": {
+      "type": "narrative",
+      "text": "That afternoon, Captain Sterling calls everyone to the bridge for the tip meeting. An envelope sits on the table.\n\nThe Captain opens it slowly, building the suspense. He counts the bills.\n\n\"Well team... Mr. Worthington left us...\"\n\nHe pauses dramatically.",
+      "next": "bd_c1_tip_reveal"
+    },
+    "bd_c1_tip_reveal": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"Fifteen thousand dollars. Plus a note that says 'pretty good for a bunch of randos.'\"\n\nThe crew cheers. $15,000 split seven ways - plus your accumulated bonuses from good decisions - means a decent chunk of change.\n\n\"One charter down, three to go. Get some rest tonight - preference sheet meeting tomorrow at noon.\"",
+      "effects": {
+        "tip_adjustment": 15000
+      },
+      "next": "bd_c1_crew_night_out"
+    },
+    "bd_c1_crew_night_out": {
+      "type": "narrative",
+      "text": "That night, the whole crew heads to a beach bar in town. It's the first time you've seen everyone actually relax.\n\nMarco is doing shots with Bree. Victoria is pretending to check emails but you catch her smiling at something Derek said. Even Jade seems less hostile after a few mojitos.\n\nConnor slides onto the barstool next to you.",
+      "next": "bd_c1_bar_connor"
+    },
+    "bd_c1_bar_connor": {
+      "type": "narrative",
+      "speaker": "connor",
+      "text": "\"So? Survived your first charter. How do you feel?\"\n\nHe's standing close - closer than necessary in the crowded bar. His shoulder keeps brushing yours.\n\nAcross the room, you notice Derek watching you two. And Jade watching Derek watch you.",
+      "next": "bd_c1_bar_choice"
+    },
+    "bd_c1_bar_choice": {
+      "type": "choice",
+      "text": "The drinks are flowing and the tension from the charter is melting away. This feels like a crossroads moment. What do you do?",
+      "choices": [
+        {
+          "id": "c1_connor_flirt",
+          "text": "Flirt with Connor - he's sweet",
+          "response_text": "You lean into him a little. \"I feel like I could use another drink. And better company.\"\n\nConnor's face lights up. \"I can definitely help with both.\"\n\nYou spend the rest of the night talking and laughing. At closing time, he walks you back to the boat. There's an awkward moment at the gangway before he squeezes your hand and says goodnight.\n\nFrom the shadows on deck, you hear Bree whisper to someone: \"Called it.\"",
+          "effects": {
+            "relationships": { "connor": 20, "bree": 5 },
+            "flags": { "connor_romantic": true }
+          },
+          "next": "bd_c2_briefing"
+        },
+        {
+          "id": "c1_derek_flirt",
+          "text": "Wander over to Derek - he's been watching",
+          "response_text": "You excuse yourself from Connor and drift toward the pool table where Derek is running the table.\n\n\"Winner plays me?\" you say.\n\nDerek grins that grin. \"Stakes?\"\n\n\"Loser buys shots.\"\n\nYou lose spectacularly. The shots are very strong. The walk back to the boat is... wobbly. Derek's arm around your waist is technically just to keep you steady.\n\nJade's expression when she sees you two could curdle milk.",
+          "effects": {
+            "relationships": { "derek": 20, "jade": -25, "connor": -15 },
+            "flags": { "derek_flirting": true },
+            "times_drunk": 1
+          },
+          "next": "bd_c2_briefing"
+        },
+        {
+          "id": "c1_bree_bond",
+          "text": "Join Bree for shots - girl time",
+          "response_text": "You slide over to where Bree is holding court with Marco.\n\n\"Room for one more?\"\n\nBree grins and waves you in. \"Finally! Another girl who knows how to party!\"\n\nThree hours later, you know all of Bree's secrets. She knows some of yours. Marco has passed out on the table. The three of you are officially a crew alliance.\n\nYou don't remember getting back to the boat, but you wake up with a pounding head and a new best friend.",
+          "effects": {
+            "relationships": { "bree": 25, "marco": 10 },
+            "flags": { "bree_alliance": true },
+            "times_drunk": 1
+          },
+          "next": "bd_c2_briefing"
+        },
+        {
+          "id": "c1_stay_sober",
+          "text": "Keep it professional - one drink and bed",
+          "response_text": "\"Actually, I'm going to call it early. Don't want to be hungover for the next charter.\"\n\nConnor looks disappointed. Victoria looks approving. Jade looks suspicious, like you're up to something.\n\nYou get a full eight hours of sleep and wake up feeling human. While cleaning the crew mess, you overhear Bree telling Jade that you're 'no fun.'\n\nMaybe. But your head doesn't hurt.",
+          "effects": {
+            "relationships": { "victoria": 10, "sterling": 5, "bree": -10 }
+          },
+          "next": "bd_c2_briefing"
+        }
+      ]
+    },
+
+    "bd_c2_briefing": {
+      "type": "narrative",
+      "text": "A few days later, the crew gathers for the Charter 2 preference sheet meeting. Victoria looks like she's already developing a stress headache.\n\n\"Our primary guest is... Tiffany St. James. Instagram influencer. She's turning 30 and wants the 'most epic birthday ever.'\"",
+      "charter_number": 2,
+      "next": "bd_c2_briefing_2"
+    },
+    "bd_c2_briefing_2": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"She has... let me see... seven food allergies, all developed within the last month. She wants the yacht anchored in 'prettier' spots than our planned itinerary. She wants a photographer to document everything. And—\"\n\nVictoria pauses, closes her eyes, takes a breath.\n\n\"—she wants a themed party each night. Night one is 'Gatsby Glam,' night two is 'Tropical Paradise.'\"",
+      "next": "bd_c2_marco_reaction"
+    },
+    "bd_c2_marco_reaction": {
+      "type": "narrative",
+      "speaker": "marco",
+      "text": "\"Seven allergies?!\" Marco snatches the sheet. \"Gluten. Dairy. Shellfish. Nightshades— NIGHTSHADES? What am I supposed to cook, AIR?!\"\n\n\"It gets better,\" Victoria says dryly. \"She also wants a 'surprise' birthday cake. With sparklers. Shaped like her face.\"\n\nThe crew exchanges looks of pure dread.",
+      "next": "bd_c2_arrival"
+    },
+    "bd_c2_arrival": {
+      "type": "narrative",
+      "text": "Tiffany arrives in a hot pink convertible, wearing a rhinestone tiara and followed by three friends who look like they're already exhausted by her.\n\nShe poses at the gangway for a full five minutes while her 'content creator' films from every angle.\n\nThen she bursts into tears.",
+      "next": "bd_c2_tiffany_cry"
+    },
+    "bd_c2_tiffany_cry": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"OH MY GOD, I'm THIRTY!\" Tiffany wails. \"My twenties are OVER! I'll never be YOUNG again!\"\n\nVictoria's smile could crack diamonds. \"Ms. St. James, welcome aboard! Thirty is the new twenty, as they say. May I offer you some champagne?\"\n\n\"Is it low-sugar? I'm also doing keto now. I forgot to mention that on the sheet.\"",
+      "next": "bd_c2_first_drama"
+    },
+    "bd_c2_first_drama": {
+      "type": "narrative",
+      "text": "The first afternoon is a rollercoaster. Tiffany loves the boat (posts twelve photos), hates the boat (deletes four photos), loves it again (reposts with different filter).\n\nHer friends are exhausted enablers who agree with everything she says. One of them, a woman named Ashley, keeps apologizing to you with her eyes.\n\nDinner prep begins with Marco screaming about the new keto requirement.",
+      "next": "bd_c2_dinner_prep"
+    },
+    "bd_c2_dinner_prep": {
+      "type": "choice",
+      "text": "Victoria pulls you aside before dinner service.\n\n\"Tiffany is... delicate. She's already complained twice that the sun loungers aren't positioned right. I need you to be her shadow - anticipate every need before she knows she has it. Can you handle that?\"",
+      "choices": [
+        {
+          "id": "c2_accept_challenge",
+          "text": "\"Absolutely. I've got this.\"",
+          "response_text": "Victoria nods. \"Good. Don't make me regret trusting you.\"\n\nYou spend the next three hours memorizing Tiffany's routines, her drink preferences, her phone charging schedule. By dinner, you know her better than her friends do.",
+          "effects": {
+            "relationships": { "victoria": 10 },
+            "flags": { "tiffany_expert": true }
+          },
+          "next": "bd_c2_dinner"
+        },
+        {
+          "id": "c2_ask_for_tips",
+          "text": "\"Any advice on handling her type?\"",
+          "response_text": "Victoria's expression softens slightly. \"Compliment everything. Agree with everything. And when she gets emotional, mirror her energy. If she's sad, be sympathetic. If she's excited, match it.\"\n\nShe pauses. \"Also, her ex-boyfriend might show up. He's been texting. If you see a guy named Tyler arrive, alert me immediately.\"",
+          "effects": {
+            "relationships": { "victoria": 5 },
+            "flags": { "tyler_warned": true }
+          },
+          "next": "bd_c2_dinner"
+        },
+        {
+          "id": "c2_overwhelmed",
+          "text": "\"That's a lot of pressure...\"",
+          "response_text": "Victoria's eyes narrow. \"This is yachting. There's always pressure. If you can't handle it, tell me now.\"\n\nYou straighten up. \"No, I can do it. Sorry. I'm good.\"\n\n\"Prove it.\"\n\nShe walks away. Great. Now you have something to prove.",
+          "effects": {
+            "relationships": { "victoria": -5, "jade": 5 },
+            "flags": { "victoria_doubts": true }
+          },
+          "next": "bd_c2_dinner"
+        }
+      ]
+    },
+    "bd_c2_dinner": {
+      "type": "narrative",
+      "text": "Gatsby Glam night. The aft deck is transformed with gold streamers, art deco centerpieces, and enough feathers to outfit a showgirl.\n\nTiffany appears in a sequined dress, tiara upgraded to a full crown. She's gone from crying to manic excitement.\n\n\"This is PERFECT! Oh my GOD, this is SO me!\"\n\nMarco's keto-friendly menu arrives. Tiffany takes one look and frowns.",
+      "shift": "night",
+      "next": "bd_c2_food_complaint"
+    },
+    "bd_c2_food_complaint": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"Actually, I don't think I can eat any of this. Can I get something else?\"\n\n\"Ms. St. James, Chef Marco has accommodated all seven of your allergies plus the keto requirement—\"\n\n\"But I FEEL like salmon. Is there salmon?\"\n\nFrom the galley: \"I WILL BURN THIS BOAT DOWN.\"",
+      "next": "bd_c2_salmon_crisis"
+    },
+    "bd_c2_salmon_crisis": {
+      "type": "choice",
+      "text": "Marco is at breaking point. Tiffany wants salmon she didn't order. Victoria is frozen. Someone needs to fix this.",
+      "choices": [
+        {
+          "id": "c2_find_salmon",
+          "text": "Check the freezer - maybe there's salmon",
+          "response_text": "You sprint to the galley and dig through the freezer. There IS salmon, frozen solid.\n\n\"Marco, microwave defrost, quick sear?\"\n\nHe stares at you like you've spoken heresy. Then he laughs.\n\n\"You. Defrost. I cook. GO.\"\n\nTen minutes later, Tiffany has her salmon. She pronounces it 'exactly what she needed.'",
+          "effects": {
+            "relationships": { "marco": 15, "victoria": 10 },
+            "tip_adjustment": 300,
+            "guest_satisfaction": 10
+          },
+          "next": "bd_c2_night_1_drama"
+        },
+        {
+          "id": "c2_distract_tiffany",
+          "text": "Distract Tiffany with a surprise",
+          "response_text": "\"Ms. St. James! Before dinner, I have a special birthday surprise - the Captain invited you to the bridge for a champagne toast at sunset!\"\n\nTiffany's eyes go wide. \"OH MY GOD, really?!\"\n\nYou make frantic eye contact with Captain Sterling, who somehow rolls with it.\n\nBy the time she returns, she's forgotten about the salmon entirely.",
+          "effects": {
+            "relationships": { "sterling": 5 },
+            "tip_adjustment": 200,
+            "guest_satisfaction": 5,
+            "flags": { "improvised_bridge_toast": true }
+          },
+          "next": "bd_c2_night_1_drama"
+        },
+        {
+          "id": "c2_let_victoria_handle",
+          "text": "Step back and let Victoria handle it",
+          "response_text": "This is above your pay grade. You fade into the background and watch Victoria work her magic.\n\nShe somehow convinces Tiffany that the beef is 'salmon-adjacent' and that it's actually MORE exclusive. Tiffany buys it.\n\nBut Jade notices you didn't step up. \"Couldn't handle it, huh?\" she whispers as you pass.",
+          "effects": {
+            "relationships": { "jade": -10, "victoria": -5 }
+          },
+          "next": "bd_c2_night_1_drama"
+        }
+      ]
+    },
+    "bd_c2_night_1_drama": {
+      "type": "narrative",
+      "text": "The evening progresses with only minor meltdowns. Tiffany cries twice more (once about aging, once about her Instagram engagement being down), but by midnight she's declared this the 'best birthday ever.'\n\nThen a water taxi pulls up to the yacht.",
+      "next": "bd_c2_tyler_arrives"
+    },
+    "bd_c2_tyler_arrives": {
+      "type": "narrative",
+      "text": "A guy climbs aboard uninvited. He's good-looking in a disheveled, desperate way, clutching flowers.\n\n\"TIFFANY! Baby, please! I'm sorry! Take me back!\"\n\nTiffany's face cycles through about six emotions in two seconds. Her friends form a protective circle. Ashley looks at you, panicked.",
+      "next": "bd_c2_tyler_choice"
+    },
+    "bd_c2_tyler_choice": {
+      "type": "choice",
+      "text": "Tiffany's ex-boyfriend Tyler has crashed the charter. This could go very wrong. What do you do?",
+      "choices": [
+        {
+          "id": "c2_get_captain",
+          "text": "Get Captain Sterling immediately",
+          "response_text": "You race to the bridge. Captain Sterling takes one look at the situation and becomes a wall of authority.\n\n\"Sir, you are not a registered guest. You need to leave immediately, or I'll have the coastguard escort you.\"\n\nTyler leaves. Tiffany bursts into tears (again) but says you 'saved her' from 'her toxic past.'",
+          "effects": {
+            "relationships": { "sterling": 15 },
+            "tip_adjustment": 400,
+            "guest_satisfaction": 10,
+            "flags": { "tyler_removed": true }
+          },
+          "next": "bd_c2_day_2"
+        },
+        {
+          "id": "c2_let_drama_unfold",
+          "text": "Step back and let the drama play out",
+          "response_text": "This feels like a 'not your circus, not your monkeys' situation. You make yourself scarce while Tiffany and Tyler have a screaming match on the aft deck.\n\nIt ends with them making out in the hot tub.\n\nVictoria is furious at the 'security breach.' Captain Sterling is not pleased either.",
+          "effects": {
+            "relationships": { "victoria": -15, "sterling": -10 },
+            "tip_adjustment": -200,
+            "guest_complaints": 1,
+            "flags": { "tyler_stays": true }
+          },
+          "next": "bd_c2_day_2"
+        },
+        {
+          "id": "c2_handle_yourself",
+          "text": "Diplomatically intervene yourself",
+          "response_text": "\"Sir, I'm going to have to ask you to wait at the dock. This is a private charter, and our primary guest needs to decide if she wants to see you.\"\n\nTyler starts to argue, but you stand firm. Security 101: control the situation calmly.\n\nTiffany sees you handling it and mouths 'thank you.' Tyler is escorted off. You've earned serious respect tonight.",
+          "effects": {
+            "relationships": { "victoria": 10, "sterling": 10 },
+            "tip_adjustment": 500,
+            "guest_satisfaction": 15,
+            "flags": { "tyler_handled_well": true }
+          },
+          "next": "bd_c2_day_2"
+        }
+      ]
+    },
+    "bd_c2_day_2": {
+      "type": "narrative",
+      "text": "Day two brings Tropical Paradise theme night. The drama with Tyler seems forgotten - Tiffany is now 'so over' him and focused on 'self-love and my journey.'\n\nShe posts forty-seven stories documenting her 'healing process' which mostly involves drinking coconut water and doing yoga poses on the bow.",
+      "shift": "day",
+      "next": "bd_c2_beach_picnic"
+    },
+    "bd_c2_beach_picnic": {
+      "type": "narrative",
+      "text": "The afternoon beach picnic is picture-perfect. Derek sets up a stunning spread on a private beach. Tiffany is so happy she tips him $200 on the spot.\n\nJade is tasked with serving drinks. You notice her filling Tiffany's glass more generously than usual. By 4pm, Tiffany is very, very drunk.\n\nAnd she wants to swim. Alone. To 'connect with nature.'",
+      "next": "bd_c2_swim_crisis"
+    },
+    "bd_c2_swim_crisis": {
+      "type": "choice",
+      "text": "Tiffany is hammered and insisting on swimming alone. Jade isn't stopping her. This is dangerous. What do you do?",
+      "choices": [
+        {
+          "id": "c2_swim_with_her",
+          "text": "Offer to swim with her for 'content'",
+          "response_text": "\"Tiffany! What if we do an underwater photo shoot? I'll swim with you!\"\n\nShe gasps. \"OH MY GOD, YES! Get the photographer!\"\n\nYou spend the next hour making sure she doesn't drown while pretending to pose for photos. Your swimsuit situation is awkward but she's safe.\n\nJade looks irritated. Mission accomplished.",
+          "effects": {
+            "relationships": { "jade": -10, "victoria": 10 },
+            "tip_adjustment": 200,
+            "flags": { "saved_tiffany_swim": true }
+          },
+          "next": "bd_c2_final_night"
+        },
+        {
+          "id": "c2_alert_derek",
+          "text": "Alert Derek to watch her",
+          "response_text": "You catch Derek's eye and gesture toward Tiffany. He gets it immediately.\n\n\"Hey Tiffany, let me show you the best swimming spot! Currents are tricky here.\"\n\nHe swims out with her, keeping her safe while she thinks she's having a spiritual moment. Professional deck work.",
+          "effects": {
+            "relationships": { "derek": 10 },
+            "tip_adjustment": 200
+          },
+          "next": "bd_c2_final_night"
+        },
+        {
+          "id": "c2_confront_jade",
+          "text": "Confront Jade about over-serving",
+          "response_text": "\"Jade, you've been pouring heavy all afternoon. She can barely stand.\"\n\nJade's smile turns sharp. \"And? She's an adult. She asked for full pours.\"\n\n\"She could get hurt.\"\n\n\"Then watch her yourself, hero.\"\n\nYou do. But this confrontation isn't over.",
+          "effects": {
+            "relationships": { "jade": -25 },
+            "flags": { "jade_confrontation": true }
+          },
+          "next": "bd_c2_final_night"
+        }
+      ]
+    },
+    "bd_c2_final_night": {
+      "type": "narrative",
+      "text": "Tropical Paradise night is a hit. Tiki torches, lei garlands, Marco's (somehow) allergy-free luau menu. The birthday cake shaped like Tiffany's face is disturbing but she loves it.\n\nAt midnight, surrounded by sparklers and the sound of the waves, Tiffany makes a speech.\n\n\"This was the best birthday ever. You all made me feel so special. I'm definitely coming back.\"",
+      "shift": "night",
+      "next": "bd_c2_departure"
+    },
+    "bd_c2_departure": {
+      "type": "narrative",
+      "text": "The next morning, Tiffany hugs each crew member individually. She's crying (happy tears this time) and promising to tag everyone on Instagram.\n\n\"Especially you,\" she says to you. \"You really got me, you know?\"\n\nThe convoy of pink convertibles disappears toward the marina. The crew sighs with relief.",
+      "next": "bd_c2_tip_meeting"
+    },
+    "bd_c2_tip_meeting": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"Alright, tip meeting. Ms. St. James left us...\"\n\nThe Captain opens the envelope. His eyebrows rise.\n\n\"Eighteen thousand dollars. And a handwritten note saying 'best crew ever, especially the sweet new stew.'\"\n\nJade's jaw tightens. Victoria almost smiles. Connor gives you a subtle fist bump.",
+      "effects": {
+        "tip_adjustment": 18000
+      },
+      "next": "bd_c2_crew_night"
+    },
+    "bd_c2_crew_night": {
+      "type": "narrative",
+      "text": "Two charters down, two to go. The crew celebrates with dinner in town. The restaurant has cheap wine and excellent gossip.\n\nDerek is telling increasingly exaggerated stories about past charters. Bree is trying to get everyone to do tequila shots. Victoria has excused herself to 'check emails' (probably actually drinking alone in peace).\n\nJade hasn't spoken to you all evening.",
+      "next": "bd_c2_jade_confrontation"
+    },
+    "bd_c2_jade_confrontation": {
+      "type": "narrative",
+      "text": "You're coming back from the bathroom when Jade corners you in the hallway.\n\n\"So you think you're special now? Tiffany's new best friend? Victoria's little protégé?\"\n\nHer eyes are glassy - she's been drinking more than anyone realized.",
+      "next": "bd_c2_jade_choice"
+    },
+    "bd_c2_jade_choice": {
+      "type": "choice",
+      "text": "Jade is clearly looking for a fight. She's drunk and resentful. This could get ugly.",
+      "choices": [
+        {
+          "id": "c2_jade_defuse",
+          "text": "Try to defuse - you're not her enemy",
+          "response_text": "\"Jade, I'm not trying to take anything from you. I'm just trying to do my job. Can we maybe start over?\"\n\nShe stares at you for a long moment. Something flickers in her expression - almost like she's tired of being angry.\n\n\"...Whatever. Just stay out of my way.\"\n\nIt's not friendship. But it's not war either.",
+          "effects": {
+            "relationships": { "jade": 15 },
+            "flags": { "jade_truce": true }
+          },
+          "next": "bd_c3_briefing"
+        },
+        {
+          "id": "c2_jade_confront",
+          "text": "Stand your ground - you're done being bullied",
+          "response_text": "\"Jade, I don't know what your problem is with me, but I'm not going anywhere. I earned my place here. Maybe focus on your own job instead of worrying about mine.\"\n\nHer face twists. \"You have NO idea what you just started.\"\n\nShe storms off. You've made an enemy. But you've also stopped being her target.",
+          "effects": {
+            "relationships": { "jade": -20, "victoria": 5, "bree": 5 },
+            "flags": { "jade_enemy": true }
+          },
+          "next": "bd_c3_briefing"
+        },
+        {
+          "id": "c2_jade_ally_attempt",
+          "text": "Offer to be her ally - strength in numbers",
+          "response_text": "\"Jade, look. This job is hard enough without fighting each other. We're both stews. We should have each other's backs. What do you say?\"\n\nShe wavers. The alcohol is making her more susceptible to emotional appeals.\n\n\"...You really mean that?\"\n\n\"Yeah, I do.\"\n\n\"Fine. But if you screw me over, I'll destroy you.\"\n\n\"Deal.\"",
+          "effects": {
+            "relationships": { "jade": 20 },
+            "flags": { "jade_ally": true }
+          },
+          "next": "bd_c3_briefing"
+        }
+      ]
+    },
+
+    "bd_c3_briefing": {
+      "type": "narrative",
+      "text": "Charter three brings a new challenge: Patricia Van Houten and her 'girl gang' - four recently divorced women in their fifties, ready to 'reclaim their youth.'\n\nVictoria reads the preference sheet with growing alarm.",
+      "charter_number": 3,
+      "next": "bd_c3_briefing_2"
+    },
+    "bd_c3_briefing_2": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"They want... unlimited rosé. A 'hot cabana boy' for beach days - Derek, that's you. A spa day with 'happy endings' - obviously not happening. And they've requested the crew join them for dinner one night because 'we want to feel young again.'\"\n\nDerek looks terrified and delighted in equal measure. Marco is muttering about 'drunk women who can't appreciate cuisine.'",
+      "next": "bd_c3_arrival"
+    },
+    "bd_c3_arrival": {
+      "type": "narrative",
+      "text": "Patricia and her friends arrive already tipsy. They've been drinking in the car. At 11am.\n\n\"HELLO BEAUTIFUL PEOPLE!\" Patricia bellows as she boards. She's wearing a leopard print caftan and enormous sunglasses. \"Where's the ROSÉ?!\"\n\nHer friends - Carol, Denise, and Maureen - are slightly more subdued but clearly ready to party.",
+      "next": "bd_c3_first_afternoon"
+    },
+    "bd_c3_first_afternoon": {
+      "type": "narrative",
+      "text": "The afternoon is chaos. The women want to try every water toy simultaneously. Maureen nearly falls off the jet ski twice. Carol is openly hitting on Derek, who is handling it with increasingly strained professionalism.\n\nBy 3pm, they've gone through eight bottles of rosé between them.\n\nDenise corners you by the bar.",
+      "next": "bd_c3_denise_talk"
+    },
+    "bd_c3_denise_talk": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"You know,\" Denise slurs, leaning in too close, \"I used to be young like you. Then I married a JERK. Three kids and twenty years later, he leaves me for his SECRETARY.\"\n\nShe waves her glass, sloshing wine everywhere.\n\n\"Don't make my mistakes, sweetie. Stay single. Stay FREE.\"\n\nVictoria appears and smoothly redirects Denise toward the hot tub.",
+      "next": "bd_c3_dinner_1"
+    },
+    "bd_c3_dinner_1": {
+      "type": "narrative",
+      "text": "Dinner service is... an experience. The women are hammered but charming. Patricia keeps trying to get Marco to come out and accept their compliments on the food.\n\n\"WE LOVE YOU, MARCO!\" they chant.\n\nMarco, despite his grumpy exterior, is clearly enjoying the attention.\n\nThen Patricia stands up, wobbles, and announces: \"Who wants to go SKINNY DIPPING?!\"",
+      "shift": "night",
+      "next": "bd_c3_skinny_dip"
+    },
+    "bd_c3_skinny_dip": {
+      "type": "choice",
+      "text": "Four very drunk middle-aged women want to go skinny dipping. At night. This is a safety nightmare. But they're guests. What do you do?",
+      "choices": [
+        {
+          "id": "c3_allow_supervised",
+          "text": "Allow it but ensure deck crew supervises",
+          "response_text": "You catch Derek's eye and mouth 'safety watch.' He nods and discreetly positions himself with a clear view of the swim platform.\n\nThe women have their skinny dip. Nobody drowns. Patricia declares it 'the most liberating moment of her life.'\n\nDerek will need therapy but the guests are happy.",
+          "effects": {
+            "relationships": { "derek": 5 },
+            "tip_adjustment": 300,
+            "guest_satisfaction": 15
+          },
+          "next": "bd_c3_night_1_end"
+        },
+        {
+          "id": "c3_redirect_hottub",
+          "text": "Redirect them to the hot tub",
+          "response_text": "\"Ladies, our hot tub has special mood lighting tonight! Much more romantic than the ocean. And I can bring the rosé TO you...\"\n\nPatricia considers. \"Ooh, mood lighting? I'm in.\"\n\nCrisis averted. The hot tub can handle drunk women. The open ocean cannot.",
+          "effects": {
+            "relationships": { "victoria": 10 },
+            "tip_adjustment": 200,
+            "guest_satisfaction": 5
+          },
+          "next": "bd_c3_night_1_end"
+        },
+        {
+          "id": "c3_captain_intervention",
+          "text": "Get the Captain to gently shut it down",
+          "response_text": "You find Captain Sterling and explain the situation. He appears on deck with practiced authority.\n\n\"Ladies, I'm afraid swimming at night isn't safe in these waters. Currents are tricky. How about a nightcap on the bridge with me instead?\"\n\nThey LOVE this idea. Captain Sterling gives you a grateful nod.",
+          "effects": {
+            "relationships": { "sterling": 15 },
+            "tip_adjustment": 250
+          },
+          "next": "bd_c3_night_1_end"
+        }
+      ]
+    },
+    "bd_c3_night_1_end": {
+      "type": "narrative",
+      "text": "The women finally pass out around 1am. Cleanup is extensive - wine glasses everywhere, discarded clothes in unexpected places, and somehow a sandal in the hot tub.\n\nThe crew gathers in the crew mess, exhausted.",
+      "next": "bd_c3_crew_debrief"
+    },
+    "bd_c3_crew_debrief": {
+      "type": "narrative",
+      "speaker": "derek",
+      "text": "\"I got pinched,\" Derek says, stunned. \"Like, actually pinched. By Carol. She said I had 'buns like her second husband.'\"\n\nBree is cackling. Even Victoria is fighting a smile.\n\n\"Welcome to yachting,\" she says. \"At least they're happy guests.\"",
+      "next": "bd_c3_day_2"
+    },
+    "bd_c3_day_2": {
+      "type": "narrative",
+      "text": "Day two starts late - the guests don't emerge until noon, groaning for Bloody Marys. Marco whips up a hungover brunch that they declare 'life-saving.'\n\nThe afternoon water activities are gentler. Carol is content to sunbathe while the others do a slow paddleboard tour. Things seem calm.\n\nThen Maureen decides she wants to cliff dive.",
+      "shift": "day",
+      "next": "bd_c3_cliff_dive"
+    },
+    "bd_c3_cliff_dive": {
+      "type": "narrative",
+      "text": "There's a small cliff near where the yacht is anchored. Maybe fifteen feet high. Locals jump off it all the time.\n\nMaureen, still slightly drunk from brunch champagne, is convinced she needs to do this for her 'personal growth journey.'\n\nShe's standing on the edge, wavering.",
+      "next": "bd_c3_cliff_choice"
+    },
+    "bd_c3_cliff_choice": {
+      "type": "choice",
+      "text": "Maureen is about to cliff dive while intoxicated. This could end very badly. Connor is in the tender nearby. What's the play?",
+      "choices": [
+        {
+          "id": "c3_connor_position",
+          "text": "Signal Connor to position the tender for rescue",
+          "response_text": "You catch Connor's attention and point. He immediately understands, moving the tender into rescue position.\n\nMaureen jumps. It's not graceful, but Connor is there in seconds to pull her into the tender, laughing and exhilarated.\n\n\"I DID IT!\" she screams. \"I'M ALIVE!\"\n\nClose call, but a success.",
+          "effects": {
+            "relationships": { "connor": 15 },
+            "tip_adjustment": 300,
+            "guest_satisfaction": 10
+          },
+          "next": "bd_c3_overboard"
+        },
+        {
+          "id": "c3_talk_her_down",
+          "text": "Swim out and try to talk her down",
+          "response_text": "You swim to the cliff and climb up beside her.\n\n\"Maureen, how about we do this tomorrow? When you're feeling stronger? I'll jump with you.\"\n\nShe considers, then nods. \"Yeah. Yeah, okay. Tomorrow. Together.\"\n\nYou've averted potential disaster. She'll probably forget by tomorrow.",
+          "effects": {
+            "relationships": { "victoria": 10 },
+            "tip_adjustment": 200,
+            "flags": { "maureen_cliff_delayed": true }
+          },
+          "next": "bd_c3_overboard"
+        },
+        {
+          "id": "c3_let_jump",
+          "text": "Trust she's an adult and let her jump",
+          "response_text": "She jumps. For a moment, everything is fine.\n\nThen she surfaces, screaming about her ankle.\n\nThe next two hours are spent dealing with a potential sprain, insurance concerns, and a hysterical Patricia. Not your finest moment.",
+          "effects": {
+            "relationships": { "sterling": -15, "victoria": -10 },
+            "tip_adjustment": -500,
+            "guest_satisfaction": -20,
+            "guest_complaints": 1
+          },
+          "next": "bd_c3_overboard"
+        }
+      ]
+    },
+    "bd_c3_overboard": {
+      "type": "narrative",
+      "text": "That evening, the guests want a beach bonfire. Derek sets up a beautiful setup on a private cove. Wine flows. Stories are shared. Patricia gets emotional about her divorce.\n\nAnd then, as they're heading back to the tender, Denise falls into the water.\n\nNot 'slips.' FALLS. Full wine glass still in hand.",
+      "shift": "night",
+      "next": "bd_c3_denise_rescue"
+    },
+    "bd_c3_denise_rescue": {
+      "type": "narrative",
+      "text": "\"MAN OVERBOARD!\" Connor yells, already in motion.\n\nDenise surfaces, sputtering. She's laughing, but she's also struggling. The current is stronger than it looks.\n\nConnor dives in without hesitation.",
+      "next": "bd_c3_connor_saves"
+    },
+    "bd_c3_connor_saves": {
+      "type": "narrative",
+      "speaker": "connor",
+      "text": "Connor reaches Denise and hauls her toward the tender. Bree and Derek help pull her aboard. She's coughing but safe.\n\n\"My WINE!\" Denise wails. \"I lost my WINE!\"\n\n\"I'll get you more wine,\" you promise, wrapping her in a towel.\n\n\"You're my FAVORITE,\" she declares loudly. \"Don't tell the others.\"",
+      "effects": {
+        "relationships": { "connor": 10 },
+        "tip_adjustment": 200
+      },
+      "next": "bd_c3_final_dinner"
+    },
+    "bd_c3_final_dinner": {
+      "type": "narrative",
+      "text": "The final dinner is the 'crew joins guests' request. Victoria has deemed it acceptable since it's the last night.\n\nYou're seated between Patricia and Maureen. Derek is flanked by Carol on both sides somehow. Even Captain Sterling joins for the first course.",
+      "next": "bd_c3_dinner_drama"
+    },
+    "bd_c3_dinner_drama": {
+      "type": "narrative",
+      "text": "Partway through dinner, Patricia stands up, glass raised.\n\n\"I want to make a toast. To new beginnings. To friendship. And to my EX-HUSBAND, Gerald, who thought I couldn't live without him. LOOK AT ME NOW, GERALD!\"\n\nThe table cheers. More wine is poured. The night gets messier.",
+      "next": "bd_c3_crew_dinner_choice"
+    },
+    "bd_c3_crew_dinner_choice": {
+      "type": "choice",
+      "text": "The dinner has devolved into a party. Victoria has loosened up (three glasses of wine). The guests want you to 'really party' with them. You're technically still on duty...",
+      "choices": [
+        {
+          "id": "c3_party_hard",
+          "text": "Let loose - it's a special occasion",
+          "response_text": "You throw caution to the wind. The wine is excellent. The company is surprisingly fun. By midnight, you're doing karaoke with Maureen on the sun deck.\n\nYou'll regret this headache tomorrow. But Patricia declares you 'honorary divorced lady' which seems like high praise.",
+          "effects": {
+            "relationships": { "victoria": -5, "bree": 15 },
+            "tip_adjustment": 400,
+            "guest_satisfaction": 20,
+            "times_drunk": 1
+          },
+          "next": "bd_c3_departure"
+        },
+        {
+          "id": "c3_moderate_fun",
+          "text": "Have fun but keep it professional",
+          "response_text": "You enjoy the evening but stay sharp. When Denise starts to wobble, you smoothly redirect her to water. When Carol gets handsy with Derek, you create a diversion.\n\nPatricia notices. \"You're good at this,\" she says. \"Taking care of people. Don't lose that.\"",
+          "effects": {
+            "relationships": { "victoria": 10, "sterling": 5 },
+            "tip_adjustment": 300,
+            "guest_satisfaction": 10
+          },
+          "next": "bd_c3_departure"
+        },
+        {
+          "id": "c3_sneak_off",
+          "text": "Find an excuse to slip away",
+          "response_text": "You fake a headache and excuse yourself. But you don't go to bed - you head to the bow, where Connor is sitting alone, looking at the stars.\n\n\"Couldn't take any more?\" he asks.\n\n\"Something like that.\"\n\nYou sit together in comfortable silence until the party winds down.",
+          "effects": {
+            "relationships": { "connor": 20 },
+            "tip_adjustment": 100,
+            "flags": { "connor_stars": true }
+          },
+          "next": "bd_c3_departure"
+        }
+      ]
+    },
+    "bd_c3_departure": {
+      "type": "narrative",
+      "text": "The next morning is rough for everyone. The guests are a mess. Half the crew is hung over. But Patricia and her gang are glowing with post-vacation bliss.\n\n\"This was exactly what we needed,\" Patricia says at the gangway. \"You gave us back our spark.\"",
+      "next": "bd_c3_tip_meeting"
+    },
+    "bd_c3_tip_meeting": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"Well, the ladies left us...\" Captain Sterling pauses for effect. \"Twenty thousand dollars. And Patricia wants to book us again next year.\"",
+      "effects": {
+        "tip_adjustment": 20000
+      },
+      "next": "bd_c3_crew_night"
+    },
+    "bd_c3_crew_night": {
+      "type": "narrative",
+      "text": "The crew night after charter three is subdued. Everyone is exhausted. A quiet dinner, a few drinks, and early to bed.\n\nExcept... you notice Jade and Derek disappearing together toward the dock.\n\nInteresting.",
+      "next": "bd_c3_jade_derek"
+    },
+    "bd_c3_jade_derek": {
+      "type": "choice",
+      "text": "Jade and Derek are definitely sneaking off together. Their 'history' is apparently present-tense. Do you care? Do you act?",
+      "choices": [
+        {
+          "id": "c3_ignore_them",
+          "text": "Not your business - ignore it",
+          "response_text": "Whatever's happening between them, it's not your problem. You head to bed and get actual rest for once.\n\nThe next morning, Jade looks smug. Derek looks uncomfortable. Drama for another day.",
+          "effects": {
+            "flags": { "jade_derek_happening": true }
+          },
+          "next": "bd_c4_briefing"
+        },
+        {
+          "id": "c3_tell_bree",
+          "text": "Tell Bree - she loves gossip",
+          "response_text": "You find Bree and relay what you saw. Her eyes go wide.\n\n\"Oh my god. AGAIN? Those two are toxic. This is going to blow up.\"\n\nBree immediately starts scheming. You've either made an ally or started a war.",
+          "effects": {
+            "relationships": { "bree": 10, "jade": -15 },
+            "flags": { "jade_derek_exposed": true }
+          },
+          "next": "bd_c4_briefing"
+        },
+        {
+          "id": "c3_tell_connor",
+          "text": "Mention it to Connor - he should know",
+          "response_text": "You find Connor and carefully mention what you saw. His expression is hard to read.\n\n\"Derek's been all over you and Jade both. Guess Jade's winning.\"\n\nThere's something in his voice. Disappointment? Relief?\n\n\"Good to know where everyone stands,\" he says finally.",
+          "effects": {
+            "relationships": { "connor": 5, "derek": -10 },
+            "flags": { "connor_knows_about_derek": true }
+          },
+          "next": "bd_c4_briefing"
+        }
+      ]
+    },
+
+    "bd_c4_briefing": {
+      "type": "narrative",
+      "text": "Final charter. Victoria gathers the crew with an unusual expression - almost... relieved?\n\n\"Last charter of the season. Mr. and Mrs. Pemberton. Elderly couple, celebrating their 50th wedding anniversary. They want 'quiet elegance.' No parties. No water sports. Just fine dining and sunset cruises.\"",
+      "charter_number": 4,
+      "next": "bd_c4_briefing_2"
+    },
+    "bd_c4_briefing_2": {
+      "type": "narrative",
+      "speaker": "marco",
+      "text": "Marco is ecstatic. \"FINALLY! Guests with TASTE! I will make them the dinner of their LIVES!\"\n\nEven Captain Sterling seems pleased. \"A nice, calm end to the season. Let's not screw this up.\"\n\nBut Victoria has a warning in her eyes. \"They're bringing their adult children. Twins. Bradley and Brittany. Early thirties. Apparently they 'haven't been told about the anniversary trip.'\"",
+      "next": "bd_c4_arrival"
+    },
+    "bd_c4_arrival": {
+      "type": "narrative",
+      "text": "Mr. and Mrs. Pemberton arrive first. They're adorable - he in a captain's hat he probably bought at the airport, she in pearls and a sunhat. They hold hands walking up the gangway.\n\n\"Oh Harold, it's beautiful!\" Mrs. Pemberton gasps.\n\n\"Only the best for you, my dear.\"\n\nThis might actually be nice.",
+      "next": "bd_c4_twins_arrive"
+    },
+    "bd_c4_twins_arrive": {
+      "type": "narrative",
+      "text": "Then the twins arrive.\n\nBradley and Brittany Pemberton are everything their parents are not. Designer everything. Matching frowns. Radiating entitlement from fifty feet away.\n\n\"Surprise, Mom and Dad!\" Brittany says, voice dripping with false cheer. \"We decided to crash your little boat trip!\"",
+      "next": "bd_c4_twins_reaction"
+    },
+    "bd_c4_twins_reaction": {
+      "type": "narrative",
+      "text": "Mrs. Pemberton's face freezes. \"Oh! Children! What a... surprise!\"\n\nMr. Pemberton looks like he wants to jump overboard.\n\nBradley is already complaining. \"This boat is smaller than I expected. Is there really only ONE hot tub?\"\n\nBrittany is on her phone. \"The WiFi better not suck. I have calls.\"",
+      "next": "bd_c4_first_dinner"
+    },
+    "bd_c4_first_dinner": {
+      "type": "narrative",
+      "text": "Dinner that night is tense. The Pembertons try to enjoy Marco's beautiful five-course tasting menu. The twins are on their phones, complaining about 'no cell signal' (there is cell signal, they're just dramatic).\n\nBradley snaps his fingers at you. \"Hey. You. More wine. And make it actually good this time.\"\n\nThe bottle you served was a $200 Bordeaux.",
+      "shift": "night",
+      "next": "bd_c4_bradley_wine"
+    },
+    "bd_c4_bradley_wine": {
+      "type": "choice",
+      "text": "Bradley just insulted the wine AND snapped his fingers at you. His parents look mortified. How do you handle this?",
+      "choices": [
+        {
+          "id": "c4_upgrade_wine",
+          "text": "Kill him with kindness - bring the reserve",
+          "response_text": "\"Of course, sir. May I suggest our Captain's Reserve? It's usually saved for very special occasions.\"\n\nYou bring out a bottle worth more than Bradley's watch. He has no idea and declares it 'acceptable.' His parents shoot you grateful looks.\n\nVictoria nods approvingly. Class act.",
+          "effects": {
+            "relationships": { "victoria": 10, "sterling": 5 },
+            "tip_adjustment": 300,
+            "guest_satisfaction": 10
+          },
+          "next": "bd_c4_night_drama"
+        },
+        {
+          "id": "c4_polite_correction",
+          "text": "Politely educate him on the wine",
+          "response_text": "\"Sir, this is a 2015 Château Margaux. It's actually quite exceptional. Perhaps if you let it breathe a moment more?\"\n\nBradley blinks. He's been called out, gently. His mother hides a smile behind her napkin.\n\n\"Fine. Whatever. Just keep it coming.\"",
+          "effects": {
+            "relationships": { "victoria": 5 },
+            "tip_adjustment": 200
+          },
+          "next": "bd_c4_night_drama"
+        },
+        {
+          "id": "c4_get_victoria",
+          "text": "Signal Victoria - this is her territory",
+          "response_text": "You catch Victoria's eye. She swoops in smoothly, handling Bradley with practiced diplomacy. He's still insufferable, but at least you didn't have to deal with him.\n\nAfterward, Victoria says: \"Good instincts. Know when to escalate.\"",
+          "effects": {
+            "relationships": { "victoria": 10 }
+          },
+          "next": "bd_c4_night_drama"
+        }
+      ]
+    },
+    "bd_c4_night_drama": {
+      "type": "narrative",
+      "text": "After the parents retire, the twins reveal their true colors. Bradley wants to throw a party. Brittany is already calling friends to 'come visit the boat.'\n\n\"We can get people here by water taxi,\" Bradley says. \"It'll be epic.\"\n\n\"But... your parents wanted quiet,\" you venture.\n\n\"They're asleep. What they don't know won't hurt them.\"",
+      "next": "bd_c4_party_choice"
+    },
+    "bd_c4_party_choice": {
+      "type": "choice",
+      "text": "The twins want to throw an unauthorized party while their elderly parents sleep. This violates everything the Pembertons requested. What do you do?",
+      "choices": [
+        {
+          "id": "c4_tell_captain",
+          "text": "Alert Captain Sterling immediately",
+          "response_text": "You find the Captain and explain the situation. His expression goes from calm to thunderous.\n\nHe appears on deck. \"No unauthorized guests. No parties. This charter is for your parents' anniversary. Respect that, or I'll call a tender to take you to shore.\"\n\nThe twins are furious. But they back down. The Pembertons' peace is preserved.",
+          "effects": {
+            "relationships": { "sterling": 20 },
+            "tip_adjustment": 500,
+            "guest_satisfaction": 15,
+            "flags": { "twins_contained": true }
+          },
+          "next": "bd_c4_day_2"
+        },
+        {
+          "id": "c4_negotiate",
+          "text": "Try to negotiate a compromise",
+          "response_text": "\"How about this - I'll set up something special on the aft deck. Music, drinks, just you two. No extra guests, but it'll feel like a party. And your parents can sleep undisturbed.\"\n\nBradley considers. \"Fine. But make it good.\"\n\nYou set up a private lounge experience. They're satisfied. Disaster averted.",
+          "effects": {
+            "relationships": { "victoria": 10 },
+            "tip_adjustment": 200,
+            "flags": { "twins_compromised": true }
+          },
+          "next": "bd_c4_day_2"
+        },
+        {
+          "id": "c4_allow_party",
+          "text": "Let it happen - they're guests",
+          "response_text": "Against your better judgment, you let the party happen. By 2am, there are eight strangers on the yacht. Someone breaks an antique vase. Mrs. Pemberton wakes up crying.\n\nCaptain Sterling is FURIOUS. This might be the worst decision of your season.",
+          "effects": {
+            "relationships": { "sterling": -30, "victoria": -20 },
+            "tip_adjustment": -2000,
+            "guest_satisfaction": -50,
+            "guest_complaints": 1,
+            "times_almost_fired": 1,
+            "flags": { "party_disaster": true }
+          },
+          "next": "bd_c4_day_2"
+        }
+      ]
+    },
+    "bd_c4_day_2": {
+      "type": "narrative",
+      "text": "The next day, the dynamic is tense. The Pembertons want to enjoy their anniversary. The twins want to sunbathe and complain.\n\nVictoria has you focus on keeping the elder Pembertons happy while she handles the twins. It's delicate work.",
+      "shift": "day",
+      "next": "bd_c4_anniversary_prep"
+    },
+    "bd_c4_anniversary_prep": {
+      "type": "narrative",
+      "text": "Mr. Pemberton pulls you aside.\n\n\"I know my children are... challenging. But tonight is our 50th anniversary. I want to do something special for Margaret. Can you help me?\"",
+      "next": "bd_c4_anniversary_choice"
+    },
+    "bd_c4_anniversary_choice": {
+      "type": "choice",
+      "text": "Mr. Pemberton wants to plan something special for his wife's 50th anniversary. This could be really sweet. What do you suggest?",
+      "choices": [
+        {
+          "id": "c4_private_dinner",
+          "text": "Arrange a private dinner on the bow at sunset",
+          "response_text": "You coordinate with Marco and the deck crew. At sunset, a beautifully set table appears on the bow - candles, flowers, their wedding song playing softly.\n\nMrs. Pemberton cries happy tears. Mr. Pemberton mouths 'thank you' from across the boat.\n\nEven Brittany seems moved, though she's trying to hide it.",
+          "effects": {
+            "relationships": { "marco": 10, "sterling": 10 },
+            "tip_adjustment": 1000,
+            "guest_satisfaction": 30
+          },
+          "next": "bd_c4_final_dinner"
+        },
+        {
+          "id": "c4_renewal_vows",
+          "text": "Suggest the Captain perform a vow renewal",
+          "response_text": "\"Sir, Captain Sterling can officiate a vow renewal ceremony. We could do it at sunset, just the two of you.\"\n\nMr. Pemberton's eyes light up. \"Margaret would love that.\"\n\nThe ceremony is simple and beautiful. Mrs. Pemberton can't stop crying. Even the twins put their phones away for it.",
+          "effects": {
+            "relationships": { "sterling": 20 },
+            "tip_adjustment": 1500,
+            "guest_satisfaction": 40,
+            "flags": { "vow_renewal": true }
+          },
+          "next": "bd_c4_final_dinner"
+        },
+        {
+          "id": "c4_photo_montage",
+          "text": "Create a photo montage of their 50 years together",
+          "response_text": "You ask if they brought any photos. Mrs. Pemberton has an album. You work with Bree to create a slideshow set to their wedding song.\n\nPlaying it on the main salon screen, the whole family watches together. For the first time, the twins seem almost human.\n\n\"This is what we were missing,\" Bradley says quietly.",
+          "effects": {
+            "relationships": { "bree": 15 },
+            "tip_adjustment": 800,
+            "guest_satisfaction": 25,
+            "flags": { "photo_montage": true }
+          },
+          "next": "bd_c4_final_dinner"
+        }
+      ]
+    },
+    "bd_c4_final_dinner": {
+      "type": "narrative",
+      "text": "The final dinner of the season is Marco's masterpiece. Seven courses of perfection. The Pembertons are glowing. Even the twins have mellowed.\n\nAs dessert is served, Mrs. Pemberton takes your hand.\n\n\"Thank you, dear. For everything. You made an old woman very happy.\"",
+      "shift": "night",
+      "next": "bd_c4_departure"
+    },
+    "bd_c4_departure": {
+      "type": "narrative",
+      "text": "The morning of departure, the whole family lines up at the gangway. Mr. Pemberton shakes everyone's hand. Mrs. Pemberton hugs everyone.\n\nEven Bradley mumbles something that might be 'thanks.' Brittany gives a small wave.\n\nAs they drive away, the crew exchanges looks. We did it. Season complete.",
+      "next": "bd_c4_tip_meeting"
+    },
+    "bd_c4_tip_meeting": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"Final tip meeting of the season.\" Captain Sterling looks almost proud. \"The Pembertons left us... twenty-five thousand dollars. The biggest tip of the season.\"\n\nThe crew cheers. Victoria is smiling. Marco is wiping his eyes (he'll deny it later).\n\n\"They also left a note: 'Best crew we've ever had. The new stew is a gem. Keep her.'\"",
+      "effects": {
+        "tip_adjustment": 25000
+      },
+      "next": "bd_season_wrap"
+    },
+    "bd_season_wrap": {
+      "type": "narrative",
+      "text": "That night, the crew gathers on the aft deck one last time. Tomorrow, everyone goes their separate ways. Some will return next season. Some won't.\n\nCaptain Sterling raises his glass.\n\n\"To a successful season. To hard work. And to not killing each other.\"",
+      "next": "bd_final_choice"
+    },
+    "bd_final_choice": {
+      "type": "choice",
+      "text": "The season is over. What matters most to you as you look back?",
+      "choices": [
+        {
+          "id": "final_tips",
+          "text": "The money - you came here for a reason",
+          "response_text": "You count up your share of the tips. It's substantial - enough to pay off some debt, maybe put a down payment on something. You worked hard for this.\n\n\"Same time next year?\" Derek asks.\n\n\"Definitely.\"",
+          "effects": {
+            "flags": { "ending_focus": "money" }
+          },
+          "next": "bd_ending_branch"
+        },
+        {
+          "id": "final_relationships",
+          "text": "The connections - these people became family",
+          "response_text": "You look around at the faces you've come to know so well. Victoria, who pushed you to be better. Marco, who screamed but also had your back. The deck crew who made you laugh when things got tough.\n\n\"I'm going to miss you idiots,\" Bree says, voice thick.",
+          "effects": {
+            "flags": { "ending_focus": "relationships" }
+          },
+          "next": "bd_ending_branch"
+        },
+        {
+          "id": "final_growth",
+          "text": "How much you've grown - you're not the same person",
+          "response_text": "You think about the terrified rookie who stepped onto this boat. You've handled drunk guests, crew drama, impossible requests, and came out stronger.\n\nVictoria catches your eye. \"You did good this season. Really.\"\n\nThat might be the highest compliment she's ever given.",
+          "effects": {
+            "flags": { "ending_focus": "growth" }
+          },
+          "next": "bd_ending_branch"
+        }
+      ]
+    },
+    "bd_ending_branch": {
+      "type": "branch",
+      "condition": {
+        "type": "relationship_check",
+        "character": "victoria",
+        "above": 30,
+        "if_true": "bd_ending_star",
+        "if_false": "bd_ending_check_2"
+      }
+    },
+    "bd_ending_check_2": {
+      "type": "branch",
+      "condition": {
+        "type": "relationship_check",
+        "character": "victoria",
+        "above": 0,
+        "if_true": "bd_ending_solid",
+        "if_false": "bd_ending_check_3"
+      }
+    },
+    "bd_ending_check_3": {
+      "type": "branch",
+      "condition": {
+        "type": "relationship_check",
+        "character": "sterling",
+        "above": 0,
+        "if_true": "bd_ending_survived",
+        "if_false": "bd_ending_rough"
+      }
+    },
+    "bd_ending_star": {
+      "type": "ending",
+      "ending_type": "yacht_star",
+      "text": "SEASON FINALE\n\n*YACHT STAR*\n\nAs the crew disperses the next morning, Victoria pulls you aside.\n\n\"I don't say this often. You impressed me. The way you handled guests, adapted under pressure, didn't let the drama derail you...\"\n\nShe hands you a card. \"My contact in Monaco. They're looking for a Second Stew. I recommended you.\"\n\nYour season tips: [TOTAL_TIPS]\n\nYou came in a rookie. You're leaving a rising star.\n\n*THE END*"
+    },
+    "bd_ending_solid": {
+      "type": "ending",
+      "ending_type": "solid_season",
+      "text": "SEASON FINALE\n\n*SOLID SEASON*\n\nThe goodbyes are warm. Hugs, phone numbers exchanged, promises to stay in touch.\n\n\"You coming back next year?\" Connor asks.\n\n\"I think so. Yeah.\"\n\nVictoria nods as she passes. \"See you next season. Don't get too comfortable - I'll expect more.\"\n\nYour season tips: [TOTAL_TIPS]\n\nNot bad for a first season. Not bad at all.\n\n*THE END*"
+    },
+    "bd_ending_survived": {
+      "type": "ending",
+      "ending_type": "barely_survived",
+      "text": "SEASON FINALE\n\n*BARELY SURVIVED*\n\nThe season ends with mixed feelings. Some bridges were burned, some guests were disappointed, but you made it through.\n\nCaptain Sterling shakes your hand at the gangway. \"You've got potential. But potential isn't enough. Work on it.\"\n\nVictoria doesn't say goodbye.\n\nYour season tips: [TOTAL_TIPS]\n\nYou survived. But surviving isn't the same as thriving. Maybe next season will be better.\n\n*THE END*"
+    },
+    "bd_ending_rough": {
+      "type": "ending",
+      "ending_type": "rough_exit",
+      "text": "SEASON FINALE\n\n*ROUGH EXIT*\n\nThe season ends with relief - mostly from everyone else that it's over.\n\nVictoria's feedback is pointed. Captain Sterling's reference letter is... sparse. The tips were there, but the relationships weren't.\n\n\"It's a tough industry,\" Bree says sympathetically. \"Not for everyone.\"\n\nYour season tips: [TOTAL_TIPS]\n\nMaybe yachting wasn't your calling. Or maybe you just need to learn from this and try again somewhere else.\n\n*THE END*"
+    }
+  }
+}

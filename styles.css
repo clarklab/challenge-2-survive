@@ -564,3 +564,228 @@ body {
 .text-speaker {
     color: var(--text-speaker);
 }
+
+/* ==================== STORY SELECTION ==================== */
+#story-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+#story-panel {
+    background: var(--screen-color);
+    border: 2px solid var(--border-color);
+    padding: var(--spacing-xl);
+    max-width: 90vw;
+    text-align: center;
+}
+
+#story-panel h2 {
+    color: var(--text-highlight);
+    margin-bottom: var(--spacing-xl);
+    text-shadow: 0 0 10px var(--glow-color);
+    font-size: 1.2rem;
+}
+
+#story-choices {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.story-option {
+    font-family: inherit;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.story-option:hover,
+.story-option:focus {
+    background: rgba(51, 255, 51, 0.1);
+    border-color: var(--text-highlight);
+    outline: none;
+    transform: scale(1.02);
+}
+
+.story-option:active {
+    background: var(--text-primary);
+    transform: scale(0.98);
+}
+
+.story-option:active .story-title,
+.story-option:active .story-desc {
+    color: var(--bg-color);
+}
+
+.story-title {
+    display: block;
+    color: var(--text-highlight);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 0 8px var(--glow-color);
+}
+
+.story-desc {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* ==================== BELOW DECK THEME ==================== */
+body.below-deck {
+    /* Nautical blue/pink dreamy palette */
+    --bg-color: #0a1628;
+    --screen-color: #0d1f35;
+    --text-primary: #00d4ff;
+    --text-secondary: #00a8cc;
+    --text-dim: #1a5276;
+    --text-highlight: #ff6b9d;
+    --text-warning: #ffd700;
+    --text-error: #ff4757;
+    --text-speaker: #ff6b9d;
+    --border-color: #00d4ff;
+    --scanline-color: rgba(0, 20, 40, 0.15);
+    --glow-color: rgba(0, 212, 255, 0.4);
+    --glow-pink: rgba(255, 107, 157, 0.4);
+}
+
+/* Below Deck header gradient */
+body.below-deck #game-header {
+    background: linear-gradient(90deg, rgba(0, 31, 63, 0.9), rgba(26, 82, 118, 0.8));
+    border-bottom-color: var(--text-highlight);
+}
+
+/* Below Deck story option special styling */
+body.below-deck .story-option:nth-child(2),
+#story-belowdeck {
+    border-color: #00d4ff;
+}
+
+#story-belowdeck .story-title {
+    color: #ff6b9d;
+    text-shadow: 0 0 8px rgba(255, 107, 157, 0.5);
+}
+
+#story-belowdeck:hover,
+#story-belowdeck:focus {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: #ff6b9d;
+}
+
+/* Below Deck text glow adjustments */
+body.below-deck #text-output .text-block {
+    text-shadow: 0 0 3px var(--glow-color);
+}
+
+body.below-deck #text-output .logo {
+    color: var(--text-highlight);
+    text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-color);
+}
+
+/* Below Deck choice buttons */
+body.below-deck .choice-btn {
+    border-color: var(--border-color);
+}
+
+body.below-deck .choice-btn:hover,
+body.below-deck .choice-btn:focus {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--text-highlight);
+}
+
+body.below-deck .choice-btn:active {
+    background: var(--text-highlight);
+    color: var(--bg-color);
+}
+
+body.below-deck .choice-btn .choice-number {
+    color: var(--text-highlight);
+}
+
+/* Below Deck menu options */
+body.below-deck .menu-option:hover,
+body.below-deck .menu-option:focus {
+    background: rgba(0, 212, 255, 0.1);
+}
+
+body.below-deck .menu-option:active {
+    background: var(--text-highlight);
+    color: var(--bg-color);
+}
+
+/* Below Deck input styling */
+body.below-deck #player-name-input:focus {
+    border-color: var(--text-highlight);
+    box-shadow: 0 0 5px var(--glow-pink);
+}
+
+/* Below Deck cursor */
+body.below-deck .cursor {
+    background-color: var(--text-highlight);
+}
+
+/* Below Deck relationship bar colors */
+body.below-deck #status-content .relationship-fill {
+    background: linear-gradient(90deg, var(--text-primary), var(--text-highlight));
+}
+
+/* Below Deck panels */
+body.below-deck #menu-panel,
+body.below-deck #status-panel,
+body.below-deck #name-panel,
+body.below-deck #save-panel,
+body.below-deck #story-panel {
+    border-color: var(--text-highlight);
+    background: linear-gradient(180deg, var(--screen-color), rgba(13, 31, 53, 0.95));
+}
+
+body.below-deck #menu-panel h2,
+body.below-deck #status-panel h2,
+body.below-deck #name-panel h2,
+body.below-deck #save-panel h2 {
+    text-shadow: 0 0 10px var(--glow-pink);
+}
+
+/* Below Deck save slots */
+body.below-deck .save-slot:hover,
+body.below-deck .save-slot:focus {
+    background: rgba(0, 212, 255, 0.05);
+}
+
+body.below-deck .save-slot.has-save {
+    border-color: var(--text-highlight);
+}
+
+body.below-deck .save-slot .slot-name {
+    color: var(--text-highlight);
+}
+
+/* Below Deck episode card */
+body.below-deck #text-output .episode-card {
+    border-color: var(--text-highlight);
+}
+
+@keyframes bd-pulse-border {
+    0%, 100% { border-color: var(--text-primary); }
+    50% { border-color: var(--text-highlight); }
+}
+
+body.below-deck #text-output .episode-card {
+    animation: bd-pulse-border 2s infinite;
+}
+
+/* Below Deck continue prompt */
+body.below-deck #continue-prompt {
+    color: var(--text-highlight);
+}

@@ -22,6 +22,7 @@
 
     // Character color palette - each character gets a unique color
     const CHARACTER_COLORS = {
+        // Challenge 2 Survive characters
         deej: '#ff6b35',      // Orange - energetic host
         jake: '#ff4444',      // Red - aggressive alpha
         maya: '#da70d6',      // Orchid - strategic mastermind
@@ -30,8 +31,39 @@
         marcus: '#9370db',    // Purple - smooth snake
         elena: '#87ceeb',     // Sky blue - cold machine
         tyler: '#32cd32',     // Lime green - underdog nerd
-        player: '#33ff33'     // Bright green - you
+        player: '#33ff33',    // Bright green - you (C2S)
+
+        // Below Deck characters
+        sterling: '#c9a227',  // Gold - stern captain
+        victoria: '#e056fd',  // Magenta - demanding chief stew
+        jade: '#ff6b81',      // Coral pink - competitive 2nd stew
+        marco: '#ff4757',     // Red - hot-headed chef
+        derek: '#00a8ff',     // Ocean blue - flirty bosun
+        connor: '#7bed9f',    // Mint - insecure deckhand
+        bree: '#ffa502',      // Orange - party girl
+        bd_player: '#ff6b9d'  // Sunset pink - you (BD)
     };
+
+    // Story mode configuration
+    const STORY_MODES = {
+        challenge: {
+            contentFile: 'challenge2survive_content.json',
+            logoFile: 'logo.txt',
+            bodyClass: 'challenge-survive',
+            playerColor: 'player',
+            backgroundMusic: null
+        },
+        belowdeck: {
+            contentFile: 'belowdeck_content.json',
+            logoFile: 'belowdeck_logo.txt',
+            bodyClass: 'below-deck',
+            playerColor: 'bd_player',
+            backgroundMusic: 'waves.mp3'
+        }
+    };
+
+    let currentStoryMode = null;
+    let backgroundMusic = null;
 
     // ==================== DOM ELEMENTS ====================
     const DOM = {
@@ -48,7 +80,8 @@
             menu: null,
             status: null,
             name: null,
-            save: null
+            save: null,
+            story: null
         },
         statusContent: null,
         playerNameInput: null,
@@ -139,26 +172,82 @@
         cacheDOMElements();
         setupEventListeners();
 
+        // Check for autosave first
+        const autoSave = loadFromStorage(CONFIG.autoSaveKey);
+        if (autoSave && autoSave.story_mode) {
+            // Resume saved game with its story mode
+            await loadStoryMode(autoSave.story_mode);
+            showContinuePrompt(autoSave);
+        } else {
+            // Show story selection
+            showStorySelection();
+        }
+    }
+
+    function showStorySelection() {
+        DOM.overlays.story.classList.remove('hidden');
+    }
+
+    function hideStorySelection() {
+        DOM.overlays.story.classList.add('hidden');
+    }
+
+    async function selectStory(storyKey) {
+        hideStorySelection();
+        await loadStoryMode(storyKey);
+        startNewGame();
+    }
+
+    async function loadStoryMode(storyKey) {
+        currentStoryMode = storyKey;
+        const mode = STORY_MODES[storyKey];
+
+        // Apply body class for theming
+        document.body.classList.remove('challenge-survive', 'below-deck');
+        document.body.classList.add(mode.bodyClass);
+
         try {
             // Load game content and logo in parallel
             const [content, logo] = await Promise.all([
-                loadJSON('challenge2survive_content.json'),
-                loadText('logo.txt')
+                loadJSON(mode.contentFile),
+                loadText(mode.logoFile).catch(() => '')  // Logo is optional
             ]);
 
             gameContent = content;
             logoText = logo;
 
-            // Check for autosave
-            const autoSave = loadFromStorage(CONFIG.autoSaveKey);
-            if (autoSave) {
-                showContinuePrompt(autoSave);
+            // Start background music if applicable
+            if (mode.backgroundMusic) {
+                startBackgroundMusic(mode.backgroundMusic);
             } else {
-                startNewGame();
+                stopBackgroundMusic();
             }
         } catch (error) {
             console.error('Failed to load game content:', error);
             showError('Failed to load game. Please refresh the page.');
+        }
+    }
+
+    function startBackgroundMusic(filename) {
+        stopBackgroundMusic();
+        backgroundMusic = new Audio(filename);
+        backgroundMusic.loop = true;
+        backgroundMusic.volume = 0.3;
+        backgroundMusic.play().catch(e => {
+            // Autoplay may be blocked; will retry on user interaction
+            console.log('Background music autoplay blocked, will retry on interaction');
+            const playOnInteraction = () => {
+                backgroundMusic.play();
+                document.removeEventListener('click', playOnInteraction);
+            };
+            document.addEventListener('click', playOnInteraction);
+        });
+    }
+
+    function stopBackgroundMusic() {
+        if (backgroundMusic) {
+            backgroundMusic.pause();
+            backgroundMusic = null;
         }
     }
 
@@ -176,6 +265,7 @@
         DOM.overlays.status = document.getElementById('status-overlay');
         DOM.overlays.name = document.getElementById('name-overlay');
         DOM.overlays.save = document.getElementById('save-overlay');
+        DOM.overlays.story = document.getElementById('story-overlay');
 
         DOM.statusContent = document.getElementById('status-content');
         DOM.playerNameInput = document.getElementById('player-name-input');
@@ -205,6 +295,10 @@
 
         // Save/Load overlay
         document.getElementById('close-save-btn').addEventListener('click', hideSaveLoad);
+
+        // Story selection
+        document.getElementById('story-challenge').addEventListener('click', () => selectStory('challenge'));
+        document.getElementById('story-belowdeck').addEventListener('click', () => selectStory('belowdeck'));
 
         // Tap/click to continue - initialize audio on first interaction
         DOM.textOutput.addEventListener('click', handleScreenTap);
@@ -261,17 +355,27 @@
 
     async function showIntroSequence() {
         // Type out the logo
-        await typewriterLogo(logoText);
+        if (logoText) {
+            await typewriterLogo(logoText);
+            await delay(500);
+        }
 
-        // Add some spacing
-        await delay(500);
-
-        // Welcome message
-        await typeText('\n\nWelcome to Challenge 2 Survive.\n');
-        await delay(300);
-        await typeText('A text-based reality competition.\n');
-        await delay(500);
-        await typeText('\nAre you ready to board the flight? Name and ID please...\n');
+        // Story-specific welcome message
+        if (currentStoryMode === 'belowdeck') {
+            await typeText('\n\nWelcome to Below Deck: Season at Sea.\n');
+            await delay(300);
+            await typeText('A yacht crew drama adventure.\n');
+            await delay(500);
+            await typeText('\nYou\'re the new third stew on the M/Y Sovereign Seas.\n');
+            await delay(300);
+            await typeText('Ready to start your first season? Name please...\n');
+        } else {
+            await typeText('\n\nWelcome to Challenge 2 Survive.\n');
+            await delay(300);
+            await typeText('A text-based reality competition.\n');
+            await delay(500);
+            await typeText('\nAre you ready to board the flight? Name and ID please...\n');
+        }
 
         // Show continue prompt and wait for user tap
         showContinuePromptUI();
@@ -512,6 +616,48 @@
         if (effects.active_players) {
             gameState.active_players = effects.active_players;
         }
+
+        // Below Deck specific effects
+        if (effects.tip_adjustment) {
+            if (!gameState.tips) {
+                gameState.tips = { charter1: 0, charter2: 0, charter3: 0, charter4: 0, total: 0 };
+            }
+            const charterKey = `charter${gameState.charter_number || 1}`;
+            gameState.tips[charterKey] = (gameState.tips[charterKey] || 0) + effects.tip_adjustment;
+            gameState.tips.total = (gameState.tips.total || 0) + effects.tip_adjustment;
+        }
+
+        if (effects.guest_satisfaction) {
+            gameState.guest_satisfaction = clamp(
+                (gameState.guest_satisfaction || 100) + effects.guest_satisfaction,
+                0,
+                100
+            );
+        }
+
+        if (effects.charter_number) {
+            gameState.charter_number = effects.charter_number;
+        }
+
+        if (effects.shift) {
+            gameState.shift = effects.shift;
+        }
+
+        if (effects.times_drunk) {
+            gameState.times_drunk = (gameState.times_drunk || 0) + effects.times_drunk;
+        }
+
+        if (effects.hookups) {
+            gameState.hookups = (gameState.hookups || 0) + effects.hookups;
+        }
+
+        if (effects.guest_complaints) {
+            gameState.guest_complaints = (gameState.guest_complaints || 0) + effects.guest_complaints;
+        }
+
+        if (effects.times_almost_fired) {
+            gameState.times_almost_fired = (gameState.times_almost_fired || 0) + effects.times_almost_fired;
+        }
     }
 
     // ==================== TEXT FORMATTING ====================
@@ -520,8 +666,12 @@
         let formatted = text
             .replace(/\[PLAYER_NAME\]/g, gameState.player_name || 'Player')
             .replace(/\[PLAYER\]/g, gameState.player_name || 'Player')
-            .replace(/\[CHALLENGE_WINS\]/g, gameState.challenge_wins)
-            .replace(/\[ELIMINATION_WINS\]/g, gameState.elimination_wins);
+            .replace(/\[CHALLENGE_WINS\]/g, gameState.challenge_wins || 0)
+            .replace(/\[ELIMINATION_WINS\]/g, gameState.elimination_wins || 0)
+            // Below Deck placeholders
+            .replace(/\[TOTAL_TIPS\]/g, gameState.tips ? `$${gameState.tips.total.toLocaleString()}` : '$0')
+            .replace(/\[CHARTER_NUMBER\]/g, gameState.charter_number || 1)
+            .replace(/\[GUEST_SATISFACTION\]/g, gameState.guest_satisfaction || 100);
 
         // Add speaker prefix if present
         if (speaker) {
@@ -551,6 +701,11 @@
     }
 
     function getCharacterColor(characterId) {
+        if (characterId === 'player') {
+            // Use story-specific player color
+            const mode = STORY_MODES[currentStoryMode];
+            return CHARACTER_COLORS[mode ? mode.playerColor : 'player'];
+        }
         return CHARACTER_COLORS[characterId] || CHARACTER_COLORS.player;
     }
 
@@ -717,11 +872,19 @@
 
     // ==================== UI UPDATES ====================
     function updateHeader() {
-        DOM.header.day.textContent = `DAY ${gameState.day}`;
-        DOM.header.episode.textContent = `EPISODE ${gameState.episode}`;
-
-        const playerCount = gameState.active_players ? gameState.active_players.length : 8;
-        DOM.header.players.textContent = `${playerCount} PLAYER${playerCount !== 1 ? 'S' : ''}`;
+        if (currentStoryMode === 'belowdeck') {
+            // Below Deck: Show charter info and shift
+            DOM.header.day.textContent = `CHARTER ${gameState.charter_number || 1}`;
+            DOM.header.episode.textContent = gameState.shift === 'night' ? 'NIGHT' : 'DAY';
+            const totalTips = gameState.tips ? gameState.tips.total : 0;
+            DOM.header.players.textContent = `$${totalTips.toLocaleString()}`;
+        } else {
+            // Challenge 2 Survive: Original behavior
+            DOM.header.day.textContent = `DAY ${gameState.day}`;
+            DOM.header.episode.textContent = `EPISODE ${gameState.episode}`;
+            const playerCount = gameState.active_players ? gameState.active_players.length : 8;
+            DOM.header.players.textContent = `${playerCount} PLAYER${playerCount !== 1 ? 'S' : ''}`;
+        }
     }
 
     function clearTextOutput() {
@@ -852,6 +1015,11 @@
         CONFIG.soundEnabled = !CONFIG.soundEnabled;
         document.getElementById('mute-btn').textContent =
             CONFIG.soundEnabled ? 'SOUND: ON' : 'SOUND: OFF';
+
+        // Also mute/unmute background music
+        if (backgroundMusic) {
+            backgroundMusic.muted = !CONFIG.soundEnabled;
+        }
     }
 
     function toggleSpeed() {
@@ -914,26 +1082,40 @@
         DOM.overlays.status.classList.add('hidden');
         DOM.overlays.name.classList.add('hidden');
         DOM.overlays.save.classList.add('hidden');
+        DOM.overlays.story.classList.add('hidden');
     }
 
     function isAnyOverlayVisible() {
         return !DOM.overlays.menu.classList.contains('hidden') ||
                !DOM.overlays.status.classList.contains('hidden') ||
                !DOM.overlays.name.classList.contains('hidden') ||
-               !DOM.overlays.save.classList.contains('hidden');
+               !DOM.overlays.save.classList.contains('hidden') ||
+               !DOM.overlays.story.classList.contains('hidden');
     }
 
     // ==================== STATUS PANEL ====================
     function renderStatusPanel() {
         let html = '';
 
-        // Player info
+        // Player info - different for each story mode
         html += `<div class="status-section">
             <h3>PLAYER</h3>
-            <div>${gameState.player_name}</div>
-            <div>Challenge Wins: ${gameState.challenge_wins}</div>
-            <div>Elimination Wins: ${gameState.elimination_wins}</div>
-        </div>`;
+            <div>${gameState.player_name}</div>`;
+
+        if (currentStoryMode === 'belowdeck') {
+            // Below Deck: Show tips
+            const totalTips = gameState.tips ? gameState.tips.total : 0;
+            html += `<div>Season Tips: $${totalTips.toLocaleString()}</div>`;
+            html += `<div>Charter: ${gameState.charter_number || 1} of 4</div>`;
+            if (gameState.guest_satisfaction !== undefined) {
+                html += `<div>Guest Satisfaction: ${gameState.guest_satisfaction}%</div>`;
+            }
+        } else {
+            // Challenge 2 Survive: Show wins
+            html += `<div>Challenge Wins: ${gameState.challenge_wins}</div>`;
+            html += `<div>Elimination Wins: ${gameState.elimination_wins}</div>`;
+        }
+        html += '</div>';
 
         // Relationships
         html += `<div class="status-section">
@@ -1067,6 +1249,7 @@
     function autoSave() {
         const saveData = {
             ...gameState,
+            story_mode: currentStoryMode,
             timestamp: Date.now()
         };
         saveToStorage(CONFIG.autoSaveKey, saveData);
