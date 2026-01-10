@@ -95,7 +95,11 @@
     "times_drunk": 0,
     "hookups": 0,
     "guest_complaints": 0,
-    "times_almost_fired": 0
+    "times_almost_fired": 0,
+    "villain_points": 0,
+    "personal_tips": 0,
+    "crew_hate": 0,
+    "guest_adoration": 0
   },
   "nodes": {
     "bd_intro_001": {
@@ -162,6 +166,17 @@
           "effects": {
             "relationships": { "jade": 5, "bree": 5 },
             "flags": { "intro_style": "friendly" }
+          },
+          "next": "bd_intro_captain"
+        },
+        {
+          "id": "intro_villain",
+          "text": "Smile sweetly... while plotting her downfall",
+          "response_text": "\"Oh, absolutely! I'm just here to support whatever you need. You're clearly *so* good at this.\"\n\nYou smile your most innocent smile - the one you practiced in the mirror. Jade looks satisfied. Pleased, even.\n\n*Enjoy it while it lasts, sweetheart.*\n\nBecause here's the thing about girls like Jade - they're so busy watching the door, they never notice the knife sliding between their ribs. You didn't get this job to fold towels and fetch cocktails. You got this job to *win*.\n\nAnd Jade? She just became the first obstacle.",
+          "effects": {
+            "relationships": { "jade": 5 },
+            "flags": { "intro_style": "villain", "bad_girl_choice_1": true },
+            "villain_points": 1
           },
           "next": "bd_intro_captain"
         }
@@ -375,8 +390,36 @@
             "flags": { "derek_hottub": true }
           },
           "next": "bd_c1_crew_night"
+        },
+        {
+          "id": "c1_villain_hottub",
+          "text": "Slip in - charm is your best weapon",
+          "response_text": "You glance around. Victoria's dealing with something in the galley. The coast is clear.\n\n\"Well... I AM technically off-duty in about five minutes...\"\n\nYou slip below deck and change into the bikini you *definitely* didn't pack for exactly this situation. When you climb into the hot tub, Chad's eyes go wide.\n\n\"NOW we're talking!\" He grins, making room for you. His arm slides around your waist - possessive, but you don't mind. His friends are filming. Let them.\n\n\"I like you,\" Chad says, pulling you closer. The bubbles hide where his hand is resting. \"What's your Venmo?\"\n\nHe tips you $500. Right there. Into YOUR account. Not the crew tip pool.\n\n*This is how the game is played.*\n\nWhen you finally extract yourself, you catch Jade watching from the upper deck. Her expression is pure murder.\n\n*Good.*",
+          "effects": {
+            "relationships": { "victoria": -15, "jade": -20, "derek": 5, "sterling": -10 },
+            "personal_tips": 500,
+            "guest_adoration": 15,
+            "crew_hate": 10,
+            "flags": { "bad_girl_choice_2": true, "hottub_villain": true },
+            "villain_points": 1
+          },
+          "next": "bd_c1_villain_check"
         }
       ]
+    },
+    "bd_c1_villain_check": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "bad_girl_choice_1",
+        "if_true": "bd_villain_c1_aftermath",
+        "if_false": "bd_c1_crew_night"
+      }
+    },
+    "bd_villain_c1_aftermath": {
+      "type": "narrative",
+      "text": "By 3am, the party is finally winding down. Chad and his friends are passed out on the sun deck, and you've pocketed your first personal tip of the season.\n\nYou catch your reflection in the galley window. Same face, but something's different. Sharper. Hungrier.\n\n*This is who I am now.*\n\nYou finish cleaning alone - Jade mysteriously \"forgot\" to help - and head to the crew mess. Connor is there with wine, sweet as always, but you're already thinking about the next charter.\n\nThe next opportunity.",
+      "next": "bd_c1_crew_night"
     },
     "bd_c1_crew_night": {
       "type": "narrative",
@@ -553,6 +596,24 @@
     },
 
     "bd_c2_briefing": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "bad_girl_choice_2",
+        "if_true": "bd_c2_villain_fork",
+        "if_false": "bd_c2_briefing_normal"
+      }
+    },
+    "bd_c2_villain_fork": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "bad_girl_choice_1",
+        "if_true": "bd_villain_c2_intro",
+        "if_false": "bd_c2_briefing_normal"
+      }
+    },
+    "bd_c2_briefing_normal": {
       "type": "narrative",
       "text": "A few days later, the crew gathers for the Charter 2 preference sheet meeting. Victoria looks like she's already developing a stress headache.\n\n\"Our primary guest is... Tiffany St. James. Instagram influencer. She's turning 30 and wants the 'most epic birthday ever.'\"",
       "charter_number": 2,
@@ -1375,6 +1436,491 @@
       "type": "ending",
       "ending_type": "rough_exit",
       "text": "SEASON FINALE\n\n*ROUGH EXIT*\n\nThe season ends with relief - mostly from everyone else that it's over.\n\nVictoria's feedback is pointed. Captain Sterling's reference letter is... sparse. The tips were there, but the relationships weren't.\n\n\"It's a tough industry,\" Bree says sympathetically. \"Not for everyone.\"\n\nYour season tips: [TOTAL_TIPS]\n\nMaybe yachting wasn't your calling. Or maybe you just need to learn from this and try again somewhere else.\n\n*THE END*"
+    },
+
+    "bd_villain_c2_intro": {
+      "type": "narrative",
+      "text": "CHARTER 2: MEAN GIRL RISING\n\nYou wake to sunlight streaming through your cabin porthole. Your phone shows $500 from Chad - your little secret.\n\nAs you head to the crew mess, the temperature drops about twenty degrees. Jade is stirring her coffee with murder in her eyes. Victoria stands with arms crossed. Even Connor won't meet your gaze.\n\n*So. Word got around.*",
+      "charter_number": 2,
+      "next": "bd_villain_c2_confrontation"
+    },
+    "bd_villain_c2_confrontation": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"We need to talk.\" Victoria's voice could freeze the Mediterranean. \"Chad tipped you separately. You know how that looks?\"\n\n\"I—\"\n\n\"I don't want to hear it. What happens in the hot tub stays in the hot tub, apparently. But separate tips? That's a crew issue.\"\n\nJade smirks behind her coffee cup. She's loving this.",
+      "next": "bd_villain_c2_response"
+    },
+    "bd_villain_c2_response": {
+      "type": "choice",
+      "text": "Victoria is waiting for an explanation. How do you play this?",
+      "choices": [
+        {
+          "id": "v_c2_deflect",
+          "text": "Feign innocence - you had no idea",
+          "response_text": "\"I honestly had no idea he was going to do that. He just... sent it. What was I supposed to do, refuse?\"\n\nYou blink those innocent eyes. Victoria hesitates. Jade's smirk falters.\n\n\"Just... don't let it happen again.\"\n\n*Oh, it's definitely happening again.*",
+          "effects": {
+            "relationships": { "victoria": -5 },
+            "crew_hate": 5
+          },
+          "next": "bd_villain_c2_sebastian_arrival"
+        },
+        {
+          "id": "v_c2_bold",
+          "text": "Own it - guests tip who they want",
+          "response_text": "\"Look, I provided excellent service. Chad appreciated it. If the guests want to show their appreciation directly, that's their choice.\"\n\nVictoria's jaw tightens. Jade looks scandalized. Even Connor shakes his head.\n\n\"Wow,\" Bree mutters. \"Bold.\"\n\n*Damn right.*",
+          "effects": {
+            "relationships": { "victoria": -15, "jade": -10, "connor": -10 },
+            "crew_hate": 15,
+            "guest_adoration": 5
+          },
+          "next": "bd_villain_c2_sebastian_arrival"
+        }
+      ]
+    },
+    "bd_villain_c2_sebastian_arrival": {
+      "type": "narrative",
+      "text": "The crew briefing is tense, but you barely hear Victoria drone on about the preference sheets. Your mind is already calculating.\n\nThen the guest arrives, and everything changes.\n\nHe steps onto the swim platform like he owns it - because men like him own everything. Tall. Dark hair swept back carelessly. Jaw that could cut glass. Tailored linen shirt unbuttoned just enough to hint at the body underneath.\n\nBritish accent when he speaks: \"Sebastian Montgomery. Pleasure to be aboard.\"",
+      "next": "bd_villain_c2_sebastian_look"
+    },
+    "bd_villain_c2_sebastian_look": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "His eyes sweep the crew lineup and stop on you. Not a casual glance - a full assessment. His mouth curves.\n\n\"And you are?\"\n\nVictoria tries to intercept. \"This is our third stew, she'll be—\"\n\n\"I asked her.\" His voice is silk over steel. Still looking at you.\n\nThe crew exchanges glances. Jade's face is thunderous.\n\n*Hello, opportunity.*",
+      "next": "bd_villain_c2_sebastian_intro"
+    },
+    "bd_villain_c2_sebastian_intro": {
+      "type": "choice",
+      "text": "Sebastian Montgomery - tech billionaire, thirty-four, dangerously handsome - is waiting for your answer. The whole crew is watching.",
+      "choices": [
+        {
+          "id": "v_c2_flirty_intro",
+          "text": "Give him your most dazzling smile",
+          "response_text": "\"[PLAYER_NAME].\" You extend your hand. \"Welcome aboard. I'll make sure your stay is... unforgettable.\"\n\nHis handshake lingers. His thumb traces your palm.\n\n\"I'm counting on it.\"\n\nBehind you, Victoria makes a strangled sound. Sebastian's female companion - introduced as his \"assistant\" Natasha - watches with cold, calculating eyes.\n\n*Competition. Interesting.*",
+          "effects": {
+            "relationships": { "victoria": -10, "jade": -15 },
+            "guest_adoration": 20,
+            "flags": { "sebastian_flirty": true }
+          },
+          "next": "bd_villain_c2_cabin_service"
+        },
+        {
+          "id": "v_c2_professional_intro",
+          "text": "Stay professional - for now",
+          "response_text": "\"[PLAYER_NAME], third stew. Whatever you need, I'm here to help.\"\n\nProfessional. Poised. But you hold his gaze a beat too long.\n\nHis smile says he noticed. \"I'll hold you to that.\"\n\nNatasha, his \"assistant,\" places a possessive hand on his arm. The gesture screams 'he's mine.'\n\n*We'll see about that.*",
+          "effects": {
+            "relationships": { "victoria": 5 },
+            "guest_adoration": 10,
+            "flags": { "sebastian_professional": true }
+          },
+          "next": "bd_villain_c2_cabin_service"
+        }
+      ]
+    },
+    "bd_villain_c2_cabin_service": {
+      "type": "narrative",
+      "text": "That evening, you're delivering Sebastian's cabin amenities when you find him alone. No Natasha. Just him, freshly showered, in nothing but a towel slung low on his hips.\n\nWater droplets trace paths down his chest. His abs are obscene - the kind that come from personal trainers and too much money.\n\n\"Ah.\" He doesn't move to cover himself. \"My champagne delivery.\"",
+      "next": "bd_villain_c2_cabin_moment"
+    },
+    "bd_villain_c2_cabin_moment": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "\"Close the door.\"\n\nYou shouldn't. Every rule says you shouldn't.\n\nYou do.\n\nHe takes the champagne, pours two glasses. Hands you one. His fingers brush yours - deliberate.\n\n\"You're different from the others.\" His voice is low. Intimate. \"You have... ambition. I can always spot it.\"\n\n\"And what do you spot in me?\"\n\n\"Someone who wants more.\" He steps closer. You can smell his cologne, feel the heat radiating from his skin. \"Am I wrong?\"",
+      "next": "bd_villain_c2_cabin_choice"
+    },
+    "bd_villain_c2_cabin_choice": {
+      "type": "choice",
+      "text": "Sebastian is inches away. The champagne is expensive. The moment is dangerous. What do you do?",
+      "choices": [
+        {
+          "id": "v_c2_cabin_bold",
+          "text": "Close the distance between you",
+          "response_text": "You set down your glass. Step forward until there's nothing between you but heat and possibility.\n\n\"You're not wrong.\"\n\nHis hand finds your waist. Pulls you against him. The towel is very thin. The kiss, when it comes, is anything but gentle - hungry, demanding, his fingers tangling in your hair.\n\nWhen you finally break apart, both breathing hard, his eyes are dark with want.\n\n\"Tonight. After service. My cabin.\"\n\nIt's not a question.\n\nYou straighten your uniform and slip out. Natasha is in the hallway. Her eyes narrow.\n\n*Let her wonder.*",
+          "effects": {
+            "guest_adoration": 30,
+            "crew_hate": 10,
+            "flags": { "sebastian_kiss": true, "natasha_suspicious": true }
+          },
+          "next": "bd_villain_c2_jade_sabotage"
+        },
+        {
+          "id": "v_c2_cabin_tease",
+          "text": "Keep him wanting - power is in the chase",
+          "response_text": "You take a sip of champagne. Let your eyes travel slowly down his body - taking your time - before meeting his gaze again.\n\n\"I don't give anyone what they want that easily.\" You set down the glass. \"But I do like a man who knows what he's after.\"\n\nHis laugh is surprised. Delighted. \"You're going to be trouble, aren't you?\"\n\n\"The best kind.\"\n\nYou slip out before he can respond. Leave him wanting. That's how you keep the upper hand.\n\n*The chase is just beginning.*",
+          "effects": {
+            "guest_adoration": 25,
+            "flags": { "sebastian_tease": true }
+          },
+          "next": "bd_villain_c2_jade_sabotage"
+        }
+      ]
+    },
+    "bd_villain_c2_jade_sabotage": {
+      "type": "narrative",
+      "text": "The next morning, you're setting up breakfast when Victoria storms in.\n\n\"The fruit display is wrong. The napkins are folded incorrectly. And WHY is there salt in the sugar bowl?!\"\n\nYou didn't do any of that. Your setups are perfect.\n\nAcross the galley, Jade is polishing silverware with a smile that doesn't reach her eyes.",
+      "next": "bd_villain_c2_jade_confront"
+    },
+    "bd_villain_c2_jade_confront": {
+      "type": "choice",
+      "text": "Jade sabotaged your setup. Victoria is furious. How do you handle this?",
+      "choices": [
+        {
+          "id": "v_c2_gaslight_jade",
+          "text": "Turn the tables - make Jade look paranoid",
+          "response_text": "\"That's so strange...\" You furrow your brow, all concern. \"Jade, didn't you say you were going to 'fix' my setup last night? Something about showing me how it's really done?\"\n\nJade's smile vanishes. \"I never said—\"\n\n\"I just assumed you were being helpful.\" You turn to Victoria with wide, innocent eyes. \"Should I have stopped her?\"\n\nVictoria's gaze swings to Jade. \"We'll discuss this later.\"\n\nJade stares at you with pure hatred. You've just rewritten history in front of a witness.\n\n*Your word against mine. And I'm a better liar.*",
+          "effects": {
+            "relationships": { "jade": -25, "victoria": 5 },
+            "crew_hate": 20,
+            "flags": { "gaslit_jade": true }
+          },
+          "next": "bd_villain_c2_natasha_catches"
+        },
+        {
+          "id": "v_c2_threaten_jade",
+          "text": "Confront Jade privately - make it clear she picked the wrong enemy",
+          "response_text": "You wait until Victoria leaves, then corner Jade in the laundry room.\n\n\"I know what you did.\"\n\n\"Prove it.\"\n\n\"I don't need to prove it.\" You step closer. \"I just need you to know that if you come for me again, I won't play nice. I have Sebastian wrapped around my finger. One word from me, and Victoria gets a preference sheet request that makes your life hell.\"\n\nJade's face goes pale. \"You wouldn't.\"\n\n\"Try me.\"\n\nYou leave her shaking in the laundry room.\n\n*Message delivered.*",
+          "effects": {
+            "relationships": { "jade": -30 },
+            "crew_hate": 15,
+            "flags": { "threatened_jade": true }
+          },
+          "next": "bd_villain_c2_natasha_catches"
+        }
+      ]
+    },
+    "bd_villain_c2_natasha_catches": {
+      "type": "narrative",
+      "text": "That night, you slip into Sebastian's master cabin. He's waiting, dressed down in just linen pants, two glasses of wine already poured.\n\n\"I was hoping you'd come.\"\n\nThe next hour is... educational. His hands mapping your body. His mouth finding places that make you gasp. The cabin filling with soft sounds and heavy breathing.\n\nYou're tangled in his sheets when the door opens.",
+      "next": "bd_villain_c2_natasha_scene"
+    },
+    "bd_villain_c2_natasha_scene": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "Natasha stands in the doorway, face white with rage.\n\n\"You have got to be KIDDING me.\"\n\nSebastian doesn't even bother covering up. \"Natasha. We've discussed this. We're not exclusive.\"\n\n\"I am your GIRLFRIEND!\"\n\n\"You're my assistant who sometimes shares my bed.\" His voice is cold. Dismissive. \"There's a difference.\"\n\nNatasha's eyes find you, venomous. \"You're a yacht stew. A SERVANT.\"\n\nYou pull the sheet a little higher and smile your sweetest smile.\n\n\"Maybe that's what he likes about me.\"",
+      "next": "bd_villain_c2_natasha_leaves"
+    },
+    "bd_villain_c2_natasha_leaves": {
+      "type": "narrative",
+      "text": "Natasha is gone by morning - helicopter extraction, per Sebastian's arrangement. The crew watches her dramatic exit from the swim platform with barely concealed glee.\n\n\"Good riddance,\" Bree mutters. \"She was awful.\"\n\nThey don't know it was you who pushed her out. They don't need to know.\n\nSebastian finds you during turndown service, presses a thick envelope into your hands.\n\n\"For your... exceptional service. Keep it between us.\"",
+      "next": "bd_villain_c2_tip_envelope"
+    },
+    "bd_villain_c2_tip_envelope": {
+      "type": "narrative",
+      "text": "You count it later in your cabin. Two thousand dollars. Cash.\n\nYour personal tips this charter: $2,500. The crew will split maybe $15,000 between seven people.\n\nYou're already ahead.\n\nAt the tip meeting, Victoria announces the charter tip: $18,000. \"Excellent work, everyone.\"\n\nYou smile and nod and pocket your secret envelope.\n\n*This is just the beginning.*",
+      "effects": {
+        "personal_tips": 2000,
+        "tip_adjustment": 2500,
+        "guest_adoration": 20,
+        "crew_hate": 10
+      },
+      "next": "bd_villain_c3_intro"
+    },
+
+    "bd_villain_c3_intro": {
+      "type": "narrative",
+      "text": "CHARTER 3: THE TENDER INCIDENT\n\nYou're prepping for the next charter when Captain Sterling calls a crew meeting. His expression is unreadable.\n\n\"We have a... unique situation. A previous guest has requested a return charter. Specifically requested.\"\n\nYour stomach does a flip. You already know.\n\n\"Sebastian Montgomery will be rejoining us. Solo this time.\"",
+      "charter_number": 3,
+      "next": "bd_villain_c3_crew_reaction"
+    },
+    "bd_villain_c3_crew_reaction": {
+      "type": "narrative",
+      "text": "The crew's reaction is immediate. Jade's face goes red. Victoria pinches the bridge of her nose. Connor won't look at you.\n\n\"A return charter is a compliment to the crew,\" Sterling says carefully. \"But I want to be clear: maintain professional boundaries. All of you.\"\n\nHis eyes land on you for just a beat too long.\n\nJade's whisper carries: \"Wonder who he's really coming back for.\"\n\n*Let them wonder. Let them burn.*",
+      "next": "bd_villain_c3_sebastian_return"
+    },
+    "bd_villain_c3_sebastian_return": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "Sebastian arrives with nothing but a carry-on and a smile that's all for you.\n\n\"Miss me?\"\n\nHe says it quietly, passing you on the gangway, close enough that his hand brushes your hip. Victoria definitely sees. Sterling definitely sees.\n\nYou don't care.\n\n\"Maybe.\"\n\nHis laugh is low and warm. \"I arranged a special excursion for tomorrow. Private beach. I'll need someone to... show me around.\"",
+      "next": "bd_villain_c3_tender_plan"
+    },
+    "bd_villain_c3_tender_plan": {
+      "type": "narrative",
+      "text": "The next morning, you're loading the tender with champagne, towels, and a beach picnic when Derek appears.\n\n\"I'm supposed to drive you to the beach.\"\n\n\"Actually...\" Sebastian emerges in swim trunks that leave very little to imagination. \"I'd like to drive myself. [PLAYER_NAME] can show me how.\"\n\nDerek frowns. \"Sir, I really should—\"\n\n\"I've driven boats before. It'll be fine.\"",
+      "next": "bd_villain_c3_tender_choice"
+    },
+    "bd_villain_c3_tender_choice": {
+      "type": "choice",
+      "text": "Sebastian wants to drive the tender himself. Derek looks uncertain. This is definitely against protocol.",
+      "choices": [
+        {
+          "id": "v_c3_let_him_drive",
+          "text": "What Sebastian wants, Sebastian gets",
+          "response_text": "\"Derek, I've got this.\" You flash him a confident smile. \"Sebastian is a quick learner. I'll make sure he doesn't scratch the paint.\"\n\nDerek hesitates, but ultimately steps back. \"Fine. But if Sterling asks—\"\n\n\"He won't.\"\n\nYou help Sebastian into the driver's seat, your hand resting on his thigh as you explain the controls. His attention is... divided.\n\n*This is going to be fun.*",
+          "effects": {
+            "relationships": { "derek": -10, "sterling": -10 },
+            "guest_adoration": 15,
+            "flags": { "let_sebastian_drive": true }
+          },
+          "next": "bd_villain_c3_beach_trip"
+        },
+        {
+          "id": "v_c3_you_drive",
+          "text": "Insist on driving - but make it sexy",
+          "response_text": "\"How about I drive, and you... distract me?\"\n\nSebastian's eyes darken. \"Deal.\"\n\nDerek rolls his eyes but backs off as you take the controls. Sebastian settles behind you, his chest against your back, hands finding your waist.\n\n\"Eyes on the water,\" he murmurs in your ear.\n\nThe ride to the beach is... memorable.",
+          "effects": {
+            "relationships": { "derek": -5 },
+            "guest_adoration": 20
+          },
+          "next": "bd_villain_c3_beach_trip"
+        }
+      ]
+    },
+    "bd_villain_c3_beach_trip": {
+      "type": "narrative",
+      "text": "The private beach is paradise - white sand, crystal water, not another soul in sight. Sebastian pops champagne while you spread the blanket.\n\n\"I could get used to this,\" he says, pulling you down beside him.\n\nThe afternoon passes in a haze of champagne, sun, and stolen moments. His hands. Your skin. The rhythm of waves masking other sounds.\n\nYou're half-asleep against his chest when he sits up suddenly.",
+      "next": "bd_villain_c3_sebastian_drives"
+    },
+    "bd_villain_c3_sebastian_drives": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "\"Let me take us back.\" Sebastian is three glasses of champagne deep, but his eyes are eager. \"You showed me the controls. I've got this.\"\n\nThe responsible answer is no.\n\nThe answer that keeps him happy is yes.\n\n\"Just... take it slow, okay?\"\n\nHe kisses you hard. \"Where's the fun in that?\"",
+      "next": "bd_villain_c3_the_crash"
+    },
+    "bd_villain_c3_the_crash": {
+      "type": "narrative",
+      "text": "It happens fast.\n\nSebastian takes a turn too sharp. There's a grinding crunch - rocks hidden just below the surface. The tender lurches. Water starts pouring in.\n\n\"SHIT—\"\n\nYou're thrown forward as the tender tilts. The champagne cooler goes flying. Sebastian is cursing, trying to reverse, but it's too late.\n\nThe tender is sinking.\n\nYou're both in the water, swimming for shore, as fifty thousand dollars of yacht equipment disappears beneath the waves.",
+      "next": "bd_villain_c3_aftermath_swim"
+    },
+    "bd_villain_c3_aftermath_swim": {
+      "type": "narrative",
+      "text": "You make it to the beach, gasping. Sebastian is laughing - actually laughing.\n\n\"Well. That's a first.\"\n\nYou radio the yacht. Derek's voice crackles back, incredulous. \"You WHAT?!\"\n\nTwenty minutes later, the backup tender arrives. Derek, Connor, and Captain Sterling himself. Sterling's face is granite.\n\n\"Mr. Montgomery. [PLAYER_NAME].\" He doesn't say anything else. He doesn't need to.\n\nThe ride back is silent. Jade is waiting on the swim platform, smirking. Victoria looks like she's composing your termination letter in her head.",
+      "next": "bd_villain_c3_sterling_office"
+    },
+    "bd_villain_c3_sterling_office": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"Close the door.\"\n\nSterling's office feels smaller than usual. You can hear your heartbeat.\n\n\"A fifty-thousand-dollar tender. Gone.\" His voice is quiet. Dangerous. \"Because you let a guest with three glasses of champagne drive. What were you THINKING?\"\n\n\"Sir, I—\"\n\n\"You weren't thinking. That's the problem.\" He leans forward. \"I should fire you. Right now. Pack your bags and get off my boat.\"\n\nYour throat tightens. This is it. You pushed too far.",
+      "next": "bd_villain_c3_sebastian_saves"
+    },
+    "bd_villain_c3_sebastian_saves": {
+      "type": "narrative",
+      "text": "A knock at the door. Sebastian enters without waiting.\n\n\"Captain. A word?\"\n\nSterling's jaw tightens. \"Mr. Montgomery, this is a crew matter—\"\n\n\"It's a matter I caused.\" Sebastian pulls out a checkbook. Writes quickly. Tears off the check and slides it across Sterling's desk.\n\n\"One hundred thousand. For the tender, the inconvenience, and to ensure [PLAYER_NAME] keeps her job.\"\n\nSterling stares at the check. At Sebastian. Back at the check.\n\nYou stay very, very still.",
+      "next": "bd_villain_c3_sterling_decides"
+    },
+    "bd_villain_c3_sterling_decides": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "\"This doesn't make it right.\"\n\n\"No,\" Sebastian agrees. \"But it makes it paid for. She stays. That's not negotiable.\"\n\nThe silence stretches. Finally, Sterling pockets the check.\n\n\"You're on thin ice.\" He points at you. \"One more incident. ONE. And no amount of money saves you.\"\n\nYou nod. You don't trust your voice.\n\nSebastian's hand finds your lower back as you leave. Possessive. Triumphant.\n\nThe crew is gathered in the galley. They saw everything.",
+      "next": "bd_villain_c3_crew_fury"
+    },
+    "bd_villain_c3_crew_fury": {
+      "type": "narrative",
+      "text": "Nobody speaks as you pass.\n\nJade's glare could melt steel. Victoria won't look at you. Connor shakes his head slowly, disappointed. Even Bree - party girl Bree - seems disgusted.\n\nOnly Derek speaks: \"Must be nice. Having someone buy your way out of everything.\"\n\nYou should feel ashamed. You should feel guilty.\n\nInstead, you feel... powerful.\n\n*They can hate me. I'm still here.*",
+      "effects": {
+        "relationships": { "sterling": -30, "victoria": -25, "jade": -20, "derek": -20, "connor": -20, "bree": -15 },
+        "crew_hate": 40,
+        "flags": { "tender_sunk": true }
+      },
+      "next": "bd_villain_c3_party_night"
+    },
+    "bd_villain_c3_party_night": {
+      "type": "narrative",
+      "text": "That night, Sebastian decides to celebrate his last evening. Champagne flows. Music pumps. The mood on deck is actually... good? Money solves a lot of problems.\n\nAround midnight, Sebastian pulls you into his cabin.\n\n\"I have something special for tonight.\" He produces a small bag of white powder. \"Care to join me?\"",
+      "next": "bd_villain_c3_party_choice"
+    },
+    "bd_villain_c3_party_choice": {
+      "type": "choice",
+      "text": "Sebastian is offering you drugs on a yacht. This is spectacularly illegal. The crew is right outside.",
+      "choices": [
+        {
+          "id": "v_c3_party_yes",
+          "text": "When in Rome... or Monaco...",
+          "response_text": "You've come this far. What's one more line to cross?\n\nThe next few hours blur together. Everything is brighter, sharper, more intense. Sebastian's hands on your skin. The music pounding through the walls. Laughing at nothing. Dancing too close.\n\nAt 3 AM, you're both on the sun deck, watching the stars spin, when you hear the engines.\n\nA boat is approaching. Official-looking lights.\n\n*Oh no.*",
+          "effects": {
+            "times_drunk": 1,
+            "guest_adoration": 20,
+            "flags": { "did_drugs": true }
+          },
+          "next": "bd_villain_c3_police"
+        },
+        {
+          "id": "v_c3_party_no",
+          "text": "Hard pass - you're not THAT reckless",
+          "response_text": "\"I'll stick with champagne, thanks.\"\n\nSebastian shrugs. \"More for me.\"\n\nYou watch him disappear into the bathroom. When he emerges, his pupils are dilated, his energy electric. The party continues, wilder than before.\n\nAt 3 AM, you're half-asleep on the sun deck when you hear the engines.\n\nA boat is approaching. Official-looking lights.\n\nSebastian emerges from below, suddenly pale. \"We have a problem.\"",
+          "effects": {
+            "guest_adoration": 10,
+            "flags": { "stayed_sober": true }
+          },
+          "next": "bd_villain_c3_police"
+        }
+      ]
+    },
+    "bd_villain_c3_police": {
+      "type": "narrative",
+      "text": "Maritime police. Random inspection.\n\nSebastian grabs your arm, eyes wild. \"They cannot find this on the boat. I cannot have this on my record. You understand?\"\n\nHe presses the bag into your hands. \n\n\"Hide it. Please. I'll make it worth your while.\"\n\nYou have maybe sixty seconds before the police board.",
+      "next": "bd_villain_c3_hide_choice"
+    },
+    "bd_villain_c3_hide_choice": {
+      "type": "choice",
+      "text": "Sebastian's drugs are in your hands. The police are boarding. What do you do?",
+      "choices": [
+        {
+          "id": "v_c3_hide_it",
+          "text": "Hide it under your mattress - you're in this deep anyway",
+          "response_text": "You sprint to the crew quarters. Stuff the bag deep under your mattress. Smooth the sheets. Walk back to the deck just as the officers board.\n\nThe search takes an hour. They check everywhere. The galley. The guest cabins. The bridge.\n\nThey never check the crew quarters.\n\n\"Everything appears in order,\" the lead officer says finally. \"Enjoy your evening.\"\n\nSebastian's exhale is audible. His look of gratitude is worth more than money.\n\n*Almost.*",
+          "effects": {
+            "guest_adoration": 30,
+            "flags": { "hid_contraband": true }
+          },
+          "next": "bd_villain_c3_after_police"
+        },
+        {
+          "id": "v_c3_dump_it",
+          "text": "Toss it overboard - some risks aren't worth it",
+          "response_text": "You walk calmly to the stern. Drop the bag over the rail. Watch it disappear into the dark water.\n\nSebastian's face when you return is priceless. \"What did you—\"\n\n\"It's gone. You're welcome.\"\n\nThe police search finds nothing. Sebastian is furious but relieved. He can't exactly complain that you destroyed his illegal drugs.\n\n\"You owe me,\" you say sweetly. \"Big time.\"\n\nHe knows it.",
+          "effects": {
+            "guest_adoration": 15,
+            "flags": { "dumped_contraband": true }
+          },
+          "next": "bd_villain_c3_after_police"
+        }
+      ]
+    },
+    "bd_villain_c3_after_police": {
+      "type": "narrative",
+      "text": "The police leave. The yacht exhales.\n\nSebastian finds you on the crew deck, the stars reflected in the dark water.\n\n\"I don't know how to thank you.\"\n\n\"I can think of a few ways.\"\n\nHis kiss is desperate. Grateful. His hands pull you into his cabin. The door closes.\n\nWhat happens next makes the hot tub incident look like a handshake. Every touch is electric. Every moment stretching. The sheets twisted. Your name on his lips.\n\nAfterward, tangled together, he traces patterns on your skin.\n\n\"Come to Monaco with me.\"\n\nYou kiss him instead of answering.",
+      "next": "bd_villain_c3_final_tip"
+    },
+    "bd_villain_c3_final_tip": {
+      "type": "narrative",
+      "speaker": "sebastian",
+      "text": "Sebastian departs the next morning, but not before pressing another envelope into your hands.\n\n\"For everything.\"\n\nFive thousand dollars. Your personal total is now over $7,500.\n\nAt the tip meeting, Victoria announces the charter tip: $35,000. \"Mr. Montgomery was... extremely generous.\"\n\nThe crew's eyes slide to you. They know. They all know.\n\nBut they can't prove anything. And you're richer than all of them.",
+      "effects": {
+        "personal_tips": 5000,
+        "tip_adjustment": 5000,
+        "guest_adoration": 25
+      },
+      "next": "bd_villain_c4_intro"
+    },
+
+    "bd_villain_c4_intro": {
+      "type": "narrative",
+      "text": "CHARTER 4: THE TRIUMPH\n\nThe final charter arrives: the Harrison family. Old money, conservative values, absolutely nothing like Sebastian.\n\nYou almost feel nostalgic for the chaos.\n\nThe crew is giving you the cold shoulder. Victoria assigns you to laundry duty - punishment detail. Jade makes pointed comments about 'inappropriate relationships.' Connor doesn't speak to you at all.\n\n*Fine. I don't need their approval. I have their money.*",
+      "charter_number": 4,
+      "next": "bd_villain_c4_tip_access"
+    },
+    "bd_villain_c4_tip_access": {
+      "type": "narrative",
+      "text": "On the last night, Victoria entrusts you with the tip envelope.\n\n\"Lock this in the safe. I have to handle the guest departure.\"\n\nShe rushes off. You're alone with the crew's earnings.\n\n$20,000 in cash. Split seven ways, that's about $2,800 each.\n\nOr... you could adjust the math a little. Who would know?",
+      "next": "bd_villain_c4_steal_choice"
+    },
+    "bd_villain_c4_steal_choice": {
+      "type": "choice",
+      "text": "You're alone with the tip envelope. $20,000 in cash. Victoria won't be back for at least ten minutes.",
+      "choices": [
+        {
+          "id": "v_c4_steal_tips",
+          "text": "Take $3,000 - you've earned it more than they have",
+          "response_text": "Your hands move before your conscience can catch up. Three thousand dollars into your pocket. The envelope goes in the safe.\n\nWhen the crew splits the remaining $17,000, they'll each get about $2,400 instead of $2,800. A few hundred each. They'll assume it was a smaller tip.\n\nNo one will know.\n\nYour heart is pounding. But your wallet is full.\n\n*This is who I am now.*",
+          "effects": {
+            "personal_tips": 3000,
+            "crew_hate": 25,
+            "flags": { "stole_tips": true }
+          },
+          "next": "bd_villain_c4_jade_suspects"
+        },
+        {
+          "id": "v_c4_dont_steal",
+          "text": "Pocket nothing - there are lines you won't cross",
+          "response_text": "You stare at the money. Count it. Put it back.\n\nStealing from the crew is different from accepting gifts from guests. This would make you a thief.\n\nYou lock the safe and walk away.\n\nMaybe there's a line after all.",
+          "effects": {
+            "flags": { "didnt_steal": true }
+          },
+          "next": "bd_villain_c4_tip_meeting"
+        }
+      ]
+    },
+    "bd_villain_c4_jade_suspects": {
+      "type": "narrative",
+      "text": "The tip meeting is tense. Victoria counts out the shares.\n\n\"$2,428 each. Great work, everyone.\"\n\nJade frowns. \"That seems low for a $20k tip...\"\n\n\"It was $17k,\" Victoria says. \"The Harrisons aren't as generous as Mr. Montgomery.\"\n\nJade's eyes find yours. She knows. She can't prove it, but she knows.\n\nAfter the meeting, she corners you in the laundry room.",
+      "next": "bd_villain_c4_jade_confrontation"
+    },
+    "bd_villain_c4_jade_confrontation": {
+      "type": "narrative",
+      "speaker": "jade",
+      "text": "\"I know you took it.\"\n\n\"Took what?\"\n\n\"Don't play dumb.\" Jade is shaking. \"The tips. You skimmed. I saw Mrs. Harrison write the check - she told Victoria it was twenty thousand.\"\n\nYour heart rate spikes. But your face stays calm.\n\n\"Sounds like you miscounted somewhere, Jade.\"",
+      "next": "bd_villain_c4_confrontation_choice"
+    },
+    "bd_villain_c4_confrontation_choice": {
+      "type": "choice",
+      "text": "Jade is accusing you of stealing. She's right, but she can't prove it. How do you handle this?",
+      "choices": [
+        {
+          "id": "v_c4_gaslight_jade2",
+          "text": "Make her doubt herself - gaslight her again",
+          "response_text": "\"Jade.\" You let concern creep into your voice. \"Are you okay? First the breakfast thing, now this...\"\n\n\"The breakfast thing YOU framed me for—\"\n\n\"I'm just worried about you. The stress of the season, and now you're making accusations with no evidence...\" You sigh sadly. \"Maybe you should talk to someone?\"\n\n\"I— you—\" Jade is sputtering. \n\nVictoria appears in the doorway. \"Everything okay here?\"\n\n\"Fine,\" you say sweetly. \"Jade was just feeling a bit overwhelmed.\"\n\nJade's protest dies in her throat as Victoria leads her away.\n\n*Too easy.*",
+          "effects": {
+            "relationships": { "jade": -30 },
+            "crew_hate": 20,
+            "flags": { "gaslit_jade_again": true }
+          },
+          "next": "bd_villain_c4_tip_meeting"
+        },
+        {
+          "id": "v_c4_threaten_jade2",
+          "text": "Threaten her - remind her what you're capable of",
+          "response_text": "You step closer. Close enough that Jade backs against the washing machine.\n\n\"Even if that were true - which it isn't - what are you going to do? Tell Victoria? Sterling?\" You smile. \"After everything this season, who do you think they'll believe? The reliable third stew, or the jealous second stew who's been gunning for me since day one?\"\n\nJade's eyes are wide. Scared.\n\n\"Think very carefully before you start throwing accusations around. Some of them might bounce back.\"\n\nYou leave her trembling among the dirty linens.",
+          "effects": {
+            "relationships": { "jade": -35 },
+            "crew_hate": 15,
+            "flags": { "threatened_jade_again": true }
+          },
+          "next": "bd_villain_c4_tip_meeting"
+        }
+      ]
+    },
+    "bd_villain_c4_tip_meeting": {
+      "type": "narrative",
+      "text": "The final crew gathering is awkward. Victoria gives her end-of-season speech. Sterling thanks everyone for their service.\n\nYou tune most of it out, mentally counting your earnings.\n\nPersonal tips: $7,500 (or $10,500 if you took from the crew).\nYour share of charter tips: approximately $11,000.\nTotal: somewhere between $18,500 and $21,500.\n\nThe best season of anyone's career. And they all hate you for it.",
+      "next": "bd_villain_c4_sterling_speech"
+    },
+    "bd_villain_c4_sterling_speech": {
+      "type": "narrative",
+      "speaker": "sterling",
+      "text": "Captain Sterling raises his glass. \"To the crew. Some seasons test us more than others. This one tested... everything.\"\n\nHis eyes land on you. \"I believe in second chances. I believe people can learn. I hope everyone here takes the lessons of this season with them.\"\n\nIt's not quite an accusation. But it's close.\n\nJade scoffs. Connor looks at his shoes. Victoria's smile is brittle.\n\nOnly you raise your glass with a genuine smile.\n\n*Lessons learned, Captain. Lessons learned.*",
+      "next": "bd_villain_c4_phone_call"
+    },
+    "bd_villain_c4_phone_call": {
+      "type": "narrative",
+      "text": "You're packing your cabin when your phone rings. Unknown number.\n\n\"Hello?\"\n\n\"Is this [PLAYER_NAME]? This is Shari Levine from Bravo Development.\"\n\nYour hands go still.\n\n\"We've been... following your season with great interest. Your charter with Mr. Montgomery generated quite a bit of social media attention. The tender incident alone has two million views.\"",
+      "next": "bd_villain_c4_bravo_offer"
+    },
+    "bd_villain_c4_bravo_offer": {
+      "type": "narrative",
+      "speaker": "victoria",
+      "text": "\"We'd like to discuss a potential project. A spinoff focused on... let's call it 'yacht life from a different perspective.' Someone who plays by their own rules.\"\n\nYou sit down on your bunk. This is happening.\n\n\"We think you could be that someone. Would you be interested in coming to LA for a meeting?\"\n\nThe crew hates you. The industry will probably blacklist you. But Bravo is calling.\n\n*Sometimes the villain wins.*",
+      "effects": {
+        "flags": { "bravo_called": true }
+      },
+      "next": "bd_villain_ending_branch"
+    },
+
+    "bd_villain_ending_branch": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "stole_tips",
+        "if_true": "bd_villain_ending_triumph",
+        "if_false": "bd_villain_ending_check_romance"
+      }
+    },
+    "bd_villain_ending_check_romance": {
+      "type": "branch",
+      "condition": {
+        "type": "flag_check",
+        "flag": "sebastian_kiss",
+        "if_true": "bd_villain_ending_wwhl",
+        "if_false": "bd_villain_ending_triumph"
+      }
+    },
+    "bd_villain_ending_triumph": {
+      "type": "ending",
+      "ending_type": "villain_triumph",
+      "text": "SEASON FINALE\n\n*VILLAIN TRIUMPH*\n\nThree months later, you're in a corner office at 30 Rock, signing contracts.\n\n'Yacht Queen' - your own show. Six episodes guaranteed, option for more. You'll be the anti-hero America loves to hate. The yacht stew who broke all the rules and came out on top.\n\nSebastian texts from Monaco: 'Congratulations. Knew you were special.'\n\nVictoria's name pops up in a gossip article: 'Former Chief Stew calls new Bravo star a disgrace to the industry.'\n\nYou screenshot it. Frame it. Hang it in your new apartment.\n\nYour season tips (official): [TOTAL_TIPS]\nYour ACTUAL earnings: Let's just say significantly more.\n\nThe crew despises you. The industry is scandalized. Your Instagram just hit 500k followers.\n\n*Sometimes the villain wins.*\n\n*THE END*"
+    },
+    "bd_villain_ending_wwhl": {
+      "type": "ending",
+      "ending_type": "villain_wwhl",
+      "text": "SEASON FINALE\n\n*WATCH WHAT HAPPENS*\n\nSix months later. Andy Cohen's living room. The entire crew reunited for the Below Deck reunion special.\n\nVictoria won't look at you. Jade has been giving interviews about your 'toxic behavior.' Even sweet Connor called you 'disappointing' in his podcast.\n\nBut you're the one Andy keeps turning to. You're the one with the viral moments.\n\n\"So.\" Andy leans forward, that glint in his eye. \"The fans are DYING to know. What really happened between you and Sebastian Montgomery?\"\n\nThe crew tenses. Jade rolls her eyes. Victoria braces herself.\n\nYou take a sip of your drink. Let the moment stretch.\n\n\"Well, Andy...\" You smile. \"I guess you could say something did happen.\"\n\nPause.\n\n\"Something that's made me very happy. And also about four months along.\"\n\nThe gasp is audible. Jade drops her wine. Victoria's jaw actually drops. Somewhere, Sebastian's lawyers are probably already calling.\n\nAndy Cohen looks like Christmas came early.\n\nYour season tips: [TOTAL_TIPS]\nYour future: Complicated. But never boring.\n\n*Watch What Happens, indeed.*\n\n*THE END*"
     }
   }
 }

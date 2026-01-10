@@ -41,7 +41,8 @@
         derek: '#00a8ff',     // Ocean blue - flirty bosun
         connor: '#7bed9f',    // Mint - insecure deckhand
         bree: '#ffa502',      // Orange - party girl
-        bd_player: '#ff6b9d'  // Sunset pink - you (BD)
+        bd_player: '#ff6b9d', // Sunset pink - you (BD)
+        sebastian: '#8b0000'  // Dark red - dangerous billionaire (villain arc)
     };
 
     // Story mode configuration
@@ -703,6 +704,23 @@ Jade: ${gameState.relationships.jade > 0 ? '+' : ''}${gameState.relationships.ja
 
         if (effects.times_almost_fired) {
             gameState.times_almost_fired = (gameState.times_almost_fired || 0) + effects.times_almost_fired;
+        }
+
+        // Villain arc specific effects
+        if (effects.villain_points) {
+            gameState.villain_points = (gameState.villain_points || 0) + effects.villain_points;
+        }
+
+        if (effects.personal_tips) {
+            gameState.personal_tips = (gameState.personal_tips || 0) + effects.personal_tips;
+        }
+
+        if (effects.crew_hate) {
+            gameState.crew_hate = (gameState.crew_hate || 0) + effects.crew_hate;
+        }
+
+        if (effects.guest_adoration) {
+            gameState.guest_adoration = (gameState.guest_adoration || 0) + effects.guest_adoration;
         }
     }
 
